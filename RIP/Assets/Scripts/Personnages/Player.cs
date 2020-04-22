@@ -19,7 +19,8 @@ public class Player : MonoBehaviour
         playerPosition = this.transform.position;
     }
 
-    private void FixedUpdate()
+
+    void Update()
     {
         moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         moveDirection *= speed * Time.deltaTime;
@@ -27,10 +28,7 @@ public class Player : MonoBehaviour
         playerPosition = this.transform.position;
         playerPosition += moveDirection;
         this.transform.position = playerPosition;
-    }
 
-    void Update()
-    {
 
     }
 }
