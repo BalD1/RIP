@@ -19,7 +19,7 @@ MonoBehaviour:
   fireBallCooldown: 1.5
   shovelDamages: 3
   shovelCooldown: 1
-  fleshCount: 1
-  bonesCount: 3
-  ectoplasmCount: 1
-  slimeCount: 1
+  fleshCount: 0
+  bonesCount: 0
+  ectoplasmCount: 0
+  slimeCount: 0
