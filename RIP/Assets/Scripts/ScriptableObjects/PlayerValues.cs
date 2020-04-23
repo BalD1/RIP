@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerValues : ScriptableObject
 {
     public int HpValue;
+    public float invincibleTime;
     public float speed;
 
     public int fireBallDamages;

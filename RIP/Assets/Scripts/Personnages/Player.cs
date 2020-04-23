@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     private int HP;
     private int shovelDamages;
     private int fireBallDamages;
+    private int damagesReceived;
 
     private float speed;
     private float launchSpeed;
@@ -21,19 +22,26 @@ public class Player : MonoBehaviour
     private float shovelAttackTime;
     private float fireBallTimer;
     private float fireBallTime;
+    private float invincibleTimer;
+    private float invincibleTime;
+
+    private bool invincible;
 
     private Vector2 moveDirection = Vector2.zero;
     private Vector2 playerPosition;
     private Vector2 lookDirection;
 
     private Rigidbody2D playerBody = new Rigidbody2D();
+    private SpriteRenderer spriteRenderer = new SpriteRenderer();
 
     Shovel shovel = new Shovel();
 
     void Start()
     {
+        this.ResetScriptable();
         shovel = this.gameObject.GetComponentInChildren<Shovel>();
         playerBody = this.GetComponent<Rigidbody2D>();
+        spriteRenderer = this.GetComponent<SpriteRenderer>();
         playerPosition = this.transform.position;
     }
 
@@ -49,10 +57,6 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(playerValues.fleshCount);
-        Debug.Log(playerValues.bonesCount);
-        Debug.Log(playerValues.ectoplasmCount);
-        Debug.Log(playerValues.slimeCount);
         this.UpdateValues();
         this.Attacks();
         lookDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
@@ -62,6 +66,60 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             ResetScriptable();
+        }
+        damagesReceived = GameManager.Instance.SendDamages();
+        if (damagesReceived != 0 && !invincible)
+        {
+            this.TakeDamages();
+        }
+        if (invincible)
+        {
+            InvokeRepeating("InvincibleClipping", 0.0f, invincibleTime);
+        }
+    }
+
+    private void TakeDamages()
+    {
+        playerValues.HpValue -= damagesReceived;
+        invincibleTimer = invincibleTime;
+        Invincible();
+        invincible = true;
+        if (HP <= 0)
+        {
+            GameManager.Instance.SetGameState(GameManager.GameState.GameOver);
+            Destroy(this.gameObject);
+        }
+    }
+
+    private void Invincible()
+    {
+        StartCoroutine(Invincible(invincibleTime));
+    }
+
+    IEnumerator Invincible(float hurtTime)
+    {
+        Physics2D.IgnoreLayerCollision(8, 10, true);
+
+
+        yield return new WaitForSeconds(hurtTime);
+
+        CancelInvoke();
+        this.spriteRenderer.enabled = true;
+        invincible = false;
+        GameManager.Instance.DamagePlayer(0);
+        Physics2D.IgnoreLayerCollision(8, 10, false);
+
+    }
+
+    private void InvincibleClipping()
+    {
+        if (this.spriteRenderer.enabled)
+        {
+            this.spriteRenderer.enabled = false;
+        }
+        else
+        {
+            this.spriteRenderer.enabled = true;
         }
     }
 
@@ -96,6 +154,7 @@ public class Player : MonoBehaviour
         launchSpeed = playerValues.fireBallLaunchSpeed;
         shovelAttackTime = playerValues.shovelCooldown;
         fireBallTime = playerValues.fireBallCooldown;
+        invincibleTime = playerValues.invincibleTime;
     }
 
     private void FaceMouse()
@@ -156,5 +215,6 @@ public class Player : MonoBehaviour
         playerValues.bonesCount = 0;
         playerValues.slimeCount = 0;
         playerValues.ectoplasmCount = 0;
+        playerValues.invincibleTime = 1;
     }
 }

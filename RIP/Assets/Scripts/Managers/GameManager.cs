@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+
+    private GameState currentState;
+
+    private int damagesToPlayer;
+
     private static GameManager instance;
     public static GameManager Instance
     {
@@ -28,7 +33,7 @@ public class GameManager : MonoBehaviour
         
     }
 
-    enum GameState
+    public enum GameState
     {
         MainMenu,
         InGame,
@@ -36,8 +41,28 @@ public class GameManager : MonoBehaviour
         GameOver
     }
 
+    public void SetGameState(GameState newGameState)
+    {
+        this.currentState = newGameState;
+    }
+
+    public GameState SendGameState()
+    {
+        return this.currentState;
+    }
+
     void Update()
     {
         
+    }
+
+    public void DamagePlayer(int damages)
+    {
+        damagesToPlayer = damages;
+    }
+
+    public int SendDamages()
+    {
+        return damagesToPlayer;
     }
 }
