@@ -35,7 +35,7 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        player = GetComponent<BoxCollider2D>();
+       // player = GetComponent<BoxCollider2D>();
         boneList = GameObject.FindGameObjectsWithTag("Bone");
         zombList = GameObject.FindGameObjectsWithTag("Zomb");
         itemsList.Add(boneList);
@@ -89,7 +89,7 @@ public class UIManager : MonoBehaviour
 
     private int Compteur(List<GameObject[]> itemsBigList, GameObject[] itemsList, GameObject items, ref int comp, ref int i)
     {
-        itemsBigList.Remove(itemsList[items]);
+    //    itemsBigList.Remove(itemsList[items]);
         comp++;
         return comp;
     }

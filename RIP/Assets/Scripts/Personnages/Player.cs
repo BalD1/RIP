@@ -49,12 +49,20 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(playerValues.fleshCount);
+        Debug.Log(playerValues.bonesCount);
+        Debug.Log(playerValues.ectoplasmCount);
+        Debug.Log(playerValues.slimeCount);
         this.UpdateValues();
         this.Attacks();
         lookDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         lookAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
 
         FaceMouse();
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ResetScriptable();
+        }
     }
 
     private void Attacks()
@@ -107,5 +115,46 @@ public class Player : MonoBehaviour
         GameObject launchedFireBall = Instantiate(fireBall, this.transform.position, Quaternion.identity);
         lookDirection = (lookDirection.normalized * launchSpeed);
         launchedFireBall.GetComponent<Rigidbody2D>().velocity = lookDirection;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Item")
+        {
+            switch(collision.name)
+            {
+                case string flesh when flesh.Contains("Flesh"):
+                    playerValues.fleshCount++;
+                    break;
+                case string bones when bones.Contains("Bone"):
+                    playerValues.bonesCount++;
+                    break;
+                case string ectoplasm when ectoplasm.Contains("Ectoplasm"):
+                    playerValues.ectoplasmCount++;
+                    break;
+                case string slime when slime.Contains("Slime"):
+                    playerValues.slimeCount++;
+                    break;
+                default:
+                    Debug.Log(collision.name + " not recognized as item");
+                    break;
+            }
+            Destroy(collision.gameObject);
+        }
+    }
+
+    private void ResetScriptable()          // A supprimer au build, sert à reset les valeurs du scriptable aux valeurs par défaut 
+    {
+        playerValues.HpValue = 10;
+        playerValues.speed = 5;
+        playerValues.fireBallDamages = 2;
+        playerValues.fireBallLaunchSpeed = 7;
+        playerValues.fireBallCooldown = 1.5f;
+        playerValues.shovelDamages = 3;
+        playerValues.shovelCooldown = 1;
+        playerValues.fleshCount = 0;
+        playerValues.bonesCount = 0;
+        playerValues.slimeCount = 0;
+        playerValues.ectoplasmCount = 0;
     }
 }

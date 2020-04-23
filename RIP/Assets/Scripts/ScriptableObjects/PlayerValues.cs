@@ -14,4 +14,9 @@ public class PlayerValues : ScriptableObject
 
     public int shovelDamages;
     public float shovelCooldown;
+
+    public int fleshCount;
+    public int bonesCount;
+    public int ectoplasmCount;
+    public int slimeCount;
 }
