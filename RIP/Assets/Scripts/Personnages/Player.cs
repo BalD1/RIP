@@ -8,7 +8,14 @@ public class Player : MonoBehaviour
     private PlayerValues playerValues;
 
     [SerializeField]
-    GameObject fireBall;
+    private GameObject fireBall;
+
+    [SerializeField]
+    private Sprite frontSprite;
+    [SerializeField]
+    private Sprite backSprite;
+    [SerializeField]
+    private Sprite sideSprite;
 
     private int HP;
     private int shovelDamages;
@@ -34,7 +41,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D playerBody = new Rigidbody2D();
     private SpriteRenderer spriteRenderer = new SpriteRenderer();
 
-    Shovel shovel = new Shovel();
+    private Shovel shovel = new Shovel();
 
     void Start()
     {
@@ -61,7 +68,6 @@ public class Player : MonoBehaviour
         this.Attacks();
         lookDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         lookAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
-
         FaceMouse();
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -76,6 +82,60 @@ public class Player : MonoBehaviour
         {
             InvokeRepeating("InvincibleClipping", 0.0f, invincibleTime);
         }
+    }
+
+    private enum Direction
+    {
+        Front,
+        Back,
+        Right,
+        Left,
+    }
+
+    private void ChangeSprite(Direction direction)
+    {
+        switch(direction)
+        {
+            case Direction.Front:
+                this.spriteRenderer.sprite = backSprite;
+                break;
+            case Direction.Back:
+                this.spriteRenderer.sprite = frontSprite;
+                break;
+            case Direction.Right:
+                this.spriteRenderer.sprite = sideSprite;
+                transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                break;
+            case Direction.Left:
+                this.spriteRenderer.sprite = sideSprite;
+                transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+                break;
+        }
+    }
+
+    private void FaceMouse()
+    {
+        if (IsBetween(lookAngle, -45, 45))
+        {
+            ChangeSprite(Direction.Right);
+        }
+        else if (IsBetween(lookAngle, 45, 135))
+        {
+            ChangeSprite(Direction.Front);
+        }
+        else if (IsBetween(lookAngle, -135, -45))
+        {
+            ChangeSprite(Direction.Back);
+        }
+        else if (IsBetween(lookAngle, -180, -135) || (IsBetween(lookAngle, 135, 180)))
+        {
+            ChangeSprite(Direction.Left);
+        }
+    }
+
+    private bool IsBetween(float value, float min, float max)
+    {
+        return (value >= min && value <= max);
     }
 
     private void TakeDamages()
@@ -157,17 +217,6 @@ public class Player : MonoBehaviour
         invincibleTime = playerValues.invincibleTime;
     }
 
-    private void FaceMouse()
-    {
-        if (lookDirection.x > 0)
-        {
-            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-        }
-        else
-        {
-            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-        }
-    }
 
     private void LaunchFireBall()
     {
