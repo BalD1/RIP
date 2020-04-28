@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D playerBody = new Rigidbody2D();
     private SpriteRenderer spriteRenderer = new SpriteRenderer();
+    private Animator playerAnimator;
 
     private Shovel shovel = new Shovel();
 
@@ -50,6 +51,7 @@ public class Player : MonoBehaviour
         playerBody = this.GetComponent<Rigidbody2D>();
         spriteRenderer = this.GetComponent<SpriteRenderer>();
         playerPosition = this.transform.position;
+        this.playerAnimator = this.GetComponent<Animator>();
     }
 
     private void FixedUpdate()
@@ -115,21 +117,28 @@ public class Player : MonoBehaviour
 
     private void FaceMouse()
     {
+        Vector2 clampedLookDirection = new Vector2();
+        clampedLookDirection.x = Mathf.Clamp(lookDirection.x, -5f, 5f);
+        clampedLookDirection.y = Mathf.Clamp(lookDirection.y, -5f, 5f);
+        playerAnimator.SetFloat("Look X", clampedLookDirection.x);
+        playerAnimator.SetFloat("Look Y", clampedLookDirection.y);
+        playerAnimator.SetFloat("Speed", moveDirection.magnitude);
+
         if (IsBetween(lookAngle, -45, 45))
         {
-            ChangeSprite(Direction.Right);
+            // right
         }
         else if (IsBetween(lookAngle, 45, 135))
         {
-            ChangeSprite(Direction.Front);
+            // front
         }
         else if (IsBetween(lookAngle, -135, -45))
         {
-            ChangeSprite(Direction.Back);
+            // back
         }
         else if (IsBetween(lookAngle, -180, -135) || (IsBetween(lookAngle, 135, 180)))
         {
-            ChangeSprite(Direction.Left);
+            // left
         }
     }
 
