@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
 
     private GameState currentState;
+    private GameTime currentTime;
 
     private int damagesToPlayer;
 
@@ -30,8 +31,10 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        
+        this.currentTime = GameTime.Day;
     }
+
+    // -------------------  GameState & GameTime ----------------
 
     public enum GameState
     {
@@ -40,6 +43,8 @@ public class GameManager : MonoBehaviour
         Pause,
         GameOver
     }
+
+
 
     public void SetGameState(GameState newGameState)
     {
@@ -51,10 +56,23 @@ public class GameManager : MonoBehaviour
         return this.currentState;
     }
 
-    void Update()
+    public enum GameTime
     {
-        
+        Day,
+        Night,
     }
+
+    public GameTime SendGameTime()
+    {
+        return this.currentTime;
+    }
+
+    public void SetGameTime(GameTime gameTime)
+    {
+        this.currentTime = gameTime;
+    }
+
+    // ------------------  Player Interactions ---------------
 
     public void DamagePlayer(int damages)
     {

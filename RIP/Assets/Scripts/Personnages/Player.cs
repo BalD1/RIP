@@ -10,13 +10,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject fireBall;
 
-    [SerializeField]
-    private Sprite frontSprite;
-    [SerializeField]
-    private Sprite backSprite;
-    [SerializeField]
-    private Sprite sideSprite;
-
     private int HP;
     private int shovelDamages;
     private int fireBallDamages;
@@ -42,10 +35,31 @@ public class Player : MonoBehaviour
     private SpriteRenderer spriteRenderer = new SpriteRenderer();
     private Animator playerAnimator;
 
-    private Shovel shovel = new Shovel();
+    private PlayerState playerState;
+    private PlayerMode playerMode;
+
+    private Shovel shovel;
+
+    private enum PlayerState
+    {
+        Idle,
+        Moving,
+        ShovelAttacking,
+        FireballAttacking,
+        Dead,
+    }
+
+    private enum PlayerMode
+    {
+        Build,
+        Fight,
+    }
+
+    // --------------------- Start & Updates ------------------
 
     void Start()
     {
+        this.playerState = PlayerState.Idle;
         this.ResetScriptable();
         shovel = this.gameObject.GetComponentInChildren<Shovel>();
         playerBody = this.GetComponent<Rigidbody2D>();
@@ -56,25 +70,23 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        moveDirection *= speed * Time.deltaTime;
-
-        playerPosition = this.transform.position;
-        playerPosition += moveDirection;
-        this.transform.position = playerPosition;
+        this.Movement();
     }
+    
 
     void Update()
     {
+        Debug.Log("Current time : " + GameManager.Instance.SendGameTime() + ". Press Enter to change.");
         this.UpdateValues();
-        this.Attacks();
-        lookDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        lookAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
-        FaceMouse();
-        if (Input.GetKeyDown(KeyCode.R))
+        this.ChangePlayerMode();        // Change the player mode by time
+
+        if (this.playerMode == PlayerMode.Fight)
         {
-            ResetScriptable();
+            this.Attacks();
         }
+
+        FaceMouse();
+
         damagesReceived = GameManager.Instance.SendDamages();
         if (damagesReceived != 0 && !invincible)
         {
@@ -83,6 +95,64 @@ public class Player : MonoBehaviour
         if (invincible)
         {
             InvokeRepeating("InvincibleClipping", 0.0f, invincibleTime);
+        }
+        this.Tests();
+    }
+
+    private void ChangePlayerMode()
+    {
+        if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Day)
+        {
+            this.playerMode = PlayerMode.Build;
+        }
+        else
+        {
+            this.playerMode = PlayerMode.Fight;
+        }
+    }
+
+    // ----------------------- Code tests -------------------
+
+    private void Tests()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ResetScriptable();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            if (this.playerMode == PlayerMode.Build)
+            {
+                GameManager.Instance.SetGameTime(GameManager.GameTime.Night);
+            }
+            else
+            {
+                GameManager.Instance.SetGameTime(GameManager.GameTime.Day);
+            }
+        }
+    }
+
+
+    // ---------------------- Movement and look direction ----------------
+
+    private void Movement()
+    {
+        if (this.playerState == PlayerState.Idle ^ this.playerState == PlayerState.Moving)
+        {
+            moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            moveDirection *= speed * Time.deltaTime;
+            if (moveDirection != Vector2.zero)
+            {
+                this.playerState = PlayerState.Moving;
+            }
+            else
+            {
+                this.playerState = PlayerState.Idle;
+            }
+            playerPosition = this.transform.position;
+            playerPosition += moveDirection;
+            this.transform.position = playerPosition;
         }
     }
 
@@ -94,29 +164,12 @@ public class Player : MonoBehaviour
         Left,
     }
 
-    private void ChangeSprite(Direction direction)
+    private void FaceMouse()                    // Gets the mouse position and makes the player look at it
     {
-        switch(direction)
-        {
-            case Direction.Front:
-                this.spriteRenderer.sprite = backSprite;
-                break;
-            case Direction.Back:
-                this.spriteRenderer.sprite = frontSprite;
-                break;
-            case Direction.Right:
-                this.spriteRenderer.sprite = sideSprite;
-                transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-                break;
-            case Direction.Left:
-                this.spriteRenderer.sprite = sideSprite;
-                transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-                break;
-        }
-    }
+        lookDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        lookAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
 
-    private void FaceMouse()
-    {
+        // Animator variables
         Vector2 clampedLookDirection = new Vector2();
         clampedLookDirection.x = Mathf.Clamp(lookDirection.x, -5f, 5f);
         clampedLookDirection.y = Mathf.Clamp(lookDirection.y, -5f, 5f);
@@ -147,6 +200,8 @@ public class Player : MonoBehaviour
         return (value >= min && value <= max);
     }
 
+    // ----------------------- Player taking damages and invincibility ------------------------
+
     private void TakeDamages()
     {
         playerValues.HpValue -= damagesReceived;
@@ -156,6 +211,7 @@ public class Player : MonoBehaviour
         if (HP <= 0)
         {
             GameManager.Instance.SetGameState(GameManager.GameState.GameOver);
+            playerAnimator.SetBool("Death", true);
             Destroy(this.gameObject);
         }
     }
@@ -192,27 +248,48 @@ public class Player : MonoBehaviour
         }
     }
 
+    // ------------------------ Player attacks --------------------------
+
     private void Attacks()
     {
         if (shovelAttackTimer == 0)
         {
+            if (this.playerState == PlayerState.ShovelAttacking)
+            {
+                this.playerState = PlayerState.Idle;
+            }
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 shovel.Activate();
+                this.playerState = PlayerState.ShovelAttacking;
                 shovelAttackTimer = shovelAttackTime;
             }
         }
         if (fireBallTimer == 0)
         {
+            if (this.playerState == PlayerState.FireballAttacking)
+            {
+                this.playerState = PlayerState.Idle;
+            }
             if (Input.GetKeyDown(KeyCode.Mouse1))
             {
                 this.LaunchFireBall();
+                this.playerState = PlayerState.FireballAttacking;
                 fireBallTimer = fireBallTime;
             }
         }
         fireBallTimer = Mathf.Clamp(fireBallTimer - Time.deltaTime, 0, fireBallTime);
         shovelAttackTimer = Mathf.Clamp(shovelAttackTimer - Time.deltaTime, 0, shovelAttackTime);
     }
+
+    private void LaunchFireBall()
+    {
+        GameObject launchedFireBall = Instantiate(fireBall, this.transform.position, Quaternion.identity);
+        lookDirection = (lookDirection.normalized * launchSpeed);
+        launchedFireBall.GetComponent<Rigidbody2D>().velocity = lookDirection;
+    }
+
+    // ------------------------ Values update --------------------------
 
     private void UpdateValues()
     {
@@ -226,16 +303,9 @@ public class Player : MonoBehaviour
         invincibleTime = playerValues.invincibleTime;
     }
 
-
-    private void LaunchFireBall()
-    {
-        GameObject launchedFireBall = Instantiate(fireBall, this.transform.position, Quaternion.identity);
-        lookDirection = (lookDirection.normalized * launchSpeed);
-        launchedFireBall.GetComponent<Rigidbody2D>().velocity = lookDirection;
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // Items pickup
         if(collision.tag == "Item")
         {
             switch(collision.name)

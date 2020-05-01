@@ -36,15 +36,9 @@ public class Shovel : MonoBehaviour
     void Update()
     {
         damages = playerValues.shovelDamages;
-
-        lookDirection = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
-        if (!thisCollider.isActiveAndEnabled)
-        {
-            originalPosition = this.transform.position;
-        }
+        
         if (thisCollider.isActiveAndEnabled)
         {
-            this.transform.position = (originalPosition * lookDirection);
             shovelAnimator.Play("shovelAnim");
             shovelAnimTimer = Mathf.Clamp(shovelAnimTimer - Time.deltaTime, 0, shovelAnimTime);
             if (shovelAnimTimer == 0)
