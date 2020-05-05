@@ -204,16 +204,17 @@ public class Player : MonoBehaviour
 
     private void TakeDamages()
     {
-        playerValues.HpValue -= damagesReceived;
-        invincibleTimer = invincibleTime;
-        Invincible();
-        invincible = true;
-        if (HP <= 0)
+        if (HP <= 1)
         {
             GameManager.Instance.SetGameState(GameManager.GameState.GameOver);
             playerAnimator.SetBool("Death", true);
             Destroy(this.gameObject);
         }
+        playerValues.HpValue -= damagesReceived;
+        invincibleTimer = invincibleTime;
+        Invincible();
+        invincible = true;
+
     }
 
     private void Invincible()
