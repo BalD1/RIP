@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2781778497493507967}
   - component: {fileID: 2781778497493507966}
-  - component: {fileID: 2781778497493507965}
   - component: {fileID: 2781778497493507960}
+  - component: {fileID: 2024701414}
+  - component: {fileID: 2024701417}
   m_Layer: 0
   m_Name: Coffin
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2781778497493507964}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.131, y: -2.1869, z: 1}
-  m_LocalScale: {x: 0.7159277, y: 0.49452323, z: 0.33214}
+  m_LocalScale: {x: 0.5580754, y: 0.34396115, z: 0.33214}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -83,19 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &2781778497493507965
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2781778497493507964}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.6911583, y: 2.847048, z: 0.2}
-  m_Center: {x: -0.0031347217, y: -0.06389535, z: 0}
 --- !u!114 &2781778497493507960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,3 +97,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Ennemy: {fileID: 6461908923582755764, guid: b1be35ef413c3744da17ec9d784ec919, type: 3}
+  neededHolders: 2
+--- !u!50 &2024701414
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2781778497493507964}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!61 &2024701417
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2781778497493507964}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.015181482, y: -0.008209586}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 4.07, y: 3.41}
+    newSize: {x: 19.55, y: 24.003836}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.6955223, y: 2.9009378}
+  m_EdgeRadius: 0
