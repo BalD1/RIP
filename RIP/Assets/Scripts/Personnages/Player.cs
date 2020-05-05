@@ -204,7 +204,7 @@ public class Player : MonoBehaviour
 
     private void TakeDamages()
     {
-        if (HP <= 1)
+        if (HP < 1)
         {
             GameManager.Instance.SetGameState(GameManager.GameState.GameOver);
             playerAnimator.SetBool("Death", true);
