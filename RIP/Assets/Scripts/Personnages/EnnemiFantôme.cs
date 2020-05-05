@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnnemiSlime : EnnemiParent
+public class EnnemiFantôme : EnnemiParent
 {
     [SerializeField]
     private EnnemiValues ennemiValues;
@@ -15,9 +15,9 @@ public class EnnemiSlime : EnnemiParent
 
     void Start()
     {
-        hp = ennemiValues.slimeHp;
-        speed = ennemiValues.slimeSpd;
-        attack = ennemiValues.slimeAtk;
+        hp = ennemiValues.fantômeHp;
+        speed = ennemiValues.fantômeSpd;
+        attack = ennemiValues.fantômeAtk;
         rigid2d = this.GetComponent<Rigidbody2D>();
         box2d = this.GetComponent<BoxCollider2D>();
         //spriteRend = this.GetComponent<SpriteRenderer>();
@@ -56,7 +56,7 @@ public class EnnemiSlime : EnnemiParent
     private void MortEnnemi()
     {
         //"animation" mort
-        //Instantiate(slime, this.transform.position)
+        //Instantiate(flesh, this.transform.position)
         //if(animTimer >= temps)
         //Destroy(this.gameObject)
     }

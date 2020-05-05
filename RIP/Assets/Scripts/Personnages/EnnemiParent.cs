@@ -12,6 +12,8 @@ public class EnnemiParent : MonoBehaviour
     [SerializeField]
     protected float speed;
 
+    protected int attack;
+
     protected bool joueurNull = true;
 
     protected Vector2 Joueur;

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnnemiZombie : EnnemiParent
 {
+    [SerializeField]
+    private EnnemiValues ennemiValues;
+
     private BoxCollider2D box2d;
     //private SpriteRenderer spriteRend;
 
@@ -12,8 +15,9 @@ public class EnnemiZombie : EnnemiParent
 
     void Start()
     {
-        hp = 2;
-        speed = 2;
+        hp = ennemiValues.zombieHp;
+        speed = ennemiValues.zombieSpd;
+        attack = ennemiValues.zombieAtk;
         rigid2d = this.GetComponent<Rigidbody2D>();
         box2d = this.GetComponent<BoxCollider2D>();
         //spriteRend = this.GetComponent<SpriteRenderer>();
@@ -89,7 +93,7 @@ public class EnnemiZombie : EnnemiParent
 
         if(player != null)
         {
-            GameManager.Instance.DamagePlayer(1);
+            GameManager.Instance.DamagePlayer(this.attack);
         }
     }
 }

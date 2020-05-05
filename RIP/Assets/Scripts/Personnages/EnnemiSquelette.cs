@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnnemiSquelette : EnnemiParent
 {
+    [SerializeField]
+    private EnnemiValues ennemiValues;
+
     private BoxCollider2D box2d;
     //private SpriteRenderer spriteRend;
 
@@ -12,8 +15,9 @@ public class EnnemiSquelette : EnnemiParent
 
     void Start()
     {
-        hp = 2;
-        speed = 1.5f;
+        hp = ennemiValues.squeletteHp;
+        speed = ennemiValues.squeletteSpd;
+        attack = ennemiValues.squeletteAtk;
         rigid2d = this.GetComponent<Rigidbody2D>();
         box2d = this.GetComponent<BoxCollider2D>();
         //spriteRend = this.GetComponent<SpriteRenderer>();
@@ -102,7 +106,7 @@ public class EnnemiSquelette : EnnemiParent
 
         if (player != null)
         {
-            GameManager.Instance.DamagePlayer(1);
+            GameManager.Instance.DamagePlayer(this.attack);
         }
     }
 }
