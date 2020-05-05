@@ -10,7 +10,9 @@ public class EnnemiParent : MonoBehaviour
     protected int hp;
 
     [SerializeField]
-    protected int speed;
+    protected float speed;
+
+    protected int attack;
 
     protected bool joueurNull = true;
 

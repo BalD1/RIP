@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnnemiZombie : EnnemiParent
+public class EnnemiSlime : EnnemiParent
 {
     [SerializeField]
     private EnnemiValues ennemiValues;
@@ -15,9 +15,9 @@ public class EnnemiZombie : EnnemiParent
 
     void Start()
     {
-        hp = ennemiValues.zombieHp;
-        speed = ennemiValues.zombieSpd;
-        attack = ennemiValues.zombieAtk;
+        hp = ennemiValues.slimeHp;
+        speed = ennemiValues.slimeSpd;
+        attack = ennemiValues.slimeAtk;
         rigid2d = this.GetComponent<Rigidbody2D>();
         box2d = this.GetComponent<BoxCollider2D>();
         //spriteRend = this.GetComponent<SpriteRenderer>();
@@ -26,21 +26,7 @@ public class EnnemiZombie : EnnemiParent
 
     void Update()
     {
-        Attack();
-
-        if(preparingAttack == true)
-        {
-            dashAttackTimer += Time.deltaTime;
-            if(dashAttackTimer > 3)
-            {
-                Debug.Log("je touche !");
-                preparingAttack = false;
-                this.box2d.enabled = false;
-                dashAttackTimer = 0;
-            }
-        }
-
-        if(joueurNull == false)
+        if (joueurNull == false)
         {
             if (Joueur.x > this.transform.position.x && turnFlag == false)
             {
@@ -54,7 +40,7 @@ public class EnnemiZombie : EnnemiParent
             }
         }
 
-        if(this.hp <= 0)
+        if (this.hp <= 0)
         {
             //animTimer++
             MortEnnemi();
@@ -70,28 +56,16 @@ public class EnnemiZombie : EnnemiParent
     private void MortEnnemi()
     {
         //"animation" mort
-        //Instantiate(flesh, this.transform.position)
+        //Instantiate(slime, this.transform.position)
         //if(animTimer >= temps)
         //Destroy(this.gameObject)
     }
-
-    void Attack()
-    {
-        if (Joueur.x - this.rigid2d.position.x > -1.5 && Joueur.x - this.rigid2d.position.x < 1.5 &&
-            Joueur.y - this.rigid2d.position.y > -1.5 && Joueur.y - this.rigid2d.position.y < 1.5 && joueurNull == false && preparingAttack == false)
-        {
-            preparingAttack = true;
-            Debug.Log("à la fin de l'envoi...");
-            this.box2d.enabled = true;
-        }
-    }
-
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Player player = collision.gameObject.GetComponent<Player>();
 
-        if(player != null)
+        if (player != null)
         {
             GameManager.Instance.DamagePlayer(this.attack);
         }

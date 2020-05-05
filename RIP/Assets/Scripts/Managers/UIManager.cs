@@ -5,20 +5,15 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    [SerializeField] private PlayerValues playerValues;
+    [SerializeField] private Text comptItems;
+    [SerializeField] private Text score;
+    [SerializeField] private Image hpBar;
+
+    private int compTest;
+    private float health;
+
     private static UIManager instance;
-    private Player player = new Player();
-    private Text comptItems;
-    private List<GameObject[]> itemsList;
-    private GameObject[] boneList;
-    private GameObject[] zombList;
-    private BoxCollider2D boneCollider;
-
-    private int comptOs = 0;
-    private int comptZomb = 0;
-    int indexz;
-    int indexb;
-
-
 
     public static UIManager Instance
     {
@@ -35,62 +30,41 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-       // player = GetComponent<BoxCollider2D>();
-        boneList = GameObject.FindGameObjectsWithTag("Bone");
-        zombList = GameObject.FindGameObjectsWithTag("Zomb");
-        itemsList.Add(boneList);
-        itemsList.Add(zombList);
-        comptItems = GetComponent<Text>();
-    }
-
-    private void Start()
-    {
-
+        this.ResetScriptable();
+        health = playerValues.HpValue;
     }
 
     void Update()
     {
-        if(player)
-
-
-
-
-        if (Input.GetKeyDown(KeyCode.N))
+        var rand = Random.Range(100, 341);
+        if(Input.GetKey(KeyCode.L))
         {
-
-            if (indexb == boneList.Length)
-            {
-                return;
-            }
-            else
-            {
-                    Compteur(itemsList, zombList, boneList[indexb], ref comptOs, ref indexb);
-                indexb++;
-            }
+            compTest+= rand;
         }
 
-        if (Input.GetKeyDown(KeyCode.J))
-        {
+        hpBar.fillAmount = playerValues.HpValue / health;
 
-            if (indexz == zombList.Length)
-            {
-                return;
-            }
-            else
-            {
-                Compteur(itemsList, zombList, zombList[indexz], ref comptZomb, ref indexz);
-                indexz++;
-            }
-        }
+        comptItems.text = "Bones : " + playerValues.bonesCount.ToString() + System.Environment.NewLine
+                        + "Flesh : " + playerValues.fleshCount.ToString() + System.Environment.NewLine
+                        + "Slime : " + playerValues.slimeCount.ToString() + System.Environment.NewLine
+                        + "Ectoplasm : " + playerValues.ectoplasmCount.ToString();
 
-        comptItems.text = "Os : " + comptOs.ToString() + System.Environment.NewLine + "Zomb : " + comptZomb.ToString();
+        score.text = "Score : " + compTest.ToString();
     }
 
-
-    private int Compteur(List<GameObject[]> itemsBigList, GameObject[] itemsList, GameObject items, ref int comp, ref int i)
+    private void ResetScriptable()          // A supprimer au build, sert à reset les valeurs du scriptable aux valeurs par défaut 
     {
-    //    itemsBigList.Remove(itemsList[items]);
-        comp++;
-        return comp;
+        playerValues.HpValue = 10;
+        playerValues.speed = 5;
+        playerValues.fireBallDamages = 2;
+        playerValues.fireBallLaunchSpeed = 7;
+        playerValues.fireBallCooldown = 1.5f;
+        playerValues.shovelDamages = 3;
+        playerValues.shovelCooldown = 1;
+        playerValues.fleshCount = 0;
+        playerValues.bonesCount = 0;
+        playerValues.slimeCount = 0;
+        playerValues.ectoplasmCount = 0;
+        playerValues.invincibleTime = 1;
     }
 }
