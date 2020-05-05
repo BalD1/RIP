@@ -60,7 +60,10 @@ public class Tomb : MonoBehaviour
         {
             int layerMask = ~(LayerMask.GetMask("Buildings"));
             RaycastHit2D rayHit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition), 100f, layerMask);
-            holderPosition = rayHit.collider.transform.position;
+            if (rayHit.collider != null)
+            {
+                holderPosition = rayHit.collider.transform.position;
+            }
             this.transform.parent.position = holderPosition;
             isHolding = false;
         }

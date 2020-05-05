@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 5975505050547644123}
   - component: {fileID: 5975505050547644125}
   - component: {fileID: 7092137770196079221}
-  m_Layer: 0
+  - component: {fileID: 4267643713317131649}
+  m_Layer: 15
   m_Name: Sewer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,6 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Ennemy: {fileID: 6461908923582755764, guid: b1be35ef413c3744da17ec9d784ec919, type: 3}
+  neededHolders: 2
 --- !u!61 &7092137770196079221
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -106,7 +108,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.051324606}
@@ -122,3 +124,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.22, y: 4.334068}
   m_EdgeRadius: 0
+--- !u!50 &4267643713317131649
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5975505050547644121}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 0
+  m_CollisionDetection: 1
+  m_Constraints: 0
