@@ -7,20 +7,21 @@ public class EnnemiZombie : EnnemiParent
     [SerializeField]
     private EnnemiValues ennemiValues;
 
+    [SerializeField]
+    private GameObject flesh;
+
     private BoxCollider2D box2d;
-    //private SpriteRenderer spriteRend;
 
     private float dashAttackTimer = 0;
     private bool turnFlag = false;
 
     void Start()
     {
-        hp = ennemiValues.zombieHp;
+        hp = ennemiValues.zombieHp;//*Nmanches/valeur
         speed = ennemiValues.zombieSpd;
         attack = ennemiValues.zombieAtk;
         rigid2d = this.GetComponent<Rigidbody2D>();
         box2d = this.GetComponent<BoxCollider2D>();
-        //spriteRend = this.GetComponent<SpriteRenderer>();
         preparingAttack = false;
     }
 
@@ -40,23 +41,19 @@ public class EnnemiZombie : EnnemiParent
             }
         }
 
-        if(joueurNull == false)
+        if (Joueur.position.x > this.transform.position.x && turnFlag == false)
         {
-            if (Joueur.x > this.transform.position.x && turnFlag == false)
-            {
-                this.transform.Rotate(0, 180, 0);
-                turnFlag = true;
-            }
-            else if (Joueur.x < this.transform.position.x && turnFlag == true)
-            {
-                this.transform.Rotate(0, 180, 0);
-                turnFlag = false;
-            }
+            this.transform.Rotate(0, 180, 0);
+            turnFlag = true;
+        }
+        else if (Joueur.position.x < this.transform.position.x && turnFlag == true)
+        {
+            this.transform.Rotate(0, 180, 0);
+            turnFlag = false;
         }
 
         if(this.hp <= 0)
         {
-            //animTimer++
             MortEnnemi();
         }
 
@@ -69,16 +66,14 @@ public class EnnemiZombie : EnnemiParent
 
     private void MortEnnemi()
     {
-        //"animation" mort
-        //Instantiate(flesh, this.transform.position)
-        //if(animTimer >= temps)
-        //Destroy(this.gameObject)
+        Instantiate(flesh, this.transform.position, Quaternion.identity);
+        Destroy(this.gameObject);
     }
 
     void Attack()
     {
-        if (Joueur.x - this.rigid2d.position.x > -1.5 && Joueur.x - this.rigid2d.position.x < 1.5 &&
-            Joueur.y - this.rigid2d.position.y > -1.5 && Joueur.y - this.rigid2d.position.y < 1.5 && joueurNull == false && preparingAttack == false)
+        if (Joueur.position.x - this.rigid2d.position.x > -1.5 && Joueur.position.x - this.rigid2d.position.x < 1.5 &&
+            Joueur.position.y - this.rigid2d.position.y > -1.5 && Joueur.position.y - this.rigid2d.position.y < 1.5 && preparingAttack == false)
         {
             preparingAttack = true;
             Debug.Log("à la fin de l'envoi...");
@@ -86,14 +81,4 @@ public class EnnemiZombie : EnnemiParent
         }
     }
 
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Player player = collision.gameObject.GetComponent<Player>();
-
-        if(player != null)
-        {
-            GameManager.Instance.DamagePlayer(this.attack);
-        }
-    }
 }
