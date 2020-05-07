@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private PlayerValues playerValues;
-    [SerializeField] private Text comptItems;
+    [SerializeField] private Text comptItems1;
+    [SerializeField] private Text comptItems2;
     [SerializeField] private Text score;
     [SerializeField] private Image hpBar;
 
@@ -36,7 +37,7 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        var rand = Random.Range(100, 341);
+        var rand = Random.Range(341, 789);
         if(Input.GetKey(KeyCode.L))
         {
             compTest+= rand;
@@ -44,10 +45,11 @@ public class UIManager : MonoBehaviour
 
         hpBar.fillAmount = playerValues.HpValue / health;
 
-        comptItems.text = "Bones : " + playerValues.bonesCount.ToString() + System.Environment.NewLine
-                        + "Flesh : " + playerValues.fleshCount.ToString() + System.Environment.NewLine
-                        + "Slime : " + playerValues.slimeCount.ToString() + System.Environment.NewLine
-                        + "Ectoplasm : " + playerValues.ectoplasmCount.ToString();
+        comptItems1.text = "            x " + playerValues.bonesCount.ToString() + System.Environment.NewLine + System.Environment.NewLine
+                         + "            x " + playerValues.fleshCount.ToString();
+
+        comptItems2.text = "            x " + playerValues.slimeCount.ToString() + System.Environment.NewLine + System.Environment.NewLine
+                         + "            x " + playerValues.ectoplasmCount.ToString();
 
         score.text = "Score : " + compTest.ToString();
     }
