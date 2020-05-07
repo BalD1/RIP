@@ -57,5 +57,6 @@ public class Shovel : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log(this.gameObject.name + " touche " + collision + " et lui inflige " + damages);
+        GameManager.Instance.DamageEnnemi(damages);
     }
 }
