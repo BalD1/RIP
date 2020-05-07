@@ -5,12 +5,14 @@ using UnityEngine;
 public class EnnemiParent : MonoBehaviour
 {
     [SerializeField]
+    protected Animator animator;
+
+    [SerializeField]
     protected Transform Joueur;
 
     [SerializeField]
     protected int hp;
 
-    [SerializeField]
     protected float speed;
 
     protected int attack;

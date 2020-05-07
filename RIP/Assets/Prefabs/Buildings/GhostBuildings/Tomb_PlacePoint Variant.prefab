@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &7007330596457801311
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3928886354821144164, guid: 7b4a44ba6dd5ef746b3b0bac1344dc27,
+        type: 3}
+      propertyPath: m_Name
+      value: Tomb Ghost
+      objectReference: {fileID: 0}
+    - target: {fileID: 3928886354821144166, guid: 7b4a44ba6dd5ef746b3b0bac1344dc27,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3928886354821144166, guid: 7b4a44ba6dd5ef746b3b0bac1344dc27,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3928886354821144166, guid: 7b4a44ba6dd5ef746b3b0bac1344dc27,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9004446395176240800, guid: 7b4a44ba6dd5ef746b3b0bac1344dc27,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9004446395176240800, guid: 7b4a44ba6dd5ef746b3b0bac1344dc27,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9004446395176240800, guid: 7b4a44ba6dd5ef746b3b0bac1344dc27,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9004446395176240800, guid: 7b4a44ba6dd5ef746b3b0bac1344dc27,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9004446395176240800, guid: 7b4a44ba6dd5ef746b3b0bac1344dc27,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9004446395176240800, guid: 7b4a44ba6dd5ef746b3b0bac1344dc27,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9004446395176240800, guid: 7b4a44ba6dd5ef746b3b0bac1344dc27,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9004446395176240800, guid: 7b4a44ba6dd5ef746b3b0bac1344dc27,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9004446395176240800, guid: 7b4a44ba6dd5ef746b3b0bac1344dc27,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9004446395176240800, guid: 7b4a44ba6dd5ef746b3b0bac1344dc27,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9004446395176240800, guid: 7b4a44ba6dd5ef746b3b0bac1344dc27,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9004446395176240801, guid: 7b4a44ba6dd5ef746b3b0bac1344dc27,
+        type: 3}
+      propertyPath: m_Name
+      value: Tomb_PlacePoint Variant
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7b4a44ba6dd5ef746b3b0bac1344dc27, type: 3}

@@ -13,7 +13,6 @@ public class EnnemiFantôme : EnnemiParent
     private BoxCollider2D box2d;
 
     private float dashAttackTimer = 0;
-    private bool turnFlag = false;
 
     void Start()
     {
@@ -27,16 +26,13 @@ public class EnnemiFantôme : EnnemiParent
 
     void Update()
     {
-
-        if (Joueur.position.x > this.transform.position.x && turnFlag == false)
+        if (Joueur.position.x > this.transform.position.x)
         {
-            this.transform.Rotate(0, 180, 0);
-            turnFlag = true;
+            this.GetComponent<SpriteRenderer>().flipX = true;
         }
-        else if (Joueur.position.x < this.transform.position.x && turnFlag == true)
+        else if (Joueur.position.x < this.transform.position.x)
         {
-            this.transform.Rotate(0, 180, 0);
-            turnFlag = false;
+            this.GetComponent<SpriteRenderer>().flipX = false;
         }
 
         if (this.hp <= 0)
@@ -53,6 +49,8 @@ public class EnnemiFantôme : EnnemiParent
     private void MortEnnemi()
     {
         Instantiate(ectoplasm, this.transform.position, Quaternion.identity);
+        //timer
+        //animator.SetBool(Mort, true);
         Destroy(this.gameObject);
     }
 }

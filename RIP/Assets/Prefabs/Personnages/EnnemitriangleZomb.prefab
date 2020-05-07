@@ -53,7 +53,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3c13d34802f9f3a4bbc9cb866de4ee3f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -97,11 +97,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e06026c498776d4199f029d58358771, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   Joueur: {fileID: 0}
   hp: 0
-  speed: 0
   ennemiValues: {fileID: 11400000, guid: a1b801112546f1b4b8a5f6e5d647bf34, type: 2}
-  flesh: {fileID: 347166767585694066, guid: c91f1721cbb311045b8489fec6af7f86, type: 3}
+  flesh: {fileID: 7030894456568481140, guid: 6d75e78556455e3498672ea1a00f6499, type: 3}
 --- !u!50 &6586836283308708210
 Rigidbody2D:
   serializedVersion: 4
