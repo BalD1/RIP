@@ -20,12 +20,11 @@ public class Player : MonoBehaviour
     private float lookAngle;
     private float shovelAttackTimer;
     private float shovelAttackTime;
-    private float fireBallTimer;
-    private float fireBallTime;
     private float invincibleTimer;
     private float invincibleTime;
 
     private bool invincible;
+    private bool canLaunchFireBall;
 
     private Vector2 moveDirection = Vector2.zero;
     private Vector2 playerPosition;
@@ -66,6 +65,7 @@ public class Player : MonoBehaviour
         spriteRenderer = this.GetComponent<SpriteRenderer>();
         playerPosition = this.transform.position;
         this.playerAnimator = this.GetComponent<Animator>();
+        canLaunchFireBall = true;
     }
 
     private void FixedUpdate()
@@ -266,20 +266,14 @@ public class Player : MonoBehaviour
                 shovelAttackTimer = shovelAttackTime;
             }
         }
-        if (fireBallTimer == 0)
+        if (canLaunchFireBall)
         {
-            if (this.playerState == PlayerState.FireballAttacking)
-            {
-                this.playerState = PlayerState.Idle;
-            }
             if (Input.GetKeyDown(KeyCode.Mouse1))
             {
                 this.LaunchFireBall();
-                this.playerState = PlayerState.FireballAttacking;
-                fireBallTimer = fireBallTime;
+                canLaunchFireBall = false;
             }
         }
-        fireBallTimer = Mathf.Clamp(fireBallTimer - Time.deltaTime, 0, fireBallTime);
         shovelAttackTimer = Mathf.Clamp(shovelAttackTimer - Time.deltaTime, 0, shovelAttackTime);
     }
 
@@ -300,7 +294,6 @@ public class Player : MonoBehaviour
         fireBallDamages = playerValues.fireBallDamages;
         launchSpeed = playerValues.fireBallLaunchSpeed;
         shovelAttackTime = playerValues.shovelCooldown;
-        fireBallTime = playerValues.fireBallCooldown;
         invincibleTime = playerValues.invincibleTime;
     }
 
@@ -329,15 +322,22 @@ public class Player : MonoBehaviour
             }
             Destroy(collision.gameObject);
         }
+        Torches torch = collision.GetComponent<Torches>();
+        if (torch != null)
+        {
+            if(torch.IsLighted())
+            {
+                this.canLaunchFireBall = true;
+            }
+        }
     }
 
     private void ResetScriptable()          // A supprimer au build, sert à reset les valeurs du scriptable aux valeurs par défaut 
     {
         playerValues.HpValue = 10;
         playerValues.speed = 5;
-        playerValues.fireBallDamages = 2;
+        playerValues.fireBallDamages = 5;
         playerValues.fireBallLaunchSpeed = 7;
-        playerValues.fireBallCooldown = 1.5f;
         playerValues.shovelDamages = 3;
         playerValues.shovelCooldown = 1;
         playerValues.fleshCount = 0;

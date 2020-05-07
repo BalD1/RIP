@@ -25,25 +25,28 @@ public class Bubble : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (this.name != "DestoyButton")
+        if (this.isActiveAndEnabled)
         {
-            if (UIManager.Instance.SendCanPlaceBuilding())
+            if (this.name != "DestoyButton")
             {
-                Vector3 holderPos = new Vector2();
+                if (UIManager.Instance.SendCanPlaceBuilding())
+                {
+                    Vector3 holderPos = new Vector2();
 
-                holderPos = UIManager.Instance.SendActiveHolder().transform.position;
-                holderPos.z--;
+                    holderPos = UIManager.Instance.SendActiveHolder().transform.position;
+                    holderPos.z--;
 
-                Instantiate(building, holderPos, Quaternion.identity);
-                UIManager.Instance.GetBuildBubblesState(false);
-                UIManager.Instance.GetActiveHolder(null);
+                    Instantiate(building, holderPos, Quaternion.identity);
+                    UIManager.Instance.GetBuildBubblesState(false);
+                    UIManager.Instance.GetActiveHolder(null);
+                }
             }
-        }
-        else
-        {
-            Destroy(UIManager.Instance.SendActiveBuilding());
-            UIManager.Instance.GetDestroyBubbleState(false);
-            UIManager.Instance.GetActiveBuilding(null);
+            else
+            {
+                Destroy(UIManager.Instance.SendActiveBuilding());
+                UIManager.Instance.GetDestroyBubbleState(false);
+                UIManager.Instance.GetActiveBuilding(null);
+            }
         }
     }
 

@@ -44,7 +44,6 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        this.ResetScriptable();
         health = playerValues.HpValue;
         buildBubbles.enabled = false;
         destroyBubble.enabled = false;
@@ -67,22 +66,6 @@ public class UIManager : MonoBehaviour
                              + "            x " + playerValues.ectoplasmCount.ToString();
             score.text = "Score : " + compTest.ToString();
         }
-    }
-
-    private void ResetScriptable()          // A supprimer au build, sert à reset les valeurs du scriptable aux valeurs par défaut 
-    {
-        playerValues.HpValue = 10;
-        playerValues.speed = 5;
-        playerValues.fireBallDamages = 2;
-        playerValues.fireBallLaunchSpeed = 7;
-        playerValues.fireBallCooldown = 1.5f;
-        playerValues.shovelDamages = 3;
-        playerValues.shovelCooldown = 1;
-        playerValues.fleshCount = 0;
-        playerValues.bonesCount = 0;
-        playerValues.slimeCount = 0;
-        playerValues.ectoplasmCount = 0;
-        playerValues.invincibleTime = 1;
     }
 
     // -------------------- Holders ------------------
