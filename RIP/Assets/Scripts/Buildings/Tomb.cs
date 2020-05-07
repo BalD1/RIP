@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Tomb : MonoBehaviour
 {
-    public GameObject Ennemy;
+    private PrefabHolder mobsPrefabs;
     public int neededHolders;
     private float holdersCount;
 
@@ -33,9 +33,27 @@ public class Tomb : MonoBehaviour
 
         this.transform.parent.position = placePointPos;
 
-        if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Night && Spawned == false)
+        if (GameManager.Instance.SendGameTime() != GameManager.GameTime.Day && Spawned == false)
         {
-            Instantiate(Ennemy, buildingPos, Quaternion.identity);
+            switch (gameObject.name)
+            {
+                case string circle when circle.Contains("Circle"):
+                    Instantiate(mobsPrefabs.prefab1, buildingPos, Quaternion.identity);
+                    break;
+                case string sewer when sewer.Contains("Sewer"):
+                    Instantiate(mobsPrefabs.prefab2, buildingPos, Quaternion.identity);
+                    break;
+                case string coffin when coffin.Contains("Coffin"):
+                    Instantiate(mobsPrefabs.prefab3, gameObject.transform.position, Quaternion.identity);
+                    break;
+                case string tomb when tomb.Contains("Tomb"):
+                    Instantiate(mobsPrefabs.prefab4, buildingPos, Quaternion.identity);
+                    break;
+                default:
+                    Debug.Log(gameObject.name + "Can't spawn mobs.");
+                    break;
+            }
+
             Spawned = true;
         }
 
