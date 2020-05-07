@@ -27,6 +27,7 @@ public class EnnemiSlime : EnnemiParent
 
     void Update()
     {
+
         if (Joueur.position.x > this.transform.position.x && turnFlag == false)
         {
             this.transform.Rotate(0, 180, 0);
