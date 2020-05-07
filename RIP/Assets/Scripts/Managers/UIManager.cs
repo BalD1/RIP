@@ -13,13 +13,19 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image hpBar;
 
     [SerializeField] private Canvas buildBubbles;
+    [SerializeField] private Canvas destroyBubble;
 
     private int compTest;
     private float health;
 
     private bool bubblesState;
+    private bool destroyBubblesState;
+    private bool canPlace;
 
     private GameObject activeHolder;
+    private GameObject activeBuilding;
+
+    private string selectedBuilding;
 
     private static UIManager instance;
 
@@ -41,6 +47,7 @@ public class UIManager : MonoBehaviour
         this.ResetScriptable();
         health = playerValues.HpValue;
         buildBubbles.enabled = false;
+        destroyBubble.enabled = false;
     }
 
     void Update()
@@ -79,7 +86,7 @@ public class UIManager : MonoBehaviour
     }
 
     // -------------------- Holders ------------------
-
+    
     public void GetBuildBubblesState(bool state)
     {
         bubblesState = state;
@@ -101,4 +108,46 @@ public class UIManager : MonoBehaviour
         return activeHolder;
     }
     
+    public void GetSelectedBuildingName(string building)
+    {
+        selectedBuilding = building;
+    }
+
+    public string SendSelectedBuildingName()
+    {
+        return selectedBuilding;
+    }
+
+    public void GetCanPlaceBuilding(bool state)
+    {
+        canPlace = state;
+    }
+
+    public bool SendCanPlaceBuilding()
+    {
+        return this.canPlace;
+    }
+
+    // ------------------- Buildings ------------------
+    
+    public void GetActiveBuilding(GameObject building)
+    {
+        this.activeBuilding = building;
+    }
+
+    public GameObject SendActiveBuilding()
+    {
+        return this.activeBuilding;
+    }
+
+    public void GetDestroyBubbleState(bool state)
+    {
+        this.destroyBubblesState = state;
+        destroyBubble.enabled = destroyBubblesState;
+    }
+
+    public bool SendDestroyBubbleState()
+    {
+        return this.destroyBubblesState;
+    }
 }
