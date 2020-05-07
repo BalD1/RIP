@@ -4,109 +4,139 @@ using UnityEngine;
 
 public class Tomb : MonoBehaviour
 {
-    public GameObject Ennemy;
-    public int neededHolders;
-    private float holdersCount;
+    [SerializeField]
+    private GameObject Ennemy;
+    [SerializeField]
+    private int neededHolders;
+    
+    private int holdersCount;
 
     private Vector2 buildingPos;
-    private Vector2 placePointPos;
-    private Vector2 holderPosition;
+
     private bool Spawned = false;
-    private bool isHolding;
-    private bool canPlace;
-    private bool isHolderUsed;
+    private bool isSelected;
+
+    private SpriteRenderer spriteRenderer;
+
+    private Color originalColor;
 
     void Start()
     {
-        placePointPos = this.transform.parent.position;
+        buildingPos = this.transform.position;
+        isSelected = false;
+        spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
+        originalColor = this.spriteRenderer.color;
     }
     
     void Update()
     {
-        placePointPos = this.transform.parent.position;
         buildingPos = this.transform.position;
-        if (isHolding)
-        {
-            placePointPos.x = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
-            placePointPos.y = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
-        }
 
-        this.transform.parent.position = placePointPos;
+        if (!this.name.Contains("Ghost"))
+        {
+            if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Night && Spawned == false)
+            {
+                Instantiate(Ennemy, buildingPos, Quaternion.identity);
+                Spawned = true;
+            }
 
-        if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Night && Spawned == false)
-        {
-            Instantiate(Ennemy, buildingPos, Quaternion.identity);
-            Spawned = true;
-        }
-
-        if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Day)
-        {
-            Spawned = false;
-        }
- 
-        if (holdersCount == neededHolders && !isHolderUsed)
-        {
-            canPlace = true;
-        }
-        else
-        {
-            canPlace = false;
+            if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Day)
+            {
+                Spawned = false;
+            }
         }
     }
 
     private void OnMouseDown()
     {
-        if (isHolding && canPlace)
+        if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Day)
         {
-            int layerMask = ~(LayerMask.GetMask("Buildings"));
-            RaycastHit2D rayHit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition), 100f, layerMask);
-            if (rayHit.collider != null)
+            if (!this.name.Contains("Ghost"))
             {
-                holderPosition = rayHit.collider.transform.position;
+                if (UIManager.Instance.SendActiveHolder() == null)
+                {
+                    if (UIManager.Instance.SendDestroyBubbleState() == false)
+                    {
+                        UIManager.Instance.GetDestroyBubbleState(true);
+                        UIManager.Instance.GetActiveBuilding(this.gameObject);
+                        this.spriteRenderer.color = Color.gray;
+                        isSelected = true;
+                    }
+                    else if (UIManager.Instance.SendActiveBuilding() == this.gameObject)
+                    {
+                        UIManager.Instance.GetDestroyBubbleState(false);
+                        UIManager.Instance.GetActiveBuilding(null);
+                        this.spriteRenderer.color = originalColor;
+                        isSelected = false;
+                    }
+                }
+                else
+                {
+
+                }
             }
-            this.transform.parent.position = holderPosition;
-            isHolding = false;
         }
-        else
-        {
-            isHolding = true;
-        }
-        GameManager.Instance.GetIsHolding(isHolding);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Holders holder = collision.gameObject.GetComponent<Holders>();
-        if (holder != null && this.isHolding)
+        if (this.name.Contains("Ghost"))
         {
-            holdersCount++;
-            isHolderUsed = holder.isUsed;
+            Holders holder = collision.GetComponent<Holders>();
+            if (holder != null && !holder.IsUsed())
+            {
+                holdersCount++;
+            }
         }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        Holders holder = collision.gameObject.GetComponent<Holders>();
-        if (holder != null && this.isHolding)
+        if (this.name.Contains("Ghost"))
         {
-            if (canPlace)
+            Holders holder = collision.GetComponent<Holders>();
+            if (holder != null)
             {
-                holder.gameObject.GetComponent<SpriteRenderer>().color = Color.green;
-            }
-            else
-            {
-                holder.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+                SpriteRenderer holderSprite = holder.GetComponent<SpriteRenderer>();
+                if (this.holdersCount == this.neededHolders)
+                {
+                    holderSprite.color = Color.green;
+                    UIManager.Instance.GetCanPlaceBuilding(true);
+                }
+                else
+                {
+                    holderSprite.color = Color.red;
+                    UIManager.Instance.GetCanPlaceBuilding(false);
+                }
             }
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Holders holder = collision.gameObject.GetComponent<Holders>();
-        if (holder != null)
+        if (this.name.Contains("Ghost"))
         {
-            holder.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
-            holdersCount--;
+            Holders holder = collision.GetComponent<Holders>();
+            if (holder != null)
+            {
+                SpriteRenderer holderSprite = holder.GetComponent<SpriteRenderer>();
+                if (holder != null && !holder.IsUsed() && !holder.IsActive())
+                {
+                    holdersCount--;
+                    holderSprite.color = holder.OriginalColor();
+                }
+                else if (holder != null && !holder.IsUsed() && holder.IsActive())
+                {
+                    holdersCount--;
+                    holderSprite.color = Color.grey;
+                }
+                else if (holder != null)
+                {
+                    holderSprite.color = holder.OriginalColor();
+                }
+            }
         }
     }
+
+
 }
