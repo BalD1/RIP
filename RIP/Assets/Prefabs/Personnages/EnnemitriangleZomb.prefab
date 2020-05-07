@@ -100,6 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   speed: 0
+  ennemiValues: {fileID: 11400000, guid: a1b801112546f1b4b8a5f6e5d647bf34, type: 2}
 --- !u!50 &6586836283308708210
 Rigidbody2D:
   serializedVersion: 4

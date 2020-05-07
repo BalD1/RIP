@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour
 
     private int damagesToPlayer;
 
+    private GameObject holdingBuilding;
+
+    private bool isHolding;
+
     private static GameManager instance;
     public static GameManager Instance
     {
@@ -83,4 +87,17 @@ public class GameManager : MonoBehaviour
     {
         return damagesToPlayer;
     }
+
+    // ------------------- Buildings ------------------------
+
+    public void GetIsHolding(bool hold)
+    {
+        isHolding = hold;
+    }
+
+    public bool SendIsHolding()
+    {
+        return isHolding;
+    }
+    
 }
