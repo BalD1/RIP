@@ -5,6 +5,8 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - ennemiValues: {fileID: 11400000, guid: a1b801112546f1b4b8a5f6e5d647bf34, type: 2}
+  - ectoplasm: {fileID: 3665272730982120448, guid: c971ec1a14a0fff488d788033d850725,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

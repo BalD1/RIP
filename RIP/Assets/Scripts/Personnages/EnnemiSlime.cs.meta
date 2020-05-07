@@ -5,6 +5,7 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - ennemiValues: {fileID: 11400000, guid: a1b801112546f1b4b8a5f6e5d647bf34, type: 2}
+  - slime: {fileID: 503777638459710046, guid: 7e464e886cf473f48aa5886f210305e7, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

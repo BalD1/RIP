@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class EnnemiParent : MonoBehaviour
 {
-    // Script parent des ennemis, pour mettre les scripts qui seront communs à tout les ennemis
+    [SerializeField]
+    protected Transform Joueur;
 
     [SerializeField]
     protected int hp;
@@ -13,10 +14,6 @@ public class EnnemiParent : MonoBehaviour
     protected float speed;
 
     protected int attack;
-
-    protected bool joueurNull = true;
-
-    protected Vector2 Joueur;
 
     protected Rigidbody2D rigid2d;
 
@@ -34,36 +31,30 @@ public class EnnemiParent : MonoBehaviour
 
     protected void Movement()
     {
-        if(joueurNull == false && preparingAttack == false)
+        if(preparingAttack == false)
         {
             Debug.Log("je bouge");
-            rigid2d.position = Vector2.MoveTowards(rigid2d.position, Joueur, speed * Time.deltaTime);
+            rigid2d.position = Vector2.MoveTowards(rigid2d.position, Joueur.position, speed * Time.deltaTime);
             this.rigid2d.MovePosition(rigid2d.position);
         }
     }
 
-    protected void OnTriggerEnter2D(Collider2D collision)
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         Player player = collision.gameObject.GetComponent<Player>();
+        Shovel shovel = collision.gameObject.GetComponent<Shovel>();
+        FireBall fireball = collision.gameObject.GetComponent<FireBall>();
+
         if (player != null)
         {
-            joueurNull = false;
+            GameManager.Instance.DamagePlayer(this.attack);
         }
-    }
-    protected void OnTriggerStay2D(Collider2D collision)
-    {
-        Player player = collision.gameObject.GetComponent<Player>();
-        if(player != null)
+        if (shovel != null || fireball != null)
         {
-            Joueur = player.gameObject.GetComponent<Transform>().position;
-        }
-    }
-    protected void OnTriggerExit2D(Collider2D collision)
-    {
-        Player player = collision.gameObject.GetComponent<Player>();
-        if (player != null)
-        {
-            joueurNull = true;
+            this.hp -= GameManager.Instance.SendDamagesEnnemi();
+            GameManager.Instance.DamageEnnemi(0);
         }
     }
 }

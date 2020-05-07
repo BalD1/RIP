@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7529805743005527786}
   - component: {fileID: 7334097240728416083}
   - component: {fileID: 7529805743005527784}
-  - component: {fileID: 7529805743005527785}
   - component: {fileID: 7529805743005527798}
   - component: {fileID: 7529805743005527799}
   m_Layer: 0
@@ -98,9 +97,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ef2d66faeceae74c8178a77b9f589b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Joueur: {fileID: 0}
   hp: 0
   speed: 0
   ennemiValues: {fileID: 11400000, guid: a1b801112546f1b4b8a5f6e5d647bf34, type: 2}
+  slime: {fileID: 503777638459710046, guid: 7e464e886cf473f48aa5886f210305e7, type: 3}
 --- !u!50 &7529805743005527784
 Rigidbody2D:
   serializedVersion: 4
@@ -121,23 +122,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!58 &7529805743005527785
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7529805743005527796}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.03186035, y: 0}
-  serializedVersion: 2
-  m_Radius: 6.515647
+  m_Constraints: 4
 --- !u!60 &7529805743005527798
 PolygonCollider2D:
   m_ObjectHideFlags: 0

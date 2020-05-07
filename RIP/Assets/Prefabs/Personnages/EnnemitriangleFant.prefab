@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 784387721799480169}
   - component: {fileID: 784387721799480168}
   - component: {fileID: 331437706743334754}
-  - component: {fileID: 4915434407126903701}
   - component: {fileID: 1287923125814717004}
   m_Layer: 0
   m_Name: EnnemitriangleFant
@@ -29,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 784387721799480173}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.5, y: 7.55, z: -12.267578}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -98,9 +97,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96e241394b81d54e8b4f717c9b7a184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Joueur: {fileID: 0}
   hp: 0
   speed: 0
   ennemiValues: {fileID: 11400000, guid: a1b801112546f1b4b8a5f6e5d647bf34, type: 2}
+  ectoplasm: {fileID: 3665272730982120448, guid: c971ec1a14a0fff488d788033d850725,
+    type: 3}
 --- !u!50 &784387721799480168
 Rigidbody2D:
   serializedVersion: 4
@@ -121,7 +123,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!60 &331437706743334754
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -153,22 +155,6 @@ PolygonCollider2D:
       - {x: 0.5, y: -0.5}
       - {x: 0.5, y: -0.42}
       - {x: 0.04, y: 0.5}
---- !u!58 &4915434407126903701
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 784387721799480173}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.03186035, y: 0}
-  serializedVersion: 2
-  m_Radius: 6.515647
 --- !u!61 &1287923125814717004
 BoxCollider2D:
   m_ObjectHideFlags: 0
