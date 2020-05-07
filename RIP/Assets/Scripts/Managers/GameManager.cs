@@ -112,5 +112,13 @@ public class GameManager : MonoBehaviour
     {
         return isHolding;
     }
+
+    //-------------- Quit Game ------------
+
+    public void QuitGame()
+    {
+        Application.Quit();
+        Debug.Log("Has quit da game.");
+    }
     
 }
