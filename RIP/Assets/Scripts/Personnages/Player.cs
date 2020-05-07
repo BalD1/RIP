@@ -77,7 +77,6 @@ public class Player : MonoBehaviour
     void Update()
     {
         Debug.Log("Current time : " + GameManager.Instance.SendGameTime() + ". Press Enter to change.");
-        this.UpdateValues();
         this.ChangePlayerMode();        // Change the player mode by time
 
         if (this.playerMode == PlayerMode.Fight)
@@ -97,6 +96,7 @@ public class Player : MonoBehaviour
             InvokeRepeating("InvincibleClipping", 0.0f, invincibleTime);
         }
         this.Tests();
+        this.UpdateValues();
     }
 
     private void ChangePlayerMode()
@@ -204,7 +204,7 @@ public class Player : MonoBehaviour
 
     private void TakeDamages()
     {
-        if (HP < 1)
+        if (HP <= 0)
         {
             GameManager.Instance.SetGameState(GameManager.GameState.GameOver);
             playerAnimator.SetBool("Death", true);
