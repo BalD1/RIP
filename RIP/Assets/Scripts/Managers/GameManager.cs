@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     private GameTime currentTime;
 
     private int damagesToPlayer;
+    private int damagesToEnnemi;
 
     private GameObject holdingBuilding;
 
@@ -86,6 +87,18 @@ public class GameManager : MonoBehaviour
     public int SendDamages()
     {
         return damagesToPlayer;
+    }
+
+    // ------------------  Ennemi Interactions ---------------
+
+    public void DamageEnnemi(int damagesEnnemi)
+    {
+        damagesToEnnemi = damagesEnnemi;
+    }
+
+    public int SendDamagesEnnemi()
+    {
+        return damagesToEnnemi;
     }
 
     // ------------------- Buildings ------------------------
