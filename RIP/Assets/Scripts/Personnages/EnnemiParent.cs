@@ -5,12 +5,14 @@ using UnityEngine;
 public class EnnemiParent : MonoBehaviour
 {
     [SerializeField]
+    protected Animator animator;
+
+    [SerializeField]
     protected Transform Joueur;
 
     [SerializeField]
     protected int hp;
 
-    [SerializeField]
     protected float speed;
 
     protected int attack;
@@ -41,16 +43,21 @@ public class EnnemiParent : MonoBehaviour
 
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected void OnCollisionEnter2D(Collision2D collision)
     {
         Player player = collision.gameObject.GetComponent<Player>();
-        Shovel shovel = collision.gameObject.GetComponent<Shovel>();
-        FireBall fireball = collision.gameObject.GetComponent<FireBall>();
 
         if (player != null)
         {
             GameManager.Instance.DamagePlayer(this.attack);
         }
+    }
+
+    protected void OnTriggerEnter2D(Collider2D collision)
+    {
+        Shovel shovel = collision.gameObject.GetComponent<Shovel>();
+        FireBall fireball = collision.gameObject.GetComponent<FireBall>();
+
         if (shovel != null || fireball != null)
         {
             this.hp -= GameManager.Instance.SendDamagesEnnemi();

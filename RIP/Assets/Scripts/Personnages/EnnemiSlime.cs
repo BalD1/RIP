@@ -27,6 +27,7 @@ public class EnnemiSlime : EnnemiParent
 
     void Update()
     {
+
         if (Joueur.position.x > this.transform.position.x && turnFlag == false)
         {
             this.transform.Rotate(0, 180, 0);
@@ -53,6 +54,8 @@ public class EnnemiSlime : EnnemiParent
     private void MortEnnemi()
     {
         Instantiate(slime, this.transform.position, Quaternion.identity);
+        //timer
+        //animator.SetBool(Mort, true);
         Destroy(this.gameObject);
     }
 }

@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8826fa629900aa74cb54aedf52485b44, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.827451, b: 0.28627452, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -101,7 +101,7 @@ MonoBehaviour:
   hp: 0
   speed: 0
   ennemiValues: {fileID: 11400000, guid: a1b801112546f1b4b8a5f6e5d647bf34, type: 2}
-  flesh: {fileID: 347166767585694066, guid: c91f1721cbb311045b8489fec6af7f86, type: 3}
+  flesh: {fileID: 7030894456568481140, guid: 6d75e78556455e3498672ea1a00f6499, type: 3}
 --- !u!50 &6586836283308708210
 Rigidbody2D:
   serializedVersion: 4

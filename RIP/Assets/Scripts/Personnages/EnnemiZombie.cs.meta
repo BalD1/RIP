@@ -4,8 +4,9 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
+  - Joueur: {instanceID: 0}
   - ennemiValues: {fileID: 11400000, guid: a1b801112546f1b4b8a5f6e5d647bf34, type: 2}
-  - flesh: {fileID: 347166767585694066, guid: c91f1721cbb311045b8489fec6af7f86, type: 3}
+  - flesh: {fileID: 7030894456568481140, guid: 6d75e78556455e3498672ea1a00f6499, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

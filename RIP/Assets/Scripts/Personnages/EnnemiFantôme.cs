@@ -27,6 +27,7 @@ public class EnnemiFantôme : EnnemiParent
 
     void Update()
     {
+
         if (Joueur.position.x > this.transform.position.x && turnFlag == false)
         {
             this.transform.Rotate(0, 180, 0);
@@ -52,6 +53,8 @@ public class EnnemiFantôme : EnnemiParent
     private void MortEnnemi()
     {
         Instantiate(ectoplasm, this.transform.position, Quaternion.identity);
+        //timer
+        //animator.SetBool(Mort, true);
         Destroy(this.gameObject);
     }
 }

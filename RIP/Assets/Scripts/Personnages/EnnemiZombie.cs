@@ -67,6 +67,8 @@ public class EnnemiZombie : EnnemiParent
     private void MortEnnemi()
     {
         Instantiate(flesh, this.transform.position, Quaternion.identity);
+        //timer
+        //animator.SetBool(Mort, true);
         Destroy(this.gameObject);
     }
 

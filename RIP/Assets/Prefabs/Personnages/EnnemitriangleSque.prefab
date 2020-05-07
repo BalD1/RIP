@@ -101,7 +101,7 @@ MonoBehaviour:
   hp: 0
   speed: 0
   ennemiValues: {fileID: 11400000, guid: a1b801112546f1b4b8a5f6e5d647bf34, type: 2}
-  bone: {fileID: 1329352829442188943, guid: 3df1e8184dfdf7c4a8eb32e3766def40, type: 3}
+  bone: {fileID: 2086347429913944115, guid: 4aadb7e5d6259614f86e405787e277d1, type: 3}
 --- !u!50 &1203229927889475114
 Rigidbody2D:
   serializedVersion: 4
