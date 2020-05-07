@@ -55,6 +55,8 @@ public class EnnemiSquelette : EnnemiParent
     private void MortEnnemi()
     {
         Instantiate(bone, this.transform.position, Quaternion.identity);
+        //timer
+        //animator.SetBool(Mort, true);
         Destroy(this.gameObject);
     }
 

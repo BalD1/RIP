@@ -53,6 +53,8 @@ public class EnnemiFantôme : EnnemiParent
     private void MortEnnemi()
     {
         Instantiate(ectoplasm, this.transform.position, Quaternion.identity);
+        //timer
+        //animator.SetBool(Mort, true);
         Destroy(this.gameObject);
     }
 }

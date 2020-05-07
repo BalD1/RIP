@@ -54,6 +54,8 @@ public class EnnemiSlime : EnnemiParent
     private void MortEnnemi()
     {
         Instantiate(slime, this.transform.position, Quaternion.identity);
+        //timer
+        //animator.SetBool(Mort, true);
         Destroy(this.gameObject);
     }
 }
