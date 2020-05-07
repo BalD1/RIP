@@ -51,15 +51,15 @@ public class UIManager : MonoBehaviour
             compTest+= rand;
         }
 
-        hpBar.fillAmount = playerValues.HpValue / health;
-
-        comptItems1.text = "            x " + playerValues.bonesCount.ToString() + System.Environment.NewLine + System.Environment.NewLine
-                         + "            x " + playerValues.fleshCount.ToString();
-
-        comptItems2.text = "            x " + playerValues.slimeCount.ToString() + System.Environment.NewLine + System.Environment.NewLine
-                         + "            x " + playerValues.ectoplasmCount.ToString();
-
-        score.text = "Score : " + compTest.ToString();
+        if (hpBar != null && comptItems1 != null && comptItems2 != null && score != null)
+        {
+            hpBar.fillAmount = playerValues.HpValue / health;
+            comptItems1.text = "            x " + playerValues.bonesCount.ToString() + System.Environment.NewLine + System.Environment.NewLine
+                             + "            x " + playerValues.fleshCount.ToString();
+            comptItems2.text = "            x " + playerValues.slimeCount.ToString() + System.Environment.NewLine + System.Environment.NewLine
+                             + "            x " + playerValues.ectoplasmCount.ToString();
+            score.text = "Score : " + compTest.ToString();
+        }
     }
 
     private void ResetScriptable()          // A supprimer au build, sert à reset les valeurs du scriptable aux valeurs par défaut 
