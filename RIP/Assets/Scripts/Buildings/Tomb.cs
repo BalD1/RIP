@@ -8,6 +8,18 @@ public class Tomb : MonoBehaviour
     private GameObject Ennemy;
     [SerializeField]
     private int neededHolders;
+    [SerializeField]
+    private PlayerValues playerValues;
+
+    [SerializeField] private int fleshCost;
+    [SerializeField] private int boneCost;
+    [SerializeField] private int slimeCost;
+    [SerializeField] private int ectoplasmCost;
+
+    private int paidFlesh;
+    private int paidBones;
+    private int paidSlime;
+    private int paidEctoplasm;
 
     private int holdersCount;
 
@@ -26,11 +38,27 @@ public class Tomb : MonoBehaviour
         isSelected = false;
         spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
         originalColor = this.spriteRenderer.color;
+        if (!this.name.Contains("Ghost"))
+        {
+            playerValues.fleshCount -= fleshCost;
+            playerValues.bonesCount -= boneCost;
+            playerValues.slimeCount -= slimeCost;
+            playerValues.ectoplasmCount -= ectoplasmCost;
+
+            paidFlesh = fleshCost;
+            paidBones = boneCost;
+            paidSlime = slimeCost;
+            paidEctoplasm = ectoplasmCost;
+        }
     }
 
     void Update()
     {
-        buildingPos = this.transform.position;
+        if (UIManager.Instance.SendActiveBuilding() == this.gameObject && UIManager.Instance.SendDestroyBubbleState() == true)
+        {
+            UIManager.Instance.GetRefunds(fleshCost, boneCost, slimeCost, ectoplasmCost);
+        }
+            buildingPos = this.transform.position;
 
         if (!this.name.Contains("Ghost"))
         {
@@ -97,19 +125,25 @@ public class Tomb : MonoBehaviour
             Holders holder = collision.GetComponent<Holders>();
             if (holder != null)
             {
+                this.SendCosts();
                 SpriteRenderer holderSprite = holder.GetComponent<SpriteRenderer>();
                 if (this.holdersCount == this.neededHolders)
                 {
                     holderSprite.color = Color.green;
-                    UIManager.Instance.GetCanPlaceBuilding(true);
+                    UIManager.Instance.BuildingHaveEnoughHolders(true);
                 }
                 else
                 {
                     holderSprite.color = Color.red;
-                    UIManager.Instance.GetCanPlaceBuilding(false);
+                    UIManager.Instance.BuildingHaveEnoughHolders(false);
                 }
             }
         }
+    }
+
+    private void SendCosts()
+    {
+        UIManager.Instance.GetBuildingsCosts(this.fleshCost, this.boneCost, this.slimeCost, this.ectoplasmCost);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -136,6 +170,24 @@ public class Tomb : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void OnBecameInvisible()
+    {
+        if (UIManager.Instance.SendActiveBuilding() == this.gameObject && UIManager.Instance.SendDestroyBubbleState())
+        {
+            UIManager.Instance.GetDestroyBubbleState(false);
+            UIManager.Instance.GetActiveBuilding(null);
+            this.spriteRenderer.color = originalColor;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        playerValues.fleshCount += paidFlesh;
+        playerValues.bonesCount += paidBones;
+        playerValues.slimeCount += paidSlime;
+        playerValues.ectoplasmCount += paidEctoplasm;
     }
 
 

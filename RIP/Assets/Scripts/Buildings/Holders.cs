@@ -167,6 +167,17 @@ public class Holders : MonoBehaviour
         }
     }
 
+    private void OnBecameInvisible()
+    {
+        if (UIManager.Instance.SendActiveHolder() == this.gameObject && UIManager.Instance.SendBuildBubblesState())
+        {
+            UIManager.Instance.GetBuildBubblesState(false);
+            UIManager.Instance.GetActiveHolder(null);
+            this.isActive = false;
+            this.spriteRenderer.color = originalColor;
+        }
+    }
+
 
 
 

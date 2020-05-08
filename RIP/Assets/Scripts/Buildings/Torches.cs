@@ -18,7 +18,6 @@ public class Torches : MonoBehaviour
         {
             this.isLighted = true;
         }
-        Debug.Log(isLighted);
     }
 
     public bool IsLighted()
