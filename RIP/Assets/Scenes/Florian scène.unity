@@ -2936,58 +2936,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1186385688, guid: eddc5dc4f5814c643a361bc26adc7fc6, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186385688, guid: eddc5dc4f5814c643a361bc26adc7fc6, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186385688, guid: eddc5dc4f5814c643a361bc26adc7fc6, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186385689, guid: eddc5dc4f5814c643a361bc26adc7fc6, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186385690, guid: eddc5dc4f5814c643a361bc26adc7fc6, type: 3}
-      propertyPath: far clip plane
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186385690, guid: eddc5dc4f5814c643a361bc26adc7fc6, type: 3}
-      propertyPath: m_NormalizedViewPortRect.width
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186385690, guid: eddc5dc4f5814c643a361bc26adc7fc6, type: 3}
-      propertyPath: m_NormalizedViewPortRect.height
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186385690, guid: eddc5dc4f5814c643a361bc26adc7fc6, type: 3}
-      propertyPath: m_NormalizedViewPortRect.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186385690, guid: eddc5dc4f5814c643a361bc26adc7fc6, type: 3}
-      propertyPath: m_NormalizedViewPortRect.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186385690, guid: eddc5dc4f5814c643a361bc26adc7fc6, type: 3}
-      propertyPath: m_HDR
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186385690, guid: eddc5dc4f5814c643a361bc26adc7fc6, type: 3}
-      propertyPath: m_AllowMSAA
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186385690, guid: eddc5dc4f5814c643a361bc26adc7fc6, type: 3}
-      propertyPath: m_TargetEye
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186385690, guid: eddc5dc4f5814c643a361bc26adc7fc6, type: 3}
-      propertyPath: orthographic size
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 6535304301474329759, guid: eddc5dc4f5814c643a361bc26adc7fc6,
         type: 3}
       propertyPath: m_Name

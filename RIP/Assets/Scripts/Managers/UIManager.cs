@@ -170,15 +170,19 @@ public class UIManager : MonoBehaviour
     {
         fleshDisplay.color = originalDisplayTextColor;
         fleshCost = 0;
+        fleshRefund = 0;
 
         boneDisplay.color = originalDisplayTextColor;
         boneCost = 0;
+        boneRefund = 0;
 
         slimeDisplay.color = originalDisplayTextColor;
         slimeCost = 0;
+        slimeRefund = 0;
 
         ectoplasmDisplay.color = originalDisplayTextColor;
         ectoplasmCost = 0;
+        ectoplasmRefund = 0;
 
         notEnoughRessources = false;
         refundFlag = false;
