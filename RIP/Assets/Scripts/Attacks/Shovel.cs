@@ -6,8 +6,7 @@ public class Shovel : MonoBehaviour
 {
     [SerializeField]
     private PlayerValues playerValues;
-
-    private Vector2 lookDirection;
+    
     private Vector2 originalPosition;
 
     private PolygonCollider2D thisCollider;
@@ -16,6 +15,8 @@ public class Shovel : MonoBehaviour
 
     private float shovelAnimTimer;
     private float shovelAnimTime;
+
+    private bool animFlag;
 
     private int damages;
 
@@ -39,19 +40,43 @@ public class Shovel : MonoBehaviour
         
         if (thisCollider.isActiveAndEnabled)
         {
-            shovelAnimator.Play("shovelAnim");
+            if (!animFlag)
+            {
+                shovelAnimator.Play("shovelAnim");
+                animFlag = true;
+            }
             shovelAnimTimer = Mathf.Clamp(shovelAnimTimer - Time.deltaTime, 0, shovelAnimTime);
             if (shovelAnimTimer == 0)
             {
                 thisCollider.enabled = false;
                 shovelAnimTimer = shovelAnimTime;
+                animFlag = false;
             }
         }
     }
 
-    public void Activate()
+    public void Activate(string lookDirection)
     {
         thisCollider.enabled = true;
+        switch(lookDirection)
+        {
+            case "right":
+                shovelAnimator.SetTrigger("lookright");
+                break;
+            case "left":
+                shovelAnimator.SetTrigger("lookleft");
+                break;
+            case "front":
+                shovelAnimator.SetTrigger("lookfront");
+                break;
+            case "back":
+                shovelAnimator.SetTrigger("lookback");
+                break;
+            default:
+                Debug.Log(lookDirection + " not recognized as a direction");
+                break;
+                
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

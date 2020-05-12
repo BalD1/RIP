@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject fireBall;
 
+    private string whereIsLooking;
+
     private int HP;
     private int shovelDamages;
     private int fireBallDamages;
@@ -182,18 +184,22 @@ public class Player : MonoBehaviour
         if (IsBetween(lookAngle, -45, 45))
         {
             // right
+            whereIsLooking = "right";
         }
         else if (IsBetween(lookAngle, 45, 135))
         {
             // front
+            whereIsLooking = "front";
         }
         else if (IsBetween(lookAngle, -135, -45))
         {
             // back
+            whereIsLooking = "back";
         }
         else if (IsBetween(lookAngle, -180, -135) || (IsBetween(lookAngle, 135, 180)))
         {
             // left
+            whereIsLooking = "left";
         }
     }
 
@@ -255,15 +261,11 @@ public class Player : MonoBehaviour
 
     private void Attacks()
     {
-        if (shovelAttackTimer == 0)
+        if (shovelAttackTimer == 0 && playerState != PlayerState.ShovelAttacking)
         {
-            if (this.playerState == PlayerState.ShovelAttacking)
-            {
-                this.playerState = PlayerState.Idle;
-            }
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                shovel.Activate();
+                shovel.Activate(whereIsLooking);
                 this.playerState = PlayerState.ShovelAttacking;
                 shovelAttackTimer = shovelAttackTime;
             }
@@ -277,6 +279,10 @@ public class Player : MonoBehaviour
             }
         }
         shovelAttackTimer = Mathf.Clamp(shovelAttackTimer - Time.deltaTime, 0, shovelAttackTime);
+        if (shovelAttackTimer == 0 && this.playerState == PlayerState.ShovelAttacking)
+        {
+            this.playerState = PlayerState.Idle;
+        }
     }
 
     private void LaunchFireBall()
