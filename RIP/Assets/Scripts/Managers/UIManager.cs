@@ -14,9 +14,14 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text score;
     [SerializeField] private Image hpBar;
 
+    [SerializeField] private GameObject HUD;
+    [SerializeField] private GameObject PauseScreen;
+    [SerializeField] private GameObject gameOverScreen;
+
     [SerializeField] private Canvas buildBubbles;
     [SerializeField] private Canvas destroyBubble;
 
+    [SerializeField] private int automaticPauseTime;
     private int compTest;
     private int fleshCost;
     private int fleshRefund;
@@ -28,6 +33,7 @@ public class UIManager : MonoBehaviour
     private int ectoplasmRefund;
 
     private float health;
+    private float automaticPauseTimer;
 
     private bool costDisplayFlag;
     private bool bubblesState;
@@ -59,6 +65,7 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
+        automaticPauseTimer = automaticPauseTime;
         originalDisplayTextColor = fleshDisplay.color;
         instance = this;
         health = playerValues.HpValue;
@@ -70,6 +77,8 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
+        this.AutomaticPause();
+
         var rand = Random.Range(341, 789);
         if(Input.GetKey(KeyCode.L))
         {
@@ -82,6 +91,47 @@ public class UIManager : MonoBehaviour
             hpBar.fillAmount = playerValues.HpValue / health;
             score.text = "Score : " + compTest.ToString();
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (GameManager.Instance.SendGameState() == GameManager.GameState.InGame)
+            {
+                this.SetPause();
+            }
+            else
+            {
+                this.RemovePause();
+            }
+        }
+        if (GameManager.Instance.SendGameState() == GameManager.GameState.Pause)
+        {
+            this.SetPause();
+        }
+        if (GameManager.Instance.SendGameState() == GameManager.GameState.InGame && PauseScreen.activeSelf)
+        {
+            this.RemovePause();
+        }
+        if (GameManager.Instance.SendGameState() == GameManager.GameState.GameOver)
+        {
+            this.GameOver();
+        }
+    }
+
+    private void AutomaticPause()
+    {
+        if (Input.anyKeyDown)
+        {
+            automaticPauseTimer = automaticPauseTime;
+        }
+        if (automaticPauseTimer == 0)
+        {
+            GameManager.Instance.SetGameState(GameManager.GameState.Pause);
+        }
+        if (GameManager.Instance.SendGameState() == GameManager.GameState.InGame)
+        {
+            automaticPauseTimer = Mathf.Clamp(automaticPauseTimer - Time.deltaTime, 0, automaticPauseTimer);
+        }
+        Debug.Log(automaticPauseTimer);
     }
 
     // -------------------- HUD ----------------------
@@ -189,7 +239,30 @@ public class UIManager : MonoBehaviour
     }
 
 
+    // -------------------- Screens ------------------
 
+    private void SetPause()
+    {
+        GameManager.Instance.SetGameState(GameManager.GameState.Pause);
+        this.HUD.SetActive(false);
+        this.PauseScreen.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    private void RemovePause()
+    {
+        GameManager.Instance.SetGameState(GameManager.GameState.InGame);
+        this.HUD.SetActive(true);
+        this.PauseScreen.SetActive(false);
+        Time.timeScale = 1;
+    }
+
+    private void GameOver()
+    {
+        this.HUD.SetActive(false);
+        this.gameOverScreen.SetActive(false);
+        Time.timeScale = 0;
+    }
 
     // -------------------- Holders ------------------
     

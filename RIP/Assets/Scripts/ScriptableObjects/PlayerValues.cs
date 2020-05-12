@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PlayerValues", menuName = "ValuesHolder")]
 public class PlayerValues : ScriptableObject
 {
+    public int maxHP;
     public int HpValue;
     public float invincibleTime;
     public float speed;

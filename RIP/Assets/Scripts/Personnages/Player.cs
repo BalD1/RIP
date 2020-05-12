@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
 
     private bool invincible;
     private bool canLaunchFireBall;
+    private bool healFlag;
 
     private Vector2 moveDirection = Vector2.zero;
     private Vector2 playerPosition;
@@ -61,6 +62,9 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        GameManager.Instance.SetGameState(GameManager.GameState.InGame); // TEST ONLY
+
+        playerValues.HpValue = playerValues.maxHP;
         this.playerState = PlayerState.Idle;
         this.ResetScriptable();
         shovel = this.gameObject.GetComponentInChildren<Shovel>();
@@ -177,7 +181,7 @@ public class Player : MonoBehaviour
         Vector2 clampedLookDirection = new Vector2();
         clampedLookDirection.x = Mathf.Clamp(lookDirection.x, -5f, 5f);
         clampedLookDirection.y = Mathf.Clamp(lookDirection.y, -5f, 5f);
-        if (this.playerState != PlayerState.ShovelAttacking)
+        if (this.playerState != PlayerState.ShovelAttacking && GameManager.Instance.SendGameState() == GameManager.GameState.InGame)
         {
             playerAnimator.SetFloat("Look X", clampedLookDirection.x);
             playerAnimator.SetFloat("Look Y", clampedLookDirection.y);
@@ -215,13 +219,14 @@ public class Player : MonoBehaviour
 
     private void TakeDamages()
     {
+        playerValues.HpValue -= damagesReceived;
+        HP = playerValues.HpValue;
         if (HP <= 0)
         {
             GameManager.Instance.SetGameState(GameManager.GameState.GameOver);
             playerAnimator.SetBool("Death", true);
             Destroy(this.gameObject);
         }
-        playerValues.HpValue -= damagesReceived;
         invincibleTimer = invincibleTime;
         Invincible();
         invincible = true;
@@ -257,6 +262,19 @@ public class Player : MonoBehaviour
         else
         {
             this.spriteRenderer.enabled = true;
+        }
+    }
+
+    private void HealAtDay()
+    {
+        if(GameManager.Instance.SendGameTime() == GameManager.GameTime.Day && !healFlag)
+        {
+            healFlag = true;
+            playerValues.HpValue = playerValues.maxHP;
+        }
+        else if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Night)
+        {
+            healFlag = false;
         }
     }
 
