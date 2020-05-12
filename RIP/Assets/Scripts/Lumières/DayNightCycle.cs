@@ -33,14 +33,14 @@ public class DayNightCycle : MonoBehaviour
             timer += Time.deltaTime;
             if(Day == true)
             {
-                if(this.sunLight.intensity < 2)
+                if(this.sunLight.intensity < 1.5f)
                 {
                     this.sunLight.intensity += 0.001f;
                 }
             }
             else
             {
-                if(this.sunLight.intensity > 0.75f)
+                if(this.sunLight.intensity > 0.35f)
                 {
                     this.sunLight.intensity -= 0.001f;
                 }
