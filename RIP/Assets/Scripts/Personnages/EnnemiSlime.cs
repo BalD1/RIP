@@ -43,6 +43,42 @@ public class EnnemiSlime : EnnemiParent
 
     }
 
+    void Attack()
+    {
+        if (preparingAttack == false)
+        {
+            if (Random.Range(0, 800) == 0)
+            {
+                preparingAttack = true;
+                this.speed = 0;
+            }
+
+            if (dashAttackTimer != 0)
+            {
+                dashAttackTimer += Time.deltaTime;
+                if (dashAttackTimer >= 6)
+                {
+                    this.speed = 1.5f;
+                    dashAttackTimer = 0;
+                }
+            }
+        }
+        else
+        {
+            dashAttackTimer += Time.deltaTime;
+            if (dashAttackTimer >= 2 && dashAttackTimer <= 6)
+            {
+                this.speed = 2.5f;
+                preparingAttack = false;
+            }
+            if (dashAttackTimer >= 6)
+            {
+                this.speed = 1.5f;
+                dashAttackTimer = 0;
+            }
+        }
+    }
+
     void FixedUpdate()
     {
         Movement();
