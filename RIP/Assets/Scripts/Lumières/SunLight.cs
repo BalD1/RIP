@@ -13,11 +13,11 @@ public class SunLight : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             this.sunLight.intensity += 0.5f;
         }
-        else if(Input.GetKeyDown(KeyCode.O))
+        else if (Input.GetKeyDown(KeyCode.O))
         {
             this.sunLight.intensity -= 0.5f;
         }
