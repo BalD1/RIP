@@ -31,7 +31,7 @@ public class DayNightCycle : MonoBehaviour
         {
             GameManager.Instance.SetGameTime(GameManager.GameTime.Day);
             timer = 0;
-            Day = false;
+            Day = true;
         }
     }
 }
