@@ -177,9 +177,12 @@ public class Player : MonoBehaviour
         Vector2 clampedLookDirection = new Vector2();
         clampedLookDirection.x = Mathf.Clamp(lookDirection.x, -5f, 5f);
         clampedLookDirection.y = Mathf.Clamp(lookDirection.y, -5f, 5f);
-        playerAnimator.SetFloat("Look X", clampedLookDirection.x);
-        playerAnimator.SetFloat("Look Y", clampedLookDirection.y);
-        playerAnimator.SetFloat("Speed", moveDirection.magnitude);
+        if (this.playerState != PlayerState.ShovelAttacking)
+        {
+            playerAnimator.SetFloat("Look X", clampedLookDirection.x);
+            playerAnimator.SetFloat("Look Y", clampedLookDirection.y);
+            playerAnimator.SetFloat("Speed", moveDirection.magnitude);
+        }
 
         if (IsBetween(lookAngle, -45, 45))
         {
