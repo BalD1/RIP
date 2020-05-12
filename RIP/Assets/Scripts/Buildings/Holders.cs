@@ -101,7 +101,7 @@ public class Holders : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Day)
+        if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Day && GameManager.Instance.SendGameState() == GameManager.GameState.InGame)
         {
             if (!this.isUsed && UIManager.Instance.SendActiveBuilding() == null)
             {
