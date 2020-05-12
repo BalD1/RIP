@@ -7,7 +7,6 @@ public class EnnemiParent : MonoBehaviour
     [SerializeField]
     protected Animator animator;
 
-    [SerializeField]
     protected Transform Joueur;
 
     [SerializeField]
@@ -28,7 +27,7 @@ public class EnnemiParent : MonoBehaviour
 
     void Update()
     {
-        
+        this.Joueur = Player.Joueur;
     }
 
     protected void Movement()

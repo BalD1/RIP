@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static Transform Joueur;
     [SerializeField]
     private PlayerValues playerValues;
 
@@ -66,6 +67,7 @@ public class Player : MonoBehaviour
         playerPosition = this.transform.position;
         this.playerAnimator = this.GetComponent<Animator>();
         canLaunchFireBall = true;
+        Joueur = this.gameObject.GetComponent<Transform>();
     }
 
     private void FixedUpdate()
