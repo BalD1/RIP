@@ -7,8 +7,6 @@ public class EnnemiParent : MonoBehaviour
     [SerializeField]
     protected Animator animator;
 
-    protected Transform Joueur;
-
     [SerializeField]
     protected int hp;
 
@@ -27,7 +25,6 @@ public class EnnemiParent : MonoBehaviour
 
     void Update()
     {
-        this.Joueur = Player.Joueur;
     }
 
     protected void Movement()
@@ -35,7 +32,7 @@ public class EnnemiParent : MonoBehaviour
         if(preparingAttack == false)
         {
             Debug.Log("je bouge");
-            rigid2d.position = Vector2.MoveTowards(rigid2d.position, Joueur.position, speed * Time.deltaTime);
+            rigid2d.position = Vector2.MoveTowards(rigid2d.position, Player.Joueur.position, speed * Time.deltaTime);
             this.rigid2d.MovePosition(rigid2d.position);
         }
     }

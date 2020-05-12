@@ -27,11 +27,11 @@ public class EnnemiSlime : EnnemiParent
     void Update()
     {
 
-        if (Joueur.position.x > this.transform.position.x)
+        if (Player.Joueur.position.x > this.transform.position.x)
         {
             this.GetComponent<SpriteRenderer>().flipX = true;
         }
-        else if (Joueur.position.x < this.transform.position.x)
+        else if (Player.Joueur.position.x < this.transform.position.x)
         {
             this.GetComponent<SpriteRenderer>().flipX = false;
         }

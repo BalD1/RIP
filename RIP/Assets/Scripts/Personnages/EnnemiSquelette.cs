@@ -28,11 +28,11 @@ public class EnnemiSquelette : EnnemiParent
     {
         Attack();
 
-        if (Joueur.position.x > this.transform.position.x)
+        if (Player.Joueur.position.x > this.transform.position.x)
         {
             this.GetComponent<SpriteRenderer>().flipX = true;
         }
-        else if (Joueur.position.x < this.transform.position.x)
+        else if (Player.Joueur.position.x < this.transform.position.x)
         {
             this.GetComponent<SpriteRenderer>().flipX = false;
         }

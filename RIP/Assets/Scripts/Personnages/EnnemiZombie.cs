@@ -40,11 +40,11 @@ public class EnnemiZombie : EnnemiParent
             }
         }
 
-        if (Joueur.position.x > this.transform.position.x)
+        if (Player.Joueur.position.x > this.transform.position.x)
         {
             this.GetComponent<SpriteRenderer>().flipX = true;
         }
-        else if (Joueur.position.x < this.transform.position.x)
+        else if (Player.Joueur.position.x < this.transform.position.x)
         {
             this.GetComponent<SpriteRenderer>().flipX = false;
         }
@@ -71,8 +71,8 @@ public class EnnemiZombie : EnnemiParent
 
     void Attack()
     {
-        if (Joueur.position.x - this.rigid2d.position.x > -1.5 && Joueur.position.x - this.rigid2d.position.x < 1.5 &&
-            Joueur.position.y - this.rigid2d.position.y > -1.5 && Joueur.position.y - this.rigid2d.position.y < 1.5 && preparingAttack == false)
+        if (Player.Joueur.position.x - this.rigid2d.position.x > -1.5 && Player.Joueur.position.x - this.rigid2d.position.x < 1.5 &&
+            Player.Joueur.position.y - this.rigid2d.position.y > -1.5 && Player.Joueur.position.y - this.rigid2d.position.y < 1.5 && preparingAttack == false)
         {
             preparingAttack = true;
             Debug.Log("à la fin de l'envoi...");
