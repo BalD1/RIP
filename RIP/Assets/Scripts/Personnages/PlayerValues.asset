@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aa856346660bed4eb581ff2ab73eeb8, type: 3}
   m_Name: PlayerValues
   m_EditorClassIdentifier: 
-  HpValue: -1
+  maxHP: 10
+  HpValue: 10
   invincibleTime: 1
   speed: 5
-  fireBallDamages: 2
+  fireBallDamages: 5
   fireBallLaunchSpeed: 7
   fireBallCooldown: 1.5
   shovelDamages: 3

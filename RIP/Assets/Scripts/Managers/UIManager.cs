@@ -131,7 +131,6 @@ public class UIManager : MonoBehaviour
         {
             automaticPauseTimer = Mathf.Clamp(automaticPauseTimer - Time.deltaTime, 0, automaticPauseTimer);
         }
-        Debug.Log(automaticPauseTimer);
     }
 
     // -------------------- HUD ----------------------

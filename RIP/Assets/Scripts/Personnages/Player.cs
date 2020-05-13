@@ -86,6 +86,7 @@ public class Player : MonoBehaviour
     {
         Debug.Log("Current time : " + GameManager.Instance.SendGameTime() + ". Press Enter to change.");
         this.ChangePlayerMode();        // Change the player mode by time
+        this.ChangeAnimation();         // Change the animation following the player's state
 
         if (this.playerMode == PlayerMode.Fight)
         {
@@ -213,6 +214,27 @@ public class Player : MonoBehaviour
     private bool IsBetween(float value, float min, float max)
     {
         return (value >= min && value <= max);
+    }
+
+    private void ChangeAnimation()
+    {
+        if (canLaunchFireBall)
+        {
+            playerAnimator.SetBool("Lit", true);
+        }
+        else
+        {
+            playerAnimator.SetBool("Lit", false);
+        }
+
+        if (playerState == PlayerState.Idle)
+        {
+            playerAnimator.SetBool("Idle", true);
+        }
+        else
+        {
+            playerAnimator.SetBool("Idle", false);
+        }
     }
 
     // ----------------------- Player taking damages and invincibility ------------------------
