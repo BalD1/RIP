@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     private int damagesToPlayer;
     private int damagesToEnnemi;
 
+    private Vector2 bubblesHolderPosition;
+
     private GameObject holdingBuilding;
 
     private bool isHolding;
@@ -111,6 +113,16 @@ public class GameManager : MonoBehaviour
     public bool SendIsHolding()
     {
         return isHolding;
+    }
+
+    public void GetBubblesHolderPosition(Vector2 position)
+    {
+        bubblesHolderPosition = position;
+    }
+
+    public Vector2 SendBubblesHolderPosition()
+    {
+        return bubblesHolderPosition;
     }
 
     //-------------- Quit Game ------------
