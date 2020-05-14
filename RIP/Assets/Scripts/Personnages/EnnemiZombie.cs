@@ -80,7 +80,7 @@ public class EnnemiZombie : EnnemiParent
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         Player player = collision.gameObject.GetComponent<Player>();
 
@@ -88,10 +88,7 @@ public class EnnemiZombie : EnnemiParent
         {
             GameManager.Instance.DamagePlayer(this.attack);
         }
-    }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
         Shovel shovel = collision.gameObject.GetComponent<Shovel>();
         FireBall fireball = collision.gameObject.GetComponent<FireBall>();
 
