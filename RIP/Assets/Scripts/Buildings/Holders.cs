@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Holders : MonoBehaviour
 {
+    [SerializeField] private GameObject bubblesHolder;
 
     [SerializeField] private GameObject tomb;
     [SerializeField] private GameObject coffin;
@@ -18,6 +19,7 @@ public class Holders : MonoBehaviour
 
     List<GameObject> ghostBuildings = new List<GameObject>();
 
+    private Vector2 bubblesPosition;
 
     private Color originalColor;
 
@@ -36,6 +38,7 @@ public class Holders : MonoBehaviour
         ghostBuildings.Add(ghostCoffin);
         ghostBuildings.Add(ghostSewer);
         ghostBuildings.Add(ghostCircle);
+        bubblesPosition = bubblesHolder.transform.position;
 
     }
 
@@ -107,6 +110,7 @@ public class Holders : MonoBehaviour
             {
                 if (UIManager.Instance.SendBuildBubblesState() == false)
                 {
+                    GameManager.Instance.GetBubblesHolderPosition(bubblesPosition);
                     UIManager.Instance.GetBuildBubblesState(true);
                     UIManager.Instance.GetActiveHolder(this.gameObject);
                     this.isActive = true;

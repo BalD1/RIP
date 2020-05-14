@@ -268,6 +268,7 @@ public class UIManager : MonoBehaviour
     public void GetBuildBubblesState(bool state)
     {
         bubblesState = state;
+        buildBubbles.transform.position = GameManager.Instance.SendBubblesHolderPosition();
         buildBubbles.enabled = bubblesState;
     }
 
@@ -324,6 +325,7 @@ public class UIManager : MonoBehaviour
 
     public void GetDestroyBubbleState(bool state)
     {
+        destroyBubble.transform.position = GameManager.Instance.SendBubblesHolderPosition();
         this.destroyBubblesState = state;
         destroyBubble.enabled = destroyBubblesState;
     }

@@ -24,6 +24,7 @@ public class Tomb : MonoBehaviour
     private int holdersCount;
 
     private Vector2 buildingPos;
+    private Vector2 bubblesHolder;
 
     private bool Spawned = false;
     private bool isSelected;
@@ -34,6 +35,7 @@ public class Tomb : MonoBehaviour
 
     void Start()
     {
+        bubblesHolder = GameManager.Instance.SendBubblesHolderPosition();
         buildingPos = this.transform.position;
         isSelected = false;
         spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
@@ -85,6 +87,7 @@ public class Tomb : MonoBehaviour
                 {
                     if (UIManager.Instance.SendDestroyBubbleState() == false)
                     {
+                        GameManager.Instance.GetBubblesHolderPosition(bubblesHolder);
                         UIManager.Instance.GetDestroyBubbleState(true);
                         UIManager.Instance.GetActiveBuilding(this.gameObject);
                         this.spriteRenderer.color = Color.gray;

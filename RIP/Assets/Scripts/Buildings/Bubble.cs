@@ -25,7 +25,7 @@ public class Bubble : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (this.isActiveAndEnabled)
+        if (this.gameObject != null && this.isActiveAndEnabled)
         {
             if (this.name != "DestoyButton")
             {
@@ -33,12 +33,15 @@ public class Bubble : MonoBehaviour
                 {
                     Vector3 holderPos = new Vector2();
 
-                    holderPos = UIManager.Instance.SendActiveHolder().transform.position;
-                    holderPos.z--;
+                    if (UIManager.Instance.SendActiveHolder() != null)
+                    {
+                        holderPos = UIManager.Instance.SendActiveHolder().transform.position;
+                        holderPos.z--;
 
-                    Instantiate(building, holderPos, Quaternion.identity);
-                    UIManager.Instance.GetBuildBubblesState(false);
-                    UIManager.Instance.GetActiveHolder(null);
+                        Instantiate(building, holderPos, Quaternion.identity);
+                        UIManager.Instance.GetBuildBubblesState(false);
+                        UIManager.Instance.GetActiveHolder(null);
+                    }
                 }
             }
             else
