@@ -308,7 +308,7 @@ public class Player : MonoBehaviour
     {
         if (shovelAttackTimer == 0 && playerState != PlayerState.ShovelAttacking)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.Mouse1))
             {
                 shovel.Activate(whereIsLooking);
                 this.playerState = PlayerState.ShovelAttacking;
@@ -318,7 +318,7 @@ public class Player : MonoBehaviour
         }
         if (canLaunchFireBall)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse1))
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 this.LaunchFireBall();
                 canLaunchFireBall = false;
