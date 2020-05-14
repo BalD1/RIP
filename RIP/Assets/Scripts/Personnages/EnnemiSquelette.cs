@@ -100,4 +100,14 @@ public class EnnemiSquelette : EnnemiParent
             jPos.y = 0;
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Player player = collision.gameObject.GetComponent<Player>();
+
+        if (player != null)
+        {
+            GameManager.Instance.DamagePlayer(this.attack);
+        }
+    }
 }

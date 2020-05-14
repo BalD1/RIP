@@ -68,4 +68,14 @@ public class EnnemiFantôme : EnnemiParent
         //animator.SetBool(Mort, true);
         Destroy(this.gameObject);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Player player = collision.gameObject.GetComponent<Player>();
+
+        if (player != null)
+        {
+            GameManager.Instance.DamagePlayer(this.attack);
+        }
+    }
 }

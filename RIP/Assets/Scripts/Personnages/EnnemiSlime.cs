@@ -66,12 +66,12 @@ public class EnnemiSlime : EnnemiParent
         else
         {
             dashAttackTimer += Time.deltaTime;
-            if (dashAttackTimer >= 2 && dashAttackTimer <= 6)
+            if (dashAttackTimer >= 2 && dashAttackTimer <= 4)
             {
-                this.speed = 2.5f;
+                this.speed = 3f;
                 preparingAttack = false;
             }
-            if (dashAttackTimer >= 6)
+            if (dashAttackTimer >= 4)
             {
                 this.speed = 1.5f;
                 dashAttackTimer = 0;
@@ -90,5 +90,15 @@ public class EnnemiSlime : EnnemiParent
         //timer
         //animator.SetBool(Mort, true);
         Destroy(this.gameObject);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Player player = collision.gameObject.GetComponent<Player>();
+
+        if (player != null)
+        {
+            GameManager.Instance.DamagePlayer(this.attack);
+        }
     }
 }
