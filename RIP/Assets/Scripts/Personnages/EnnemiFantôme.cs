@@ -12,7 +12,7 @@ public class EnnemiFantôme : EnnemiParent
 
     private BoxCollider2D box2d;
 
-    private float dashAttackTimer = 0;
+    private float invincibilityTimer = 0;
 
     void Start()
     {
@@ -33,6 +33,19 @@ public class EnnemiFantôme : EnnemiParent
         else if (Player.Joueur.position.x < this.transform.position.x)
         {
             this.GetComponent<SpriteRenderer>().flipX = false;
+        }
+
+        invincibilityTimer += Time.deltaTime;
+        if(invincibilityTimer >= 2)
+        {
+            this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            this.gameObject.GetComponent<SpriteRenderer>().material.color = new Color(1f, 1f, 1f, 0.5f);
+            if(invincibilityTimer >= 4)
+            {
+                this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
+                this.gameObject.GetComponent<SpriteRenderer>().material.color = new Color(1f, 1f, 1f, 1f);
+                invincibilityTimer = 0;
+            }
         }
 
         if (this.hp <= 0)

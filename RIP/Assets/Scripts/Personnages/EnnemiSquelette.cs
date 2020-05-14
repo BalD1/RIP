@@ -95,7 +95,7 @@ public class EnnemiSquelette : EnnemiParent
         if(Random.Range(0, 600) == 0)
         {
             GameObject shot = Instantiate(projectile, this.transform.position, Quaternion.identity);
-            shot.gameObject.GetComponent<Rigidbody2D>().AddForce(jPos*350);
+            shot.gameObject.GetComponent<Rigidbody2D>().AddForce(jPos*300);
             jPos.x = 0;
             jPos.y = 0;
         }
