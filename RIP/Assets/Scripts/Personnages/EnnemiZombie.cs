@@ -89,4 +89,16 @@ public class EnnemiZombie : EnnemiParent
             GameManager.Instance.DamagePlayer(this.attack);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Shovel shovel = collision.gameObject.GetComponent<Shovel>();
+        FireBall fireball = collision.gameObject.GetComponent<FireBall>();
+
+        if (shovel != null || fireball != null)
+        {
+            this.hp -= GameManager.Instance.SendDamagesEnnemi();
+            GameManager.Instance.DamageEnnemi(0);
+        }
+    }
 }

@@ -37,15 +37,5 @@ public class EnnemiParent : MonoBehaviour
         }
     }
 
-    protected void OnTriggerEnter2D(Collider2D collision)
-    {
-        Shovel shovel = collision.gameObject.GetComponent<Shovel>();
-        FireBall fireball = collision.gameObject.GetComponent<FireBall>();
-
-        if (shovel != null || fireball != null)
-        {
-            this.hp -= GameManager.Instance.SendDamagesEnnemi();
-            GameManager.Instance.DamageEnnemi(0);
-        }
-    }
+    
 }

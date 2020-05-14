@@ -100,5 +100,14 @@ public class EnnemiSlime : EnnemiParent
         {
             GameManager.Instance.DamagePlayer(this.attack);
         }
+
+        Shovel shovel = collision.gameObject.GetComponent<Shovel>();
+        FireBall fireball = collision.gameObject.GetComponent<FireBall>();
+
+        if (shovel != null || fireball != null)
+        {
+            this.hp -= GameManager.Instance.SendDamagesEnnemi();
+            GameManager.Instance.DamageEnnemi(0);
+        }
     }
 }

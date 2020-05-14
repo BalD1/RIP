@@ -13,8 +13,7 @@ GameObject:
   - component: {fileID: 784387721799480169}
   - component: {fileID: 784387721799480168}
   - component: {fileID: 331437706743334754}
-  - component: {fileID: 1287923125814717004}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EnnemitriangleFant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +97,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  Joueur: {fileID: 0}
   hp: 0
   ennemiValues: {fileID: 11400000, guid: a1b801112546f1b4b8a5f6e5d647bf34, type: 2}
   ectoplasm: {fileID: 3665272730982120448, guid: c971ec1a14a0fff488d788033d850725,
@@ -155,29 +153,3 @@ PolygonCollider2D:
       - {x: 0.5, y: -0.5}
       - {x: 0.5, y: -0.42}
       - {x: 0.04, y: 0.5}
---- !u!61 &1287923125814717004
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 784387721799480173}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.026467562, y: 0.030066729}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0387664, y: 1.0756059}
-  m_EdgeRadius: 0

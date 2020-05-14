@@ -13,14 +13,13 @@ GameObject:
   - component: {fileID: 7334097240728416083}
   - component: {fileID: 7529805743005527784}
   - component: {fileID: 7529805743005527798}
-  - component: {fileID: 7529805743005527799}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EnnemitriangleSlime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7529805743005527789
 Transform:
   m_ObjectHideFlags: 0
@@ -75,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8826fa629900aa74cb54aedf52485b44, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.20301843, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -98,7 +97,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  Joueur: {fileID: 0}
   hp: 0
   ennemiValues: {fileID: 11400000, guid: a1b801112546f1b4b8a5f6e5d647bf34, type: 2}
   slime: {fileID: 503777638459710046, guid: 7e464e886cf473f48aa5886f210305e7, type: 3}
@@ -154,29 +152,3 @@ PolygonCollider2D:
       - {x: 0.5, y: -0.5}
       - {x: 0.5, y: -0.42}
       - {x: 0.04, y: 0.5}
---- !u!61 &7529805743005527799
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7529805743005527796}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.026467562, y: 0.030066729}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0387664, y: 1.0756059}
-  m_EdgeRadius: 0
