@@ -83,7 +83,7 @@ public class Tomb : MonoBehaviour
         {
             if (!this.name.Contains("Ghost"))
             {
-                if (UIManager.Instance.SendActiveHolder() == null)
+                if (UIManager.Instance.SendActiveHolder() == null && UIManager.Instance.SendUnlockBubbleState() == false)
                 {
                     if (UIManager.Instance.SendDestroyBubbleState() == false)
                     {
