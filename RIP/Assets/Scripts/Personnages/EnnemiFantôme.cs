@@ -38,12 +38,10 @@ public class EnnemiFantôme : EnnemiParent
         invincibilityTimer += Time.deltaTime;
         if(invincibilityTimer >= 2)
         {
-            this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
             this.gameObject.GetComponent<PolygonCollider2D>().enabled = false;
             this.gameObject.GetComponent<SpriteRenderer>().material.color = new Color(1f, 1f, 1f, 0.5f);
             if(invincibilityTimer >= 4)
             {
-                this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
                 this.gameObject.GetComponent<PolygonCollider2D>().enabled = true;
                 this.gameObject.GetComponent<SpriteRenderer>().material.color = new Color(1f, 1f, 1f, 1f);
                 invincibilityTimer = 0;
