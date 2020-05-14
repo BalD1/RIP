@@ -150,6 +150,8 @@ public class Player : MonoBehaviour
         if (this.playerState == PlayerState.Idle ^ this.playerState == PlayerState.Moving)
         {
             moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            playerAnimator.SetFloat("DirectionX", moveDirection.normalized.x);
+            playerAnimator.SetFloat("DirectionY", moveDirection.normalized.y);
             moveDirection *= speed * Time.deltaTime;
             if (moveDirection != Vector2.zero)
             {
@@ -310,6 +312,7 @@ public class Player : MonoBehaviour
             {
                 shovel.Activate(whereIsLooking);
                 this.playerState = PlayerState.ShovelAttacking;
+                playerAnimator.SetBool("ShovelAttacking", true);
                 shovelAttackTimer = shovelAttackTime;
             }
         }
@@ -324,7 +327,8 @@ public class Player : MonoBehaviour
         shovelAttackTimer = Mathf.Clamp(shovelAttackTimer - Time.deltaTime, 0, shovelAttackTime);
         if (shovelAttackTimer == 0 && this.playerState == PlayerState.ShovelAttacking)
         {
-            this.playerState = PlayerState.Idle;
+            this.playerState = PlayerState.Moving;
+            playerAnimator.SetBool("ShovelAttacking", false);
         }
     }
 
