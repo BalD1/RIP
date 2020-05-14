@@ -100,4 +100,23 @@ public class EnnemiSquelette : EnnemiParent
             jPos.y = 0;
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Player player = collision.gameObject.GetComponent<Player>();
+
+        if (player != null)
+        {
+            GameManager.Instance.DamagePlayer(this.attack);
+        }
+
+        Shovel shovel = collision.gameObject.GetComponent<Shovel>();
+        FireBall fireball = collision.gameObject.GetComponent<FireBall>();
+
+        if (shovel != null || fireball != null)
+        {
+            this.hp -= GameManager.Instance.SendDamagesEnnemi();
+            GameManager.Instance.DamageEnnemi(0);
+        }
+    }
 }

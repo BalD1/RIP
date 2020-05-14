@@ -38,11 +38,11 @@ public class EnnemiFantôme : EnnemiParent
         invincibilityTimer += Time.deltaTime;
         if(invincibilityTimer >= 2)
         {
-            this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            this.gameObject.GetComponent<PolygonCollider2D>().enabled = false;
             this.gameObject.GetComponent<SpriteRenderer>().material.color = new Color(1f, 1f, 1f, 0.5f);
             if(invincibilityTimer >= 4)
             {
-                this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
+                this.gameObject.GetComponent<PolygonCollider2D>().enabled = true;
                 this.gameObject.GetComponent<SpriteRenderer>().material.color = new Color(1f, 1f, 1f, 1f);
                 invincibilityTimer = 0;
             }
@@ -65,5 +65,24 @@ public class EnnemiFantôme : EnnemiParent
         //timer
         //animator.SetBool(Mort, true);
         Destroy(this.gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Player player = collision.gameObject.GetComponent<Player>();
+
+        if (player != null)
+        {
+            GameManager.Instance.DamagePlayer(this.attack);
+        }
+
+        Shovel shovel = collision.gameObject.GetComponent<Shovel>();
+        FireBall fireball = collision.gameObject.GetComponent<FireBall>();
+
+        if (shovel != null || fireball != null)
+        {
+            this.hp -= GameManager.Instance.SendDamagesEnnemi();
+            GameManager.Instance.DamageEnnemi(0);
+        }
     }
 }
