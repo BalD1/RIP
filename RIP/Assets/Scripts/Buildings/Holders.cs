@@ -107,7 +107,6 @@ public class Holders : MonoBehaviour
                     break;
             }
         }
-        Debug.Log(this.isLocked + " " + this.isActive);
         if (this.isLocked && this.isActive)
         {
             if (UIManager.Instance.SendCanUnlock())

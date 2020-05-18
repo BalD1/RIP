@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     private float shovelAttackTime;
     private float invincibleTimer;
     private float invincibleTime;
+    private float fireBallCooldown;
 
     private bool invincible;
     private bool canLaunchFireBall;
@@ -63,7 +64,6 @@ public class Player : MonoBehaviour
     void Start()
     {
         GameManager.Instance.SetGameState(GameManager.GameState.InGame); // TEST ONLY
-
         playerValues.HpValue = playerValues.maxHP;
         this.playerState = PlayerState.Idle;
         this.ResetScriptable();
@@ -106,6 +106,16 @@ public class Player : MonoBehaviour
         }
         this.Tests();
         this.UpdateValues();
+
+        if (canLaunchFireBall)
+        {
+            fireBallCooldown = playerValues.fireBallCooldown;
+        }
+        else
+        {
+            this.FireballCooldown();
+        }
+        
     }
 
     private void ChangePlayerMode()
@@ -337,6 +347,16 @@ public class Player : MonoBehaviour
         GameObject launchedFireBall = Instantiate(fireBall, this.transform.position, Quaternion.identity);
         lookDirection = (lookDirection.normalized * launchSpeed);
         launchedFireBall.GetComponent<Rigidbody2D>().velocity = lookDirection;
+    }
+
+    private void FireballCooldown()
+    {
+        fireBallCooldown = Mathf.Clamp(fireBallCooldown - Time.deltaTime, 0, fireBallCooldown);
+        if (fireBallCooldown == 0)
+        {
+            canLaunchFireBall = true;
+            fireBallCooldown = playerValues.fireBallCooldown;
+        }
     }
 
     // ------------------------ Values update --------------------------
