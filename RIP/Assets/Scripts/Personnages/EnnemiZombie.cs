@@ -28,18 +28,6 @@ public class EnnemiZombie : EnnemiParent
     {
         Attack();
 
-        if(preparingAttack == true)
-        {
-            dashAttackTimer += Time.deltaTime;
-            if(dashAttackTimer > 3)
-            {
-                Debug.Log("je touche !");
-                preparingAttack = false;
-                this.box2d.enabled = false;
-                dashAttackTimer = 0;
-            }
-        }
-
         if (Player.Joueur.position.x > this.transform.position.x)
         {
             this.GetComponent<SpriteRenderer>().flipX = true;
@@ -75,8 +63,19 @@ public class EnnemiZombie : EnnemiParent
             Player.Joueur.position.y - this.rigid2d.position.y > -1.4 && Player.Joueur.position.y - this.rigid2d.position.y < 1.4 && preparingAttack == false)
         {
             preparingAttack = true;
-            Debug.Log("à la fin de l'envoi...");
             this.box2d.enabled = true;
+        }
+
+
+        if (preparingAttack == true)
+        {
+            dashAttackTimer += Time.deltaTime;
+            if (dashAttackTimer > 3)
+            {
+                preparingAttack = false;
+                this.box2d.enabled = false;
+                dashAttackTimer = 0;
+            }
         }
     }
 
