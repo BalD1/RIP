@@ -87,6 +87,7 @@ public class EnnemiSquelette : EnnemiParent
         Instantiate(bone, this.transform.position, Quaternion.identity);
         //timer
         //animator.SetBool(Mort, true);
+        AudioManager.Instance.Play("DeathSkeleton");
         Destroy(this.gameObject);
     }
 

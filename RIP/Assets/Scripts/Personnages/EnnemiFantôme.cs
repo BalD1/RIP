@@ -64,6 +64,7 @@ public class EnnemiFantôme : EnnemiParent
         Instantiate(ectoplasm, this.transform.position, Quaternion.identity);
         //timer
         //animator.SetBool(Mort, true);
+        AudioManager.Instance.Play("DeathGhost");
         Destroy(this.gameObject);
     }
 

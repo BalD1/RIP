@@ -54,6 +54,7 @@ public class EnnemiZombie : EnnemiParent
         Instantiate(flesh, this.transform.position, Quaternion.identity);
         //timer
         //animator.SetBool(Mort, true);
+        AudioManager.Instance.Play("DeathZombie");
         Destroy(this.gameObject);
     }
 

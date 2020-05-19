@@ -73,6 +73,7 @@ public class EnnemiSlime : EnnemiParent
         Instantiate(slime, this.transform.position, Quaternion.identity);
         //timer
         //animator.SetBool(Mort, true);
+        AudioManager.Instance.Play("DeathSlime");
         Destroy(this.gameObject);
     }
 
