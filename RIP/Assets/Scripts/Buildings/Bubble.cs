@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Bubble : MonoBehaviour
 {
@@ -8,14 +9,59 @@ public class Bubble : MonoBehaviour
     [SerializeField] GameObject building;
     [SerializeField] Animator bubblesAnimator;
 
-    private void Awake()
+    private Color originalColor;
+
+    private Image image;
+    
+
+    private void Start()
     {
-        bubblesAnimator = this.gameObject.GetComponent<Animator>();
+        image = this.GetComponent<Image>();
+        originalColor = this.image.color;
+        UIManager.Instance.BubblesAnimator = bubblesAnimator;
+    }
+
+    private void Update()
+    {
+        if (this.isActiveAndEnabled)
+        {
+            if (this.name == "FlowerButton")
+            {
+                if (UIManager.Instance.isBuildingFlowered)
+                {
+                    this.image.color = Color.gray;
+                }
+                else
+                {
+                    this.image.color = originalColor;
+                }
+            }
+
+            if (this.name == "UpgradeButton")
+            {
+                if (UIManager.Instance.isBuildingMaxLevel)
+                {
+                    this.image.color = Color.gray;
+                }
+                else
+                {
+                    this.image.color = originalColor;
+                }
+            }
+        }
     }
 
     private void OnMouseEnter()
     {
-        if (this.name != "DestoyButton")
+        if (this.name == "UpgradeButton" && !UIManager.Instance.isBuildingMaxLevel)
+        {
+            UIManager.Instance.UpgradeBubbleDisplay = true;
+        }
+        else if (this.name == "DestoyButton")
+        {
+            UIManager.Instance.DestroyBubbleDisplay = true;
+        }
+        else if (this.name != "DestoyButton")
         {
             UIManager.Instance.GetSelectedBuildingName(this.name);
         }
@@ -23,7 +69,15 @@ public class Bubble : MonoBehaviour
 
     private void OnMouseExit()
     {
-        if (this.name != "DestoyButton")
+        if (UIManager.Instance.UpgradeBubbleDisplay)
+        {
+            UIManager.Instance.UpgradeBubbleDisplay = false;
+        }
+        else if (UIManager.Instance.DestroyBubbleDisplay)
+        {
+            UIManager.Instance.DestroyBubbleDisplay = false;
+        }
+        else if (this.name != "DestoyButton")
         {
             UIManager.Instance.GetSelectedBuildingName("");
         }
@@ -43,9 +97,19 @@ public class Bubble : MonoBehaviour
             {
                 if (UIManager.Instance.SendEnoughRessources())
                 {
-                    Debug.Log("yo");
                     UIManager.Instance.GetCanUnlock(true);
                 }
+            }
+            else if (this.name == "UpgradeButton" && !UIManager.Instance.isBuildingMaxLevel)
+            {
+                if (UIManager.Instance.SendEnoughRessources())
+                {
+                    UIManager.Instance.CanUpgrade = true;
+                }
+            }
+            else if (this.name == "FlowerButton" && !UIManager.Instance.isBuildingFlowered)
+            {
+                UIManager.Instance.AddFlower = true;
             }
             else
             {

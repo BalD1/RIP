@@ -21,4 +21,5 @@ public class PlayerValues : ScriptableObject
     public int bonesCount;
     public int ectoplasmCount;
     public int slimeCount;
+    public int flowerCount;
 }

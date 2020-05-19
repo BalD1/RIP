@@ -23,6 +23,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Canvas unlockBubble;
 
     [SerializeField] private int automaticPauseTime;
+    [SerializeField] private int flowerCost;
+
     private int compTest;
     private int fleshCost;
     private int fleshRefund;
@@ -44,6 +46,8 @@ public class UIManager : MonoBehaviour
     private bool canPlace;
     private bool refundFlag;
     private bool canUnlock;
+    private bool upgradeBubbleDisplay;
+    private bool destroyBubbleDisplay;
 
     private Color originalDisplayTextColor;
 
@@ -76,6 +80,8 @@ public class UIManager : MonoBehaviour
         destroyBubble.enabled = false;
         unlockBubble.enabled = false;
         notEnoughRessources = false;
+        upgradeBubbleDisplay = false;
+        destroyBubbleDisplay = false;
         refundFlag = false;
     }
 
@@ -141,7 +147,7 @@ public class UIManager : MonoBehaviour
 
     private void RessourcesDisplay()
     {
-        if (!this.buildBubbles.enabled && !this.destroyBubble.enabled && !this.unlockBubble.enabled)
+        if (!this.buildBubbles.enabled && !this.destroyBubbleDisplay && !this.upgradeBubbleDisplay && !this.unlockBubble.enabled)
         {
             this.fleshDisplay.text = "x " + playerValues.fleshCount.ToString();
             this.boneDisplay.text = "x " + playerValues.bonesCount.ToString();
@@ -155,7 +161,7 @@ public class UIManager : MonoBehaviour
             }
 
         }
-        else if (this.buildBubbles.enabled || this.unlockBubble.enabled)
+        else if (this.buildBubbles.enabled || this.unlockBubble.enabled || this.upgradeBubbleDisplay)
         {
             this.fleshDisplay.text = "x " + playerValues.fleshCount + " / " + fleshCost;
             ColorDisplayText(fleshDisplay, playerValues.fleshCount, fleshCost);
@@ -169,7 +175,7 @@ public class UIManager : MonoBehaviour
             this.ectoplasmDisplay.text = "x " + playerValues.ectoplasmCount + " / " + ectoplasmCost;
             ColorDisplayText(ectoplasmDisplay, playerValues.ectoplasmCount, ectoplasmCost);
         }
-        else if (this.destroyBubble.enabled && !refundFlag)
+        else if (destroyBubbleDisplay && !refundFlag)
         {
             if(fleshRefund != 0)
             {
@@ -281,6 +287,8 @@ public class UIManager : MonoBehaviour
         return bubblesState;
     }
 
+    public Animator BubblesAnimator { get; set; }
+
     public void GetActiveHolder(GameObject holder)
     {
         activeHolder = holder;
@@ -316,6 +324,34 @@ public class UIManager : MonoBehaviour
     }
 
     // ------------------- Buildings ------------------
+
+    public bool UpgradeBubbleDisplay
+    {
+        get
+        {
+            return upgradeBubbleDisplay;
+        }
+        set
+        {
+            upgradeBubbleDisplay = value;
+        }
+    }
+    public bool DestroyBubbleDisplay
+    {
+        get
+        {
+            return destroyBubbleDisplay;
+        }
+        set
+        {
+            destroyBubbleDisplay = value;
+        }
+    }
+
+    public bool CanUpgrade { get; set; }
+    public bool AddFlower { get; set; }
+    public bool isBuildingMaxLevel { get; set; }
+    public bool isBuildingFlowered { get; set; }
     
     public void GetActiveBuilding(GameObject building)
     {

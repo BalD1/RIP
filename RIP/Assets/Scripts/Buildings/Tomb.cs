@@ -16,18 +16,36 @@ public class Tomb : MonoBehaviour
     [SerializeField] private int slimeCost;
     [SerializeField] private int ectoplasmCost;
 
+    private int fleshUpgradeCost;
+    private int boneUpgradeCost;
+    private int slimeUpgradeCost;
+    private int ectoplasmUpgradeCost;
+
     private int paidFlesh;
     private int paidBones;
     private int paidSlime;
     private int paidEctoplasm;
 
     private int holdersCount;
+    private int buildingLevel;
 
     private Vector2 buildingPos;
     private Vector2 bubblesHolder;
 
+    private Animator animator;
+
     private bool Spawned = false;
     private bool isSelected;
+    private bool isMaxLevel;
+    private bool isFlowered;
+
+    private enum FlowerState
+    {
+        None,
+        Flowered,
+        Fanned,
+    }
+    private FlowerState flowerState;
 
     private SpriteRenderer spriteRenderer;
 
@@ -35,6 +53,13 @@ public class Tomb : MonoBehaviour
 
     void Start()
     {
+        isMaxLevel = false;
+        isFlowered = false;
+        playerValues.flowerCount++;
+        animator = this.GetComponent<Animator>();
+        flowerState = FlowerState.None;
+        buildingLevel = 1;
+        Upgrade();
         bubblesHolder = GameManager.Instance.SendBubblesHolderPosition();
         buildingPos = this.transform.position;
         isSelected = false;
@@ -75,6 +100,86 @@ public class Tomb : MonoBehaviour
                 Spawned = false;
             }
         }
+
+        this.Upgrade();
+    }
+
+    private void Upgrade()
+    {
+        int costMultiplier = new int();
+        costMultiplier = Mathf.RoundToInt(buildingLevel * 2 / 1.5f);
+
+        fleshUpgradeCost = fleshCost * costMultiplier;
+        boneUpgradeCost = boneCost * costMultiplier;
+        slimeUpgradeCost = slimeCost * costMultiplier;
+        ectoplasmUpgradeCost = ectoplasmCost * costMultiplier;
+
+        if (UIManager.Instance.UpgradeBubbleDisplay && UIManager.Instance.SendActiveBuilding() == this.gameObject)
+        {
+            SendCosts(fleshUpgradeCost, boneUpgradeCost, slimeUpgradeCost, ectoplasmUpgradeCost);
+            if (UIManager.Instance.CanUpgrade)
+            {
+                this.buildingLevel++;
+                playerValues.fleshCount -= fleshUpgradeCost;
+                playerValues.bonesCount -= boneUpgradeCost;
+                playerValues.slimeCount -= slimeUpgradeCost;
+                playerValues.ectoplasmCount -= ectoplasmUpgradeCost;
+                if (buildingLevel == 3)
+                {
+                    isMaxLevel = true;
+                }
+                this.ChangeSprite();
+                UIManager.Instance.CanUpgrade = false;
+            }
+        }
+        if (UIManager.Instance.AddFlower && playerValues.flowerCount > 0 && this.flowerState != FlowerState.Flowered 
+            && UIManager.Instance.SendActiveBuilding() == this.gameObject)
+        {
+            this.flowerState = FlowerState.Flowered;
+            this.ChangeSprite();
+            isFlowered = true;
+            playerValues.flowerCount--;
+            UIManager.Instance.AddFlower = false;
+        }
+        if (UIManager.Instance.SendDestroyBubbleState() && UIManager.Instance.SendActiveBuilding() == this.gameObject)
+        {
+            UIManager.Instance.isBuildingMaxLevel = isMaxLevel;
+            UIManager.Instance.isBuildingFlowered = isFlowered;
+        }
+    }
+
+    private void ChangeSprite()
+    {
+        switch (this.buildingLevel)
+        {
+            case 1:
+                animator.SetBool("Destroyed", true);
+                break;
+            case 2:
+                animator.SetBool("Destroyed", false);
+                animator.SetBool("Damaged", true);
+                break;
+            case 3:
+                animator.SetBool("Damaged", false);
+                animator.SetBool("Intact", true);
+                break;
+        }
+
+        switch (this.flowerState)
+        {
+            case FlowerState.None:
+                animator.SetBool("NoFlowers", true);
+                break;
+            case FlowerState.Flowered:
+                animator.SetBool("NoFlowers", false);
+                animator.SetBool("Flowered", true);
+                break;
+            case FlowerState.Fanned:
+                animator.SetBool("Flowered", false);
+                animator.SetBool("Fanned", true);
+                break;
+
+        }
     }
 
     private void OnMouseDown()
@@ -98,6 +203,8 @@ public class Tomb : MonoBehaviour
                         UIManager.Instance.GetDestroyBubbleState(false);
                         UIManager.Instance.GetActiveBuilding(null);
                         this.spriteRenderer.color = originalColor;
+                        UIManager.Instance.isBuildingMaxLevel = false;
+                        UIManager.Instance.isBuildingFlowered = false;
                         isSelected = false;
                     }
                 }
@@ -128,7 +235,7 @@ public class Tomb : MonoBehaviour
             Holders holder = collision.GetComponent<Holders>();
             if (holder != null)
             {
-                this.SendCosts();
+                this.SendCosts(fleshCost, boneCost, slimeCost, ectoplasmCost);
                 SpriteRenderer holderSprite = holder.GetComponent<SpriteRenderer>();
                 if (this.holdersCount == this.neededHolders)
                 {
@@ -144,9 +251,9 @@ public class Tomb : MonoBehaviour
         }
     }
 
-    private void SendCosts()
+    private void SendCosts(int flesh, int bone, int slime, int ectoplasm)
     {
-        UIManager.Instance.GetBuildingsCosts(this.fleshCost, this.boneCost, this.slimeCost, this.ectoplasmCost);
+        UIManager.Instance.GetBuildingsCosts(flesh, bone, slime, ectoplasm);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -191,6 +298,7 @@ public class Tomb : MonoBehaviour
         playerValues.bonesCount += paidBones;
         playerValues.slimeCount += paidSlime;
         playerValues.ectoplasmCount += paidEctoplasm;
+        UIManager.Instance.DestroyBubbleDisplay = false;
     }
 
 

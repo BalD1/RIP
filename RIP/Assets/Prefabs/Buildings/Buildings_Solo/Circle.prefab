@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 496230287161631590}
   - component: {fileID: 6052528832425939960}
   - component: {fileID: 8226530064229896813}
+  - component: {fileID: 1407246596190443654}
   m_Layer: 15
   m_Name: Circle
   m_TagString: Untagged
@@ -100,6 +101,7 @@ MonoBehaviour:
   Ennemy: {fileID: 6461908923582755764, guid: b1be35ef413c3744da17ec9d784ec919, type: 3}
   neededHolders: 4
   playerValues: {fileID: 11400000, guid: 2dad5574c26cf63469c42283a26e33a3, type: 2}
+  buildingsSprites: {fileID: 0}
   fleshCost: 1
   boneCost: 0
   slimeCost: 3
@@ -141,6 +143,25 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!95 &1407246596190443654
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 496230287161631586}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 88f58a9672f444d41ab7691fdddb484f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &729614537490313102
 GameObject:
   m_ObjectHideFlags: 0

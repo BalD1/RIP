@@ -17,11 +17,12 @@ public class Holders : MonoBehaviour
     [SerializeField] private GameObject ghostSewer;
     [SerializeField] private GameObject ghostCircle;
 
-    [SerializeField] private bool isLocked;
     [SerializeField] private int unlockFleshCost;
     [SerializeField] private int unlockBoneCost;
     [SerializeField] private int unlockSlimeCost;
     [SerializeField] private int unlockEctoplasmCost;
+
+    [SerializeField] private bool isLocked;
 
 
     List<GameObject> ghostBuildings = new List<GameObject>();
@@ -36,6 +37,8 @@ public class Holders : MonoBehaviour
     private string selectedBuilding;
 
     private SpriteRenderer spriteRenderer;
+
+    private Animator bubblesAnimator;
 
     private void Awake()
     {
@@ -138,6 +141,7 @@ public class Holders : MonoBehaviour
     {
         if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Day && GameManager.Instance.SendGameState() == GameManager.GameState.InGame)
         {
+            bubblesAnimator = UIManager.Instance.BubblesAnimator;
             if (this.isLocked)
             {
                 if (UIManager.Instance.SendBuildBubblesState() == false && UIManager.Instance.SendDestroyBubbleState() == false && UIManager.Instance.SendUnlockBubbleState() == false)

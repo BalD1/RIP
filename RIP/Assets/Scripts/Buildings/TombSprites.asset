@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37ed749cd63c507449e7d701a57a03c6, type: 3}
+  m_Name: TombSprites
+  m_EditorClassIdentifier: 
+  destroyedNoFlowers: {fileID: 21300000, guid: 40659c60b8b126d40bb55de802e95044, type: 3}
+  destroyedFannedFlowers: {fileID: 21300000, guid: 5a5789681d201cf4591503c6c39d1616,
+    type: 3}
+  destroyedFlowered: {fileID: 21300000, guid: 5c363603e6351de4787fe55a5d1c384a, type: 3}
+  damagedNoFlowers: {fileID: 21300000, guid: ca3bc311e8e4cd24d9fe225b7d9d1b78, type: 3}
+  damagedFannedFlowers: {fileID: 21300000, guid: 5064476c37770b547bae38e7a23eafbd,
+    type: 3}
+  damagedFlowered: {fileID: 21300000, guid: cbf85e2f8d7c2064692796bfdaef44a4, type: 3}
+  intactNoFlowers: {fileID: 21300000, guid: 2a38704e35f539448a557c72ff750cf6, type: 3}
+  intactFannedFlowers: {fileID: 21300000, guid: 966b066a1eec02c4cb560f4f79fda0de,
+    type: 3}
+  intactFlowered: {fileID: 21300000, guid: f470b5b832733854797c7ca4437f58bd, type: 3}
