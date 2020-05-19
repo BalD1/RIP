@@ -504,12 +504,6 @@ Canvas:
     type: 3}
   m_PrefabInstance: {fileID: 2039923046}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &268259510 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6885825523531640671, guid: eddc5dc4f5814c643a361bc26adc7fc6,
-    type: 3}
-  m_PrefabInstance: {fileID: 12033160}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &417709847
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,6 +559,7 @@ MonoBehaviour:
   gameOverScreen: {fileID: 1553495534}
   buildBubbles: {fileID: 799933399}
   destroyBubble: {fileID: 227450636}
+  unlockBubble: {fileID: 2054847711}
   automaticPauseTime: 120
 --- !u!114 &417709850
 MonoBehaviour:
@@ -922,6 +917,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a45624e1ea40d244b9e417e153fc88c, type: 3}
+--- !u!223 &2054847711 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 6984138646645992129, guid: 5a45624e1ea40d244b9e417e153fc88c,
+    type: 3}
+  m_PrefabInstance: {fileID: 2039923046}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &784387721703619654
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -929,11 +930,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 331437706743334754, guid: 585bc2f085df9ad40a4d2e54ab958950,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 784387721799480171, guid: 585bc2f085df9ad40a4d2e54ab958950,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -994,6 +990,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnnemitriangleFant
       objectReference: {fileID: 0}
+    - target: {fileID: 784387721799480173, guid: 585bc2f085df9ad40a4d2e54ab958950,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 585bc2f085df9ad40a4d2e54ab958950, type: 3}
 --- !u!1001 &1203229929490023073
@@ -1007,16 +1008,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnnemitriangleSque
-      objectReference: {fileID: 0}
-    - target: {fileID: 1203229927889475110, guid: 83a4c87e4e08eb041b96b71751cf6385,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1203229927889475112, guid: 83a4c87e4e08eb041b96b71751cf6385,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1203229927889475119, guid: 83a4c87e4e08eb041b96b71751cf6385,
         type: 3}
@@ -1085,38 +1076,23 @@ PrefabInstance:
     - target: {fileID: 6586836283308708208, guid: a03838d7636a64f42938120f07f54d19,
         type: 3}
       propertyPath: m_Offset.x
-      value: -0.40827644
+      value: 0.012363911
       objectReference: {fileID: 0}
     - target: {fileID: 6586836283308708208, guid: a03838d7636a64f42938120f07f54d19,
         type: 3}
       propertyPath: m_Size.x
-      value: 0.85613656
+      value: 1.7400942
       objectReference: {fileID: 0}
     - target: {fileID: 6586836283308708208, guid: a03838d7636a64f42938120f07f54d19,
         type: 3}
       propertyPath: m_Offset.y
-      value: -0.025421858
+      value: -0.030756712
       objectReference: {fileID: 0}
     - target: {fileID: 6586836283308708208, guid: a03838d7636a64f42938120f07f54d19,
         type: 3}
       propertyPath: m_Size.y
-      value: 1.5798402
+      value: 1.6331868
       objectReference: {fileID: 0}
-    - target: {fileID: 6586836283308708208, guid: a03838d7636a64f42938120f07f54d19,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6586836283308708211, guid: a03838d7636a64f42938120f07f54d19,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6586836283308708212, guid: a03838d7636a64f42938120f07f54d19,
-        type: 3}
-      propertyPath: Joueur
-      value: 
-      objectReference: {fileID: 268259510}
     - target: {fileID: 6586836283308708215, guid: a03838d7636a64f42938120f07f54d19,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1176,16 +1152,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnnemitriangleZomb
-      objectReference: {fileID: 0}
-    - target: {fileID: 6586836283308708217, guid: a03838d7636a64f42938120f07f54d19,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6586836283308708217, guid: a03838d7636a64f42938120f07f54d19,
-        type: 3}
-      propertyPath: m_Layer
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a03838d7636a64f42938120f07f54d19, type: 3}
@@ -1260,11 +1226,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7529805743005527798, guid: e1dbc5f60c3778d4d965a371817e8e67,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1dbc5f60c3778d4d965a371817e8e67, type: 3}

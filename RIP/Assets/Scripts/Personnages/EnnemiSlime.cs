@@ -26,6 +26,7 @@ public class EnnemiSlime : EnnemiParent
 
     void Update()
     {
+        Attack();
 
         if (Player.Joueur.position.x > this.transform.position.x)
         {
@@ -45,37 +46,20 @@ public class EnnemiSlime : EnnemiParent
 
     void Attack()
     {
-        if (preparingAttack == false)
+        dashAttackTimer += Time.deltaTime;
+        if (dashAttackTimer >= 1.5f && dashAttackTimer <= 2)
         {
-            if (Random.Range(0, 800) == 0)
-            {
-                preparingAttack = true;
-                this.speed = 0;
-            }
-
-            if (dashAttackTimer != 0)
-            {
-                dashAttackTimer += Time.deltaTime;
-                if (dashAttackTimer >= 6)
-                {
-                    this.speed = 1.5f;
-                    dashAttackTimer = 0;
-                }
-            }
+            this.speed = 5f;
+        }
+        else if (dashAttackTimer >= 2)
+        {
+            this.speed = 0;
+            dashAttackTimer = 0;
+            preparingAttack = false;
         }
         else
         {
-            dashAttackTimer += Time.deltaTime;
-            if (dashAttackTimer >= 2 && dashAttackTimer <= 4)
-            {
-                this.speed = 3f;
-                preparingAttack = false;
-            }
-            if (dashAttackTimer >= 4)
-            {
-                this.speed = 1.5f;
-                dashAttackTimer = 0;
-            }
+            this.speed = 0;
         }
     }
 
