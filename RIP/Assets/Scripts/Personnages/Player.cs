@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject fireBall;
 
+    private string whereIsLooking;
+
     private int HP;
     private int shovelDamages;
     private int fireBallDamages;
@@ -23,9 +25,11 @@ public class Player : MonoBehaviour
     private float shovelAttackTime;
     private float invincibleTimer;
     private float invincibleTime;
+    private float fireBallCooldown;
 
     private bool invincible;
     private bool canLaunchFireBall;
+    private bool healFlag;
 
     private Vector2 moveDirection = Vector2.zero;
     private Vector2 playerPosition;
@@ -59,6 +63,8 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        GameManager.Instance.SetGameState(GameManager.GameState.InGame); // TEST ONLY
+        playerValues.HpValue = playerValues.maxHP;
         this.playerState = PlayerState.Idle;
         this.ResetScriptable();
         shovel = this.gameObject.GetComponentInChildren<Shovel>();
@@ -80,6 +86,7 @@ public class Player : MonoBehaviour
     {
         Debug.Log("Current time : " + GameManager.Instance.SendGameTime() + ". Press Enter to change.");
         this.ChangePlayerMode();        // Change the player mode by time
+        this.ChangeAnimation();         // Change the animation following the player's state
 
         if (this.playerMode == PlayerMode.Fight)
         {
@@ -99,6 +106,16 @@ public class Player : MonoBehaviour
         }
         this.Tests();
         this.UpdateValues();
+
+        if (canLaunchFireBall)
+        {
+            fireBallCooldown = playerValues.fireBallCooldown;
+        }
+        else
+        {
+            this.FireballCooldown();
+        }
+        
     }
 
     private void ChangePlayerMode()
@@ -143,6 +160,8 @@ public class Player : MonoBehaviour
         if (this.playerState == PlayerState.Idle ^ this.playerState == PlayerState.Moving)
         {
             moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            playerAnimator.SetFloat("DirectionX", moveDirection.normalized.x);
+            playerAnimator.SetFloat("DirectionY", moveDirection.normalized.y);
             moveDirection *= speed * Time.deltaTime;
             if (moveDirection != Vector2.zero)
             {
@@ -175,25 +194,32 @@ public class Player : MonoBehaviour
         Vector2 clampedLookDirection = new Vector2();
         clampedLookDirection.x = Mathf.Clamp(lookDirection.x, -5f, 5f);
         clampedLookDirection.y = Mathf.Clamp(lookDirection.y, -5f, 5f);
-        playerAnimator.SetFloat("Look X", clampedLookDirection.x);
-        playerAnimator.SetFloat("Look Y", clampedLookDirection.y);
-        playerAnimator.SetFloat("Speed", moveDirection.magnitude);
+        if (this.playerState != PlayerState.ShovelAttacking && GameManager.Instance.SendGameState() == GameManager.GameState.InGame)
+        {
+            playerAnimator.SetFloat("Look X", clampedLookDirection.x);
+            playerAnimator.SetFloat("Look Y", clampedLookDirection.y);
+            playerAnimator.SetFloat("Speed", moveDirection.magnitude);
+        }
 
         if (IsBetween(lookAngle, -45, 45))
         {
             // right
+            whereIsLooking = "right";
         }
         else if (IsBetween(lookAngle, 45, 135))
         {
             // front
+            whereIsLooking = "front";
         }
         else if (IsBetween(lookAngle, -135, -45))
         {
             // back
+            whereIsLooking = "back";
         }
         else if (IsBetween(lookAngle, -180, -135) || (IsBetween(lookAngle, 135, 180)))
         {
             // left
+            whereIsLooking = "left";
         }
     }
 
@@ -202,17 +228,39 @@ public class Player : MonoBehaviour
         return (value >= min && value <= max);
     }
 
+    private void ChangeAnimation()
+    {
+        if (canLaunchFireBall)
+        {
+            playerAnimator.SetBool("Lit", true);
+        }
+        else
+        {
+            playerAnimator.SetBool("Lit", false);
+        }
+
+        if (playerState == PlayerState.Idle)
+        {
+            playerAnimator.SetBool("Idle", true);
+        }
+        else
+        {
+            playerAnimator.SetBool("Idle", false);
+        }
+    }
+
     // ----------------------- Player taking damages and invincibility ------------------------
 
     private void TakeDamages()
     {
+        playerValues.HpValue -= damagesReceived;
+        HP = playerValues.HpValue;
         if (HP <= 0)
         {
             GameManager.Instance.SetGameState(GameManager.GameState.GameOver);
             playerAnimator.SetBool("Death", true);
             Destroy(this.gameObject);
         }
-        playerValues.HpValue -= damagesReceived;
         invincibleTimer = invincibleTime;
         Invincible();
         invincible = true;
@@ -251,32 +299,47 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void HealAtDay()
+    {
+        if(GameManager.Instance.SendGameTime() == GameManager.GameTime.Day && !healFlag)
+        {
+            healFlag = true;
+            playerValues.HpValue = playerValues.maxHP;
+        }
+        else if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Night)
+        {
+            healFlag = false;
+        }
+    }
+
     // ------------------------ Player attacks --------------------------
 
     private void Attacks()
     {
-        if (shovelAttackTimer == 0)
+        if (shovelAttackTimer == 0 && playerState != PlayerState.ShovelAttacking)
         {
-            if (this.playerState == PlayerState.ShovelAttacking)
+            if (Input.GetKeyDown(KeyCode.Mouse1))
             {
-                this.playerState = PlayerState.Idle;
-            }
-            if (Input.GetKeyDown(KeyCode.Mouse0))
-            {
-                shovel.Activate();
+                shovel.Activate(whereIsLooking);
                 this.playerState = PlayerState.ShovelAttacking;
+                playerAnimator.SetBool("ShovelAttacking", true);
                 shovelAttackTimer = shovelAttackTime;
             }
         }
         if (canLaunchFireBall)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse1))
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 this.LaunchFireBall();
                 canLaunchFireBall = false;
             }
         }
         shovelAttackTimer = Mathf.Clamp(shovelAttackTimer - Time.deltaTime, 0, shovelAttackTime);
+        if (shovelAttackTimer == 0 && this.playerState == PlayerState.ShovelAttacking)
+        {
+            this.playerState = PlayerState.Moving;
+            playerAnimator.SetBool("ShovelAttacking", false);
+        }
     }
 
     private void LaunchFireBall()
@@ -284,6 +347,16 @@ public class Player : MonoBehaviour
         GameObject launchedFireBall = Instantiate(fireBall, this.transform.position, Quaternion.identity);
         lookDirection = (lookDirection.normalized * launchSpeed);
         launchedFireBall.GetComponent<Rigidbody2D>().velocity = lookDirection;
+    }
+
+    private void FireballCooldown()
+    {
+        fireBallCooldown = Mathf.Clamp(fireBallCooldown - Time.deltaTime, 0, fireBallCooldown);
+        if (fireBallCooldown == 0)
+        {
+            canLaunchFireBall = true;
+            fireBallCooldown = playerValues.fireBallCooldown;
+        }
     }
 
     // ------------------------ Values update --------------------------

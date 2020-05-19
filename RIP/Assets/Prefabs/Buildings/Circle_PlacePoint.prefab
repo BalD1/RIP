@@ -98,6 +98,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Circle
       objectReference: {fileID: 0}
+    - target: {fileID: 496230287161631590, guid: 95b2205c25bd66b409728808ca8f32c8,
+        type: 3}
+      propertyPath: Ennemy
+      value: 
+      objectReference: {fileID: 784387721799480173, guid: 585bc2f085df9ad40a4d2e54ab958950,
+        type: 3}
     - target: {fileID: 3985713969712574678, guid: 95b2205c25bd66b409728808ca8f32c8,
         type: 3}
       propertyPath: m_LocalScale.x

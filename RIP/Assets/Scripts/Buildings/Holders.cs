@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Holders : MonoBehaviour
 {
+    [SerializeField] private GameObject bubblesHolder;
 
     [SerializeField] private GameObject tomb;
     [SerializeField] private GameObject coffin;
@@ -16,8 +17,16 @@ public class Holders : MonoBehaviour
     [SerializeField] private GameObject ghostSewer;
     [SerializeField] private GameObject ghostCircle;
 
+    [SerializeField] private bool isLocked;
+    [SerializeField] private int unlockFleshCost;
+    [SerializeField] private int unlockBoneCost;
+    [SerializeField] private int unlockSlimeCost;
+    [SerializeField] private int unlockEctoplasmCost;
+
+
     List<GameObject> ghostBuildings = new List<GameObject>();
 
+    private Vector2 bubblesPosition;
 
     private Color originalColor;
 
@@ -36,13 +45,30 @@ public class Holders : MonoBehaviour
         ghostBuildings.Add(ghostCoffin);
         ghostBuildings.Add(ghostSewer);
         ghostBuildings.Add(ghostCircle);
-
+        bubblesPosition = bubblesHolder.transform.position;
     }
 
     void Start()
     {
         isUsed = false;
         isActive = false;
+        if (isLocked)
+        {
+            this.LockDown();
+        }
+    }
+
+    private void LockDown()
+    {
+        this.spriteRenderer.color = Color.black;
+        this.isUsed = true;
+    }
+
+    private void Unlock()
+    {
+        this.spriteRenderer.color = originalColor;
+        this.isLocked = false;
+        this.isUsed = false;
     }
 
     private void Update()
@@ -51,7 +77,7 @@ public class Holders : MonoBehaviour
         {
             ActivateGhostBuilding(null);
         }
-        if (this.isActive)
+        if (this.isActive && !this.isLocked)
         {
             if (UIManager.Instance.SendActiveHolder() != this.gameObject)
             {
@@ -81,6 +107,15 @@ public class Holders : MonoBehaviour
                     break;
             }
         }
+        if (this.isLocked && this.isActive)
+        {
+            if (UIManager.Instance.SendCanUnlock())
+            {
+                this.Unlock();
+                UIManager.Instance.GetCanUnlock(false);
+                UIManager.Instance.GetUnlockBubbleState(false);
+            }
+        }
     }
 
     private void ActivateGhostBuilding(GameObject building)
@@ -101,12 +136,29 @@ public class Holders : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Day)
+        if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Day && GameManager.Instance.SendGameState() == GameManager.GameState.InGame)
         {
+            if (this.isLocked)
+            {
+                if (UIManager.Instance.SendBuildBubblesState() == false && UIManager.Instance.SendDestroyBubbleState() == false && UIManager.Instance.SendUnlockBubbleState() == false)
+                {
+                    GameManager.Instance.GetBubblesHolderPosition(bubblesPosition);
+                    UIManager.Instance.GetUnlockBubbleState(true);
+                    UIManager.Instance.GetBuildingsCosts(unlockFleshCost, unlockBoneCost, unlockSlimeCost, unlockEctoplasmCost);
+                    this.isActive = true;
+                }
+                else if (UIManager.Instance.SendUnlockBubbleState() == true)
+                {
+                    GameManager.Instance.GetBubblesHolderPosition(Vector2.zero);
+                    UIManager.Instance.GetUnlockBubbleState(false);
+                    this.isActive = false;
+                }
+            }
             if (!this.isUsed && UIManager.Instance.SendActiveBuilding() == null)
             {
-                if (UIManager.Instance.SendBuildBubblesState() == false)
+                if (UIManager.Instance.SendBuildBubblesState() == false && UIManager.Instance.SendUnlockBubbleState() == false)
                 {
+                    GameManager.Instance.GetBubblesHolderPosition(bubblesPosition);
                     UIManager.Instance.GetBuildBubblesState(true);
                     UIManager.Instance.GetActiveHolder(this.gameObject);
                     this.isActive = true;
@@ -119,10 +171,6 @@ public class Holders : MonoBehaviour
                     this.spriteRenderer.color = originalColor;
                     UIManager.Instance.GetActiveHolder(null);
                 }
-            }
-            else
-            {
-                Debug.Log("used");
             }
         }
     }

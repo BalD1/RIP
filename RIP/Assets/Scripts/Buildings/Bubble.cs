@@ -6,6 +6,12 @@ public class Bubble : MonoBehaviour
 {
 
     [SerializeField] GameObject building;
+    [SerializeField] Animator bubblesAnimator;
+
+    private void Awake()
+    {
+        bubblesAnimator = this.gameObject.GetComponent<Animator>();
+    }
 
     private void OnMouseEnter()
     {
@@ -25,27 +31,38 @@ public class Bubble : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (this.isActiveAndEnabled)
+        if (this.gameObject != null && this.isActiveAndEnabled)
         {
-            if (this.name != "DestoyButton")
+            if (this.name == "DestoyButton")
+            {
+                Destroy(UIManager.Instance.SendActiveBuilding());
+                UIManager.Instance.GetDestroyBubbleState(false);
+                UIManager.Instance.GetActiveBuilding(null);
+            }
+            else if (this.name == "UnlockButton")
+            {
+                if (UIManager.Instance.SendEnoughRessources())
+                {
+                    Debug.Log("yo");
+                    UIManager.Instance.GetCanUnlock(true);
+                }
+            }
+            else
             {
                 if (UIManager.Instance.SendCanPlaceBuilding())
                 {
                     Vector3 holderPos = new Vector2();
 
-                    holderPos = UIManager.Instance.SendActiveHolder().transform.position;
-                    holderPos.z--;
+                    if (UIManager.Instance.SendActiveHolder() != null)
+                    {
+                        holderPos = UIManager.Instance.SendActiveHolder().transform.position;
+                        holderPos.z--;
 
-                    Instantiate(building, holderPos, Quaternion.identity);
-                    UIManager.Instance.GetBuildBubblesState(false);
-                    UIManager.Instance.GetActiveHolder(null);
+                        Instantiate(building, holderPos, Quaternion.identity);
+                        UIManager.Instance.GetBuildBubblesState(false);
+                        UIManager.Instance.GetActiveHolder(null);
+                    }
                 }
-            }
-            else
-            {
-                Destroy(UIManager.Instance.SendActiveBuilding());
-                UIManager.Instance.GetDestroyBubbleState(false);
-                UIManager.Instance.GetActiveBuilding(null);
             }
         }
     }

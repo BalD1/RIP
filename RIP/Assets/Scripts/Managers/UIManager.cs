@@ -14,9 +14,15 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text score;
     [SerializeField] private Image hpBar;
 
+    [SerializeField] private GameObject HUD;
+    [SerializeField] private GameObject PauseScreen;
+    [SerializeField] private GameObject gameOverScreen;
+
     [SerializeField] private Canvas buildBubbles;
     [SerializeField] private Canvas destroyBubble;
+    [SerializeField] private Canvas unlockBubble;
 
+    [SerializeField] private int automaticPauseTime;
     private int compTest;
     private int fleshCost;
     private int fleshRefund;
@@ -28,13 +34,16 @@ public class UIManager : MonoBehaviour
     private int ectoplasmRefund;
 
     private float health;
+    private float automaticPauseTimer;
 
     private bool costDisplayFlag;
     private bool bubblesState;
     private bool destroyBubblesState;
+    private bool unlockBubbleState;
     private bool notEnoughRessources;
     private bool canPlace;
     private bool refundFlag;
+    private bool canUnlock;
 
     private Color originalDisplayTextColor;
 
@@ -59,17 +68,21 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
+        automaticPauseTimer = automaticPauseTime;
         originalDisplayTextColor = fleshDisplay.color;
         instance = this;
         health = playerValues.HpValue;
         buildBubbles.enabled = false;
         destroyBubble.enabled = false;
+        unlockBubble.enabled = false;
         notEnoughRessources = false;
         refundFlag = false;
     }
 
     void Update()
     {
+        this.AutomaticPause();
+
         var rand = Random.Range(341, 789);
         if(Input.GetKey(KeyCode.L))
         {
@@ -82,13 +95,53 @@ public class UIManager : MonoBehaviour
             hpBar.fillAmount = playerValues.HpValue / health;
             score.text = "Score : " + compTest.ToString();
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (GameManager.Instance.SendGameState() == GameManager.GameState.InGame)
+            {
+                this.SetPause();
+            }
+            else
+            {
+                this.RemovePause();
+            }
+        }
+        if (GameManager.Instance.SendGameState() == GameManager.GameState.Pause)
+        {
+            this.SetPause();
+        }
+        if (GameManager.Instance.SendGameState() == GameManager.GameState.InGame && PauseScreen.activeSelf)
+        {
+            this.RemovePause();
+        }
+        if (GameManager.Instance.SendGameState() == GameManager.GameState.GameOver)
+        {
+            this.GameOver();
+        }
+    }
+
+    private void AutomaticPause()
+    {
+        if (Input.anyKeyDown)
+        {
+            automaticPauseTimer = automaticPauseTime;
+        }
+        if (automaticPauseTimer == 0)
+        {
+            GameManager.Instance.SetGameState(GameManager.GameState.Pause);
+        }
+        if (GameManager.Instance.SendGameState() == GameManager.GameState.InGame)
+        {
+            automaticPauseTimer = Mathf.Clamp(automaticPauseTimer - Time.deltaTime, 0, automaticPauseTimer);
+        }
     }
 
     // -------------------- HUD ----------------------
 
     private void RessourcesDisplay()
     {
-        if (!this.buildBubbles.enabled && !this.destroyBubble.enabled)
+        if (!this.buildBubbles.enabled && !this.destroyBubble.enabled && !this.unlockBubble.enabled)
         {
             this.fleshDisplay.text = "x " + playerValues.fleshCount.ToString();
             this.boneDisplay.text = "x " + playerValues.bonesCount.ToString();
@@ -102,7 +155,7 @@ public class UIManager : MonoBehaviour
             }
 
         }
-        else if (this.buildBubbles.enabled)
+        else if (this.buildBubbles.enabled || this.unlockBubble.enabled)
         {
             this.fleshDisplay.text = "x " + playerValues.fleshCount + " / " + fleshCost;
             ColorDisplayText(fleshDisplay, playerValues.fleshCount, fleshCost);
@@ -189,13 +242,37 @@ public class UIManager : MonoBehaviour
     }
 
 
+    // -------------------- Screens ------------------
 
+    private void SetPause()
+    {
+        GameManager.Instance.SetGameState(GameManager.GameState.Pause);
+        this.HUD.SetActive(false);
+        this.PauseScreen.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    private void RemovePause()
+    {
+        GameManager.Instance.SetGameState(GameManager.GameState.InGame);
+        this.HUD.SetActive(true);
+        this.PauseScreen.SetActive(false);
+        Time.timeScale = 1;
+    }
+
+    private void GameOver()
+    {
+        this.HUD.SetActive(false);
+        this.gameOverScreen.SetActive(false);
+        Time.timeScale = 0;
+    }
 
     // -------------------- Holders ------------------
     
     public void GetBuildBubblesState(bool state)
     {
         bubblesState = state;
+        buildBubbles.transform.position = GameManager.Instance.SendBubblesHolderPosition();
         buildBubbles.enabled = bubblesState;
     }
 
@@ -252,6 +329,7 @@ public class UIManager : MonoBehaviour
 
     public void GetDestroyBubbleState(bool state)
     {
+        destroyBubble.transform.position = GameManager.Instance.SendBubblesHolderPosition();
         this.destroyBubblesState = state;
         destroyBubble.enabled = destroyBubblesState;
     }
@@ -259,6 +337,33 @@ public class UIManager : MonoBehaviour
     public bool SendDestroyBubbleState()
     {
         return this.destroyBubblesState;
+    }
+
+    public void GetUnlockBubbleState(bool state)
+    {
+        unlockBubble.transform.position = GameManager.Instance.SendBubblesHolderPosition();
+        this.unlockBubbleState = state;
+        unlockBubble.enabled = unlockBubbleState;
+    }
+
+    public bool SendEnoughRessources()
+    {
+        return !notEnoughRessources;
+    }
+
+    public bool SendUnlockBubbleState()
+    {
+        return this.unlockBubbleState;
+    }
+
+    public void GetCanUnlock(bool state)
+    {
+        this.canUnlock = state;
+    }
+
+    public bool SendCanUnlock()
+    {
+        return this.canUnlock;
     }
 
     public void GetBuildingsCosts(int getFleshCost, int getBoneCost, int getSlimeCost, int getEctoplasmCost)

@@ -43,6 +43,42 @@ public class EnnemiSlime : EnnemiParent
 
     }
 
+    void Attack()
+    {
+        if (preparingAttack == false)
+        {
+            if (Random.Range(0, 800) == 0)
+            {
+                preparingAttack = true;
+                this.speed = 0;
+            }
+
+            if (dashAttackTimer != 0)
+            {
+                dashAttackTimer += Time.deltaTime;
+                if (dashAttackTimer >= 6)
+                {
+                    this.speed = 1.5f;
+                    dashAttackTimer = 0;
+                }
+            }
+        }
+        else
+        {
+            dashAttackTimer += Time.deltaTime;
+            if (dashAttackTimer >= 2 && dashAttackTimer <= 4)
+            {
+                this.speed = 3f;
+                preparingAttack = false;
+            }
+            if (dashAttackTimer >= 4)
+            {
+                this.speed = 1.5f;
+                dashAttackTimer = 0;
+            }
+        }
+    }
+
     void FixedUpdate()
     {
         Movement();
@@ -54,5 +90,24 @@ public class EnnemiSlime : EnnemiParent
         //timer
         //animator.SetBool(Mort, true);
         Destroy(this.gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Player player = collision.gameObject.GetComponent<Player>();
+
+        if (player != null)
+        {
+            GameManager.Instance.DamagePlayer(this.attack);
+        }
+
+        Shovel shovel = collision.gameObject.GetComponent<Shovel>();
+        FireBall fireball = collision.gameObject.GetComponent<FireBall>();
+
+        if (shovel != null || fireball != null)
+        {
+            this.hp -= GameManager.Instance.SendDamagesEnnemi();
+            GameManager.Instance.DamageEnnemi(0);
+        }
     }
 }
