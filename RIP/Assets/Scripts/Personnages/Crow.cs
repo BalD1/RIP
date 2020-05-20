@@ -86,6 +86,7 @@ public class Crow : MonoBehaviour
                 this.dialogueBox.gameObject.SetActive(false);
                 this.tuto = false;
                 GameManager.Instance.Tuto = tuto;
+                GameManager.Instance.PlayerInteracted = false;
                 this.haveAQuest = false;
             }
 
@@ -107,7 +108,7 @@ public class Crow : MonoBehaviour
             dayFlag = false;
         }
 
-        if (haveAQuest && GameManager.Instance.SendGameTime() == GameManager.GameTime.Day)
+        if (haveAQuest && GameManager.Instance.SendGameTime() == GameManager.GameTime.Day && !tuto)
         {
             if (!displayQuestNeeds)
             {
@@ -196,7 +197,9 @@ public class Crow : MonoBehaviour
         questRessources.Clear();
         Debug.Log("Quest Completed");
         dialogueBox.gameObject.SetActive(false);
+        displayQuestNeeds = false;
         haveAQuest = false;
+        GameManager.Instance.PlayerInteracted = false;
     }
 
     private void RewardPlayer()
