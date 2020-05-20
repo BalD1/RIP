@@ -684,6 +684,7 @@ MonoBehaviour:
   fireBall: {fileID: 4548712250400616095, guid: 193810fdd0671b244b8cd3bd07664fcc,
     type: 3}
   interactionButton: {fileID: 1314660123}
+  ressources: {fileID: 0}
 --- !u!50 &2777308457155255975
 Rigidbody2D:
   serializedVersion: 4

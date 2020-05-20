@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3737879094342924398}
   - component: {fileID: 3492571304214764651}
   - component: {fileID: 1643588937534968456}
+  - component: {fileID: -2598429658440366650}
   m_Layer: 12
   m_Name: Ectoplasm
   m_TagString: Item
@@ -124,3 +125,17 @@ PolygonCollider2D:
       - {x: 0.21, y: -0.48999998}
       - {x: 0.29999998, y: -0.44}
       - {x: 0.45999998, y: -0.26999998}
+--- !u!114 &-2598429658440366650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3665272730982120448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ab3e946dacd5d84193e908bee020cdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ressources: {fileID: 7792556911996216588, guid: 9ac8c37242b1328438d7d0aafe37ff33,
+    type: 3}

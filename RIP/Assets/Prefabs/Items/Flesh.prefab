@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3803223149665977464}
   - component: {fileID: 1300776530687869644}
   - component: {fileID: 7604231560009818332}
+  - component: {fileID: 1709905798389240966}
   m_Layer: 12
   m_Name: Flesh
   m_TagString: Item
@@ -113,3 +114,17 @@ PolygonCollider2D:
       - {x: 0.5, y: -0.5}
       - {x: 0.5, y: -0.42}
       - {x: 0.04, y: 0.5}
+--- !u!114 &1709905798389240966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7030894456568481140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ab3e946dacd5d84193e908bee020cdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ressources: {fileID: 7792556911996216588, guid: 9ac8c37242b1328438d7d0aafe37ff33,
+    type: 3}

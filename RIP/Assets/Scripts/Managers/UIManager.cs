@@ -12,7 +12,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text slimeDisplay;
     [SerializeField] private Text ectoplasmDisplay;
     [SerializeField] private Text score;
+
     [SerializeField] private Image hpBar;
+    [SerializeField] private Image fleshImage;
+    [SerializeField] private Image boneImage;
+    [SerializeField] private Image slimeImage;
+    [SerializeField] private Image ectoplasmImage;
 
     [SerializeField] private GameObject HUD;
     [SerializeField] private GameObject PauseScreen;
@@ -245,6 +250,38 @@ public class UIManager : MonoBehaviour
 
         notEnoughRessources = false;
         refundFlag = false;
+    }
+
+    public Image FleshDisplay
+    {
+        get
+        {
+            return fleshImage;
+        }
+    }
+
+    public Image BoneDisplay
+    {
+        get
+        {
+            return boneImage;
+        }
+    }
+
+    public Image SlimeDisplay
+    {
+        get
+        {
+            return slimeImage;
+        }
+    }
+
+    public Image EctoplasmDisplay
+    {
+        get
+        {
+            return ectoplasmImage;
+        }
     }
 
 

@@ -413,7 +413,6 @@ public class Player : MonoBehaviour
                     Debug.Log(collision.name + " not recognized as item");
                     break;
             }
-            Destroy(collision.gameObject);
         }
         Torches torch = collision.GetComponent<Torches>();
         if (torch != null)
