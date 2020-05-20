@@ -101,7 +101,6 @@ MonoBehaviour:
   Ennemy: {fileID: 6461908923582755764, guid: b1be35ef413c3744da17ec9d784ec919, type: 3}
   neededHolders: 4
   playerValues: {fileID: 11400000, guid: 2dad5574c26cf63469c42283a26e33a3, type: 2}
-  buildingsSprites: {fileID: 0}
   fleshCost: 1
   boneCost: 0
   slimeCost: 3
@@ -130,7 +129,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 496230287161631586}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
