@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject fireBall;
 
+    [SerializeField] private Canvas interactionButton;
+
     private string whereIsLooking;
 
     private int HP;
@@ -87,13 +89,13 @@ public class Player : MonoBehaviour
         Debug.Log("Current time : " + GameManager.Instance.SendGameTime() + ". Press Enter to change.");
         this.ChangePlayerMode();        // Change the player mode by time
         this.ChangeAnimation();         // Change the animation following the player's state
+        this.FaceMouse();
+        this.UpdateValues();
 
         if (this.playerMode == PlayerMode.Fight)
         {
             this.Attacks();
         }
-
-        FaceMouse();
 
         damagesReceived = GameManager.Instance.SendDamages();
         if (damagesReceived != 0 && !invincible)
@@ -105,7 +107,6 @@ public class Player : MonoBehaviour
             InvokeRepeating("InvincibleClipping", 0.0f, invincibleTime);
         }
         this.Tests();
-        this.UpdateValues();
 
         if (canLaunchFireBall)
         {
@@ -114,6 +115,23 @@ public class Player : MonoBehaviour
         else
         {
             this.FireballCooldown();
+        }
+
+        if (GameManager.Instance.PlayerCanInteract)
+        {
+            this.interactionButton.gameObject.SetActive(true);
+        }
+        else
+        {
+            this.interactionButton.gameObject.SetActive(false);
+        }
+
+        if (this.interactionButton.isActiveAndEnabled)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                GameManager.Instance.PlayerInteracted = true;
+            }
         }
         
     }

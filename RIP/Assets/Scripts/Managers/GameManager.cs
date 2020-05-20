@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
 
+    [SerializeField] private bool tuto;
+
     private GameState currentState;
     private GameTime currentTime;
 
@@ -34,11 +36,13 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        this.Tuto = tuto;
     }
 
     void Start()
     {
         this.currentTime = GameTime.Day;
+        DayCount = 1;
     }
 
     // -------------------  GameState & GameTime ----------------
@@ -63,6 +67,8 @@ public class GameManager : MonoBehaviour
         return this.currentState;
     }
 
+    public GameState StateOfGame { get; set; }
+
     public enum GameTime
     {
         Day,
@@ -74,10 +80,18 @@ public class GameManager : MonoBehaviour
         return this.currentTime;
     }
 
+    public int DayCount { get; set; }
+
     public void SetGameTime(GameTime gameTime)
     {
         this.currentTime = gameTime;
+        if (gameTime == GameTime.Day)
+        {
+            DayCount++;
+        }
     }
+
+    public bool Tuto { get; set; }
 
     // ------------------  Player Interactions ---------------
 
@@ -90,6 +104,10 @@ public class GameManager : MonoBehaviour
     {
         return damagesToPlayer;
     }
+
+    public bool PlayerCanInteract { get; set; }
+
+    public bool PlayerInteracted { get; set; }
 
     // ------------------  Ennemi Interactions ---------------
 
