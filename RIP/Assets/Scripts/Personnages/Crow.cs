@@ -14,6 +14,7 @@ public class Crow : MonoBehaviour
 
     [SerializeField] private int maxRessourcesForQuest;
     [SerializeField] private int minRessourcesForQuest;
+    [SerializeField] private int questChances;
 
     private bool haveAQuest;
     private bool dayFlag;
@@ -56,6 +57,7 @@ public class Crow : MonoBehaviour
         if (tuto && GameManager.Instance.SendGameTime() == GameManager.GameTime.Night)
         {
             tuto = false;
+            haveAQuest = false;
         }
 
         if (tuto && GameManager.Instance.SendGameTime() == GameManager.GameTime.Day)
@@ -92,9 +94,9 @@ public class Crow : MonoBehaviour
 
         }
 
-        if (dayFlag && !haveAQuest)
+        if (dayFlag && !haveAQuest && GameManager.Instance.SendGameTime() == GameManager.GameTime.Day)
         {
-            if (Random.Range(0, 7) == 0)
+            if (Random.Range(0, questChances) == 0)
             {
                 haveAQuest = true;
 

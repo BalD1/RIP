@@ -25,7 +25,6 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private Canvas buildBubbles;
     [SerializeField] private Canvas destroyBubble;
-    [SerializeField] private Canvas unlockBubble;
 
     [SerializeField] private int automaticPauseTime;
     [SerializeField] private int flowerCost;
@@ -83,7 +82,6 @@ public class UIManager : MonoBehaviour
         health = playerValues.HpValue;
         buildBubbles.enabled = false;
         destroyBubble.enabled = false;
-        unlockBubble.enabled = false;
         notEnoughRessources = false;
         upgradeBubbleDisplay = false;
         destroyBubbleDisplay = false;
@@ -152,7 +150,7 @@ public class UIManager : MonoBehaviour
 
     private void RessourcesDisplay()
     {
-        if (!this.buildBubbles.enabled && !this.destroyBubbleDisplay && !this.upgradeBubbleDisplay && !this.unlockBubble.enabled)
+        if (!this.buildBubbles.enabled && !this.destroyBubbleDisplay && !this.upgradeBubbleDisplay && !this.UnlockDisplay)
         {
             this.fleshDisplay.text = "x " + playerValues.fleshCount.ToString();
             this.boneDisplay.text = "x " + playerValues.bonesCount.ToString();
@@ -166,7 +164,7 @@ public class UIManager : MonoBehaviour
             }
 
         }
-        else if (this.buildBubbles.enabled || this.unlockBubble.enabled || this.upgradeBubbleDisplay)
+        else if (this.buildBubbles.enabled || this.upgradeBubbleDisplay || this.UnlockDisplay)
         {
             this.fleshDisplay.text = "x " + playerValues.fleshCount + " / " + fleshCost;
             ColorDisplayText(fleshDisplay, playerValues.fleshCount, fleshCost);
@@ -412,31 +410,18 @@ public class UIManager : MonoBehaviour
         return this.destroyBubblesState;
     }
 
-    public void GetUnlockBubbleState(bool state)
-    {
-        unlockBubble.transform.position = GameManager.Instance.SendBubblesHolderPosition();
-        this.unlockBubbleState = state;
-        unlockBubble.enabled = unlockBubbleState;
-    }
-
     public bool SendEnoughRessources()
     {
         return !notEnoughRessources;
     }
 
-    public bool SendUnlockBubbleState()
+    public bool UnlockDisplay { get; set; }
+    public bool CanUnlock
     {
-        return this.unlockBubbleState;
-    }
-
-    public void GetCanUnlock(bool state)
-    {
-        this.canUnlock = state;
-    }
-
-    public bool SendCanUnlock()
-    {
-        return this.canUnlock;
+        get
+        {
+            return !notEnoughRessources;
+        }
     }
 
     public void GetBuildingsCosts(int getFleshCost, int getBoneCost, int getSlimeCost, int getEctoplasmCost)

@@ -448,6 +448,7 @@ MonoBehaviour:
   dialogueBox: {fileID: 1997624749}
   maxRessourcesForQuest: 5
   minRessourcesForQuest: 1
+  questChances: 5
 --- !u!95 &589767013045835021
 Animator:
   serializedVersion: 3

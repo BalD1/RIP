@@ -93,13 +93,6 @@ public class Bubble : MonoBehaviour
                 UIManager.Instance.GetDestroyBubbleState(false);
                 UIManager.Instance.GetActiveBuilding(null);
             }
-            else if (this.name == "UnlockButton")
-            {
-                if (UIManager.Instance.SendEnoughRessources())
-                {
-                    UIManager.Instance.GetCanUnlock(true);
-                }
-            }
             else if (this.name == "UpgradeButton" && !UIManager.Instance.isBuildingMaxLevel)
             {
                 if (UIManager.Instance.SendEnoughRessources())
