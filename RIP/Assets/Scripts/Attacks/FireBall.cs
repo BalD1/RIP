@@ -6,20 +6,27 @@ public class FireBall : MonoBehaviour
 {
     [SerializeField]
     private PlayerValues playerValues;
+    [SerializeField] private float maxDistance;
 
     private int damages;
 
     private Vector2 originalPosition;
 
+    private float playerLookAngle;
+
     void Start()
     {
+        playerLookAngle = GameManager.Instance.PlayerLookAngle;
+        Vector3 rotationAngle = Vector3.zero;
+        rotationAngle.z = playerLookAngle;
+        this.transform.eulerAngles = rotationAngle;
         damages = playerValues.fireBallDamages;
         originalPosition = this.transform.position;
     }
     
     void Update()
     {
-        if(Vector2.Distance(originalPosition, this.transform.position) > 30f)       // Détruit le spell si assez loin
+        if (Vector2.Distance(originalPosition, this.transform.position) > maxDistance)       // Détruit le spell si assez loin
         {
             Destroy(this.gameObject);
         }

@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private GameObject fireBall;
+    [SerializeField]
+    private GameObject fireballInstanceCreation;
 
     [SerializeField] private Canvas interactionButton;
 
@@ -28,6 +30,11 @@ public class Player : MonoBehaviour
     private float invincibleTimer;
     private float invincibleTime;
     private float fireBallCooldown;
+
+    private float shovelAttackAnimationTime;
+    private float fireballAttackAnimationTime;
+    private float fireballAttackAnimationTimer;
+    private float delayedLaunch;
 
     private bool invincible;
     private bool canLaunchFireBall;
@@ -76,6 +83,7 @@ public class Player : MonoBehaviour
         this.playerAnimator = this.GetComponent<Animator>();
         canLaunchFireBall = true;
         Joueur = this.gameObject.GetComponent<Transform>();
+        GetAnimationClipsTime();
     }
 
     private void FixedUpdate()
@@ -131,6 +139,23 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 GameManager.Instance.PlayerInteracted = true;
+            }
+        }
+
+        if (fireballAttackAnimationTimer > 0)
+        {
+            fireballAttackAnimationTimer = Mathf.Clamp(fireballAttackAnimationTimer - Time.deltaTime, 0, fireballAttackAnimationTime);
+            if (fireballAttackAnimationTimer == 0)
+            {
+                if (this.playerBody.velocity == Vector2.zero)
+                {
+                    playerAnimator.SetBool("Idle", true);
+                }
+                else
+                {
+                    playerAnimator.SetBool("Idle", false);
+                }
+                playerAnimator.SetBool("FireballAttacking", false);
             }
         }
         
@@ -348,21 +373,25 @@ public class Player : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                this.LaunchFireBall();
+                playerAnimator.SetBool("FireballAttacking", true);
+                Invoke("LaunchFireBall", fireballAttackAnimationTime / 2);
+                fireballAttackAnimationTimer = fireballAttackAnimationTime;
                 canLaunchFireBall = false;
             }
         }
         shovelAttackTimer = Mathf.Clamp(shovelAttackTimer - Time.deltaTime, 0, shovelAttackTime);
         if (shovelAttackTimer == 0 && this.playerState == PlayerState.ShovelAttacking)
         {
-            this.playerState = PlayerState.Moving;
+            this.playerState = PlayerState.Idle;
+            playerAnimator.SetBool("Idle", true);
             playerAnimator.SetBool("ShovelAttacking", false);
         }
     }
 
     private void LaunchFireBall()
     {
-        GameObject launchedFireBall = Instantiate(fireBall, this.transform.position, Quaternion.identity);
+        GameManager.Instance.PlayerLookAngle = lookAngle;
+        GameObject launchedFireBall = Instantiate(fireBall, fireballInstanceCreation.transform);
         lookDirection = (lookDirection.normalized * launchSpeed);
         launchedFireBall.GetComponent<Rigidbody2D>().velocity = lookDirection;
     }
@@ -378,6 +407,23 @@ public class Player : MonoBehaviour
     }
 
     // ------------------------ Values update --------------------------
+
+    private void GetAnimationClipsTime()
+    {
+        AnimationClip[] animationClips = playerAnimator.runtimeAnimatorController.animationClips;
+        foreach (AnimationClip animationClip in animationClips)
+        {
+            switch(animationClip.name)
+            {
+                case ("SBack"):
+                    shovelAttackAnimationTime = animationClip.length;
+                    break;
+                case ("FBack"):
+                    fireballAttackAnimationTime = animationClip.length;
+                    break;
+            }
+        }
+    }
 
     private void UpdateValues()
     {

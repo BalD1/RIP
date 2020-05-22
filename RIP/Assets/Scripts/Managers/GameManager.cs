@@ -109,6 +109,8 @@ public class GameManager : MonoBehaviour
 
     public bool PlayerInteracted { get; set; }
 
+    public float PlayerLookAngle { get; set; }
+
     // ------------------  Ennemi Interactions ---------------
 
     public void DamageEnnemi(int damagesEnnemi)
