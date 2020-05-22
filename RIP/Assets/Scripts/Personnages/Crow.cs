@@ -31,6 +31,8 @@ public class Crow : MonoBehaviour
 
     private Animator animator;
 
+    private SpriteRenderer spriteRenderer;
+
     void Start()
     {
         dialogueBox.gameObject.SetActive(false);
@@ -47,11 +49,21 @@ public class Crow : MonoBehaviour
         {
             dayFlag = true;
         }
+        spriteRenderer = this.GetComponent<SpriteRenderer>();
     }
 
 
     void Update()
     {
+        if (GameManager.Instance.PlayerPosition.x > this.transform.position.x)
+        {
+            this.spriteRenderer.flipX = true;
+        }
+        else
+        {
+            this.spriteRenderer.flipX = false;
+        }
+
         animator.SetBool("QuestAvailable", haveAQuest);
 
         if (tuto && GameManager.Instance.SendGameTime() == GameManager.GameTime.Night)

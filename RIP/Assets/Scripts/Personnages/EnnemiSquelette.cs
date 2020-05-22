@@ -31,12 +31,12 @@ public class EnnemiSquelette : EnnemiParent
 
     void Update()
     {
-        if(Player.Joueur.position.y > (this.transform.position.y - 0.5f)
-            && Player.Joueur.position.y < (this.transform.position.y + 0.5f))
+        if(GameManager.Instance.PlayerPosition.y > (this.transform.position.y - 0.5f)
+            && GameManager.Instance.PlayerPosition.y < (this.transform.position.y + 0.5f))
         {
             jPos.y = 0;
         }
-        else if(Player.Joueur.position.y > this.transform.position.y)
+        else if(GameManager.Instance.PlayerPosition.y > this.transform.position.y)
         {
             jPos.y = 1;
         }
@@ -45,12 +45,12 @@ public class EnnemiSquelette : EnnemiParent
             jPos.y = -1;
         }
         
-        if (Player.Joueur.position.x > (this.transform.position.x - 0.5f)
-            && Player.Joueur.position.x < (this.transform.position.x + 0.5f))
+        if (GameManager.Instance.PlayerPosition.x > (this.transform.position.x - 0.5f)
+            && GameManager.Instance.PlayerPosition.x < (this.transform.position.x + 0.5f))
         {
             jPos.x = 0;
         }
-        else if (Player.Joueur.position.x > this.transform.position.x)
+        else if (GameManager.Instance.PlayerPosition.x > this.transform.position.x)
         {
             jPos.x = 1;
         }
@@ -69,10 +69,10 @@ public class EnnemiSquelette : EnnemiParent
 
     void FixedUpdate()
     {
-        if((Player.Joueur.position.x < (this.transform.position.x + 2f)) && (Player.Joueur.position.y < (this.transform.position.y + 2f)) && (Player.Joueur.position.y > (this.transform.position.y - 2f))
-           || (Player.Joueur.position.x > (this.transform.position.x - 2f)) && (Player.Joueur.position.y < (this.transform.position.y + 2f)) && (Player.Joueur.position.y > (this.transform.position.y - 2f))
-           || (Player.Joueur.position.y < (this.transform.position.y + 2f)) && (Player.Joueur.position.x < (this.transform.position.x + 2f)) && (Player.Joueur.position.x > (this.transform.position.x - 2f))
-           || (Player.Joueur.position.y > (this.transform.position.y - 2f)) && (Player.Joueur.position.x < (this.transform.position.x + 2f)) && (Player.Joueur.position.x > (this.transform.position.x - 2f)))
+        if((GameManager.Instance.PlayerPosition.x < (this.transform.position.x + 2f)) && (GameManager.Instance.PlayerPosition.y < (this.transform.position.y + 2f)) && (GameManager.Instance.PlayerPosition.y > (this.transform.position.y - 2f))
+           || (GameManager.Instance.PlayerPosition.x > (this.transform.position.x - 2f)) && (GameManager.Instance.PlayerPosition.y < (this.transform.position.y + 2f)) && (GameManager.Instance.PlayerPosition.y > (this.transform.position.y - 2f))
+           || (GameManager.Instance.PlayerPosition.y < (this.transform.position.y + 2f)) && (GameManager.Instance.PlayerPosition.x < (this.transform.position.x + 2f)) && (GameManager.Instance.PlayerPosition.x > (this.transform.position.x - 2f))
+           || (GameManager.Instance.PlayerPosition.y > (this.transform.position.y - 2f)) && (GameManager.Instance.PlayerPosition.x < (this.transform.position.x + 2f)) && (GameManager.Instance.PlayerPosition.x > (this.transform.position.x - 2f)))
         {
             
         }

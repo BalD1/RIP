@@ -26,11 +26,11 @@ public class EnnemiFantôme : EnnemiParent
 
     void Update()
     {
-        if (Player.Joueur.position.x > this.transform.position.x)
+        if (GameManager.Instance.PlayerPosition.x > this.transform.position.x)
         {
             this.GetComponent<SpriteRenderer>().flipX = true;
         }
-        else if (Player.Joueur.position.x < this.transform.position.x)
+        else if (GameManager.Instance.PlayerPosition.x < this.transform.position.x)
         {
             this.GetComponent<SpriteRenderer>().flipX = false;
         }

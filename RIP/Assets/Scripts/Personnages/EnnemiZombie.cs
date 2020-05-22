@@ -28,11 +28,11 @@ public class EnnemiZombie : EnnemiParent
     {
         Attack();
 
-        if (Player.Joueur.position.x > this.transform.position.x)
+        if (GameManager.Instance.PlayerPosition.x > this.transform.position.x)
         {
             this.GetComponent<SpriteRenderer>().flipX = true;
         }
-        else if (Player.Joueur.position.x < this.transform.position.x)
+        else if (GameManager.Instance.PlayerPosition.x < this.transform.position.x)
         {
             this.GetComponent<SpriteRenderer>().flipX = false;
         }
@@ -60,8 +60,8 @@ public class EnnemiZombie : EnnemiParent
 
     void Attack()
     {
-        if (Player.Joueur.position.x - this.rigid2d.position.x > -1.4 && Player.Joueur.position.x - this.rigid2d.position.x < 1.4 &&
-            Player.Joueur.position.y - this.rigid2d.position.y > -1.4 && Player.Joueur.position.y - this.rigid2d.position.y < 1.4 && preparingAttack == false)
+        if (GameManager.Instance.PlayerPosition.x - this.rigid2d.position.x > -1.4 && GameManager.Instance.PlayerPosition.x - this.rigid2d.position.x < 1.4 &&
+            GameManager.Instance.PlayerPosition.y - this.rigid2d.position.y > -1.4 && GameManager.Instance.PlayerPosition.y - this.rigid2d.position.y < 1.4 && preparingAttack == false)
         {
             preparingAttack = true;
             this.box2d.enabled = true;

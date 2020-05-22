@@ -32,7 +32,7 @@ public class EnnemiParent : MonoBehaviour
         if(preparingAttack == false)
         {
             Debug.Log("je bouge");
-            rigid2d.position = Vector2.MoveTowards(rigid2d.position, Player.Joueur.position, speed * Time.deltaTime);
+            rigid2d.position = Vector2.MoveTowards(rigid2d.position, GameManager.Instance.PlayerPosition, speed * Time.deltaTime);
             this.rigid2d.MovePosition(rigid2d.position);
         }
     }

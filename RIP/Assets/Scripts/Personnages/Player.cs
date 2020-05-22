@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public static Transform Joueur;
     [SerializeField]
     private PlayerValues playerValues;
 
@@ -82,7 +81,6 @@ public class Player : MonoBehaviour
         playerPosition = this.transform.position;
         this.playerAnimator = this.GetComponent<Animator>();
         canLaunchFireBall = true;
-        Joueur = this.gameObject.GetComponent<Transform>();
         GetAnimationClipsTime();
     }
 
@@ -94,6 +92,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        GameManager.Instance.PlayerPosition = this.transform.position;
         Debug.Log("Current time : " + GameManager.Instance.SendGameTime() + ". Press Enter to change.");
         this.ChangePlayerMode();        // Change the player mode by time
         this.ChangeAnimation();         // Change the animation following the player's state
