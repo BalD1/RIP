@@ -100,8 +100,9 @@ public class UIManager : MonoBehaviour
 
         if (hpBar != null && fleshDisplay != null && boneDisplay != null && slimeDisplay != null && ectoplasmDisplay != null && score != null)
         {
+            float fill = (float)playerValues.HpValue / (float)playerValues.maxHP;
+            hpBar.fillAmount = fill;
             this.RessourcesDisplay();
-            hpBar.fillAmount = playerValues.HpValue / health;
             score.text = "Score : " + compTest.ToString();
         }
 
@@ -281,7 +282,6 @@ public class UIManager : MonoBehaviour
             return ectoplasmImage;
         }
     }
-
 
     // -------------------- Screens ------------------
 

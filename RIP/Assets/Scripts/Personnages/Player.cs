@@ -99,6 +99,7 @@ public class Player : MonoBehaviour
         this.ChangeAnimation();         // Change the animation following the player's state
         this.FaceMouse();
         this.UpdateValues();
+        this.HealAtDay();
 
         if (this.playerMode == PlayerMode.Fight)
         {
