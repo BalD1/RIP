@@ -147,6 +147,21 @@ public class GameManager : MonoBehaviour
         return bubblesHolderPosition;
     }
 
+    // ------------------ Others -------------------------
+
+    public float GetAnimationTimes(Animator animator, string searchedClip)
+    {
+        AnimationClip[] animationClips = animator.runtimeAnimatorController.animationClips;
+        foreach (AnimationClip animationClip in animationClips)
+        {
+            if (animationClip.name == searchedClip)
+            {
+                return animationClip.length;
+            }
+        }
+        return 0f;
+    }
+
     //-------------- Quit Game ------------
 
     public void QuitGame()

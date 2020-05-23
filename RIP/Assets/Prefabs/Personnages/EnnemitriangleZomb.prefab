@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 6586836283308708208}
   m_Layer: 10
   m_Name: EnnemitriangleZomb
-  m_TagString: Untagged
+  m_TagString: Ennemie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

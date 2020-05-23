@@ -81,7 +81,8 @@ public class Player : MonoBehaviour
         playerPosition = this.transform.position;
         this.playerAnimator = this.GetComponent<Animator>();
         canLaunchFireBall = true;
-        GetAnimationClipsTime();
+        shovelAttackAnimationTime = GameManager.Instance.GetAnimationTimes(playerAnimator, "SBack");
+        fireballAttackAnimationTime = GameManager.Instance.GetAnimationTimes(playerAnimator, "FBack");
     }
 
     private void FixedUpdate()
@@ -390,7 +391,7 @@ public class Player : MonoBehaviour
     private void LaunchFireBall()
     {
         GameManager.Instance.PlayerLookAngle = lookAngle;
-        GameObject launchedFireBall = Instantiate(fireBall, fireballInstanceCreation.transform);
+        GameObject launchedFireBall = Instantiate(fireBall, fireballInstanceCreation.transform.position, Quaternion.identity);
         lookDirection = (lookDirection.normalized * launchSpeed);
         launchedFireBall.GetComponent<Rigidbody2D>().velocity = lookDirection;
     }
@@ -406,23 +407,7 @@ public class Player : MonoBehaviour
     }
 
     // ------------------------ Values update --------------------------
-
-    private void GetAnimationClipsTime()
-    {
-        AnimationClip[] animationClips = playerAnimator.runtimeAnimatorController.animationClips;
-        foreach (AnimationClip animationClip in animationClips)
-        {
-            switch(animationClip.name)
-            {
-                case ("SBack"):
-                    shovelAttackAnimationTime = animationClip.length;
-                    break;
-                case ("FBack"):
-                    fireballAttackAnimationTime = animationClip.length;
-                    break;
-            }
-        }
-    }
+    
 
     private void UpdateValues()
     {

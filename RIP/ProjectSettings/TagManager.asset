@@ -4,9 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Bone
-  - Zomb
   - Item
+  - Ennemie
   layers:
   - Default
   - TransparentFX
