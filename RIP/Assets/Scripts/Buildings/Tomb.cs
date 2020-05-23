@@ -55,7 +55,6 @@ public class Tomb : MonoBehaviour
     {
         isMaxLevel = false;
         isFlowered = false;
-        playerValues.flowerCount++;
         animator = this.GetComponent<Animator>();
         flowerState = FlowerState.None;
         buildingLevel = 1;

@@ -21,6 +21,8 @@ public class Crow : MonoBehaviour
     private bool firstTutoDisplay;
     private bool displayQuestNeeds;
     private bool tuto;
+    private bool playerInteractedOnThis;
+    private bool playerIsOnThis;
 
     private int neededFlesh;
     private int neededBone;
@@ -71,8 +73,7 @@ public class Crow : MonoBehaviour
             tuto = false;
             haveAQuest = false;
         }
-
-        if (tuto && GameManager.Instance.SendGameTime() == GameManager.GameTime.Day)
+        if (tuto && GameManager.Instance.SendGameTime() == GameManager.GameTime.Day && playerIsOnThis)
         {
             if (!GameManager.Instance.PlayerCanInteract || firstTutoDisplay)
             {
@@ -82,7 +83,7 @@ public class Crow : MonoBehaviour
             {
                 this.dialogueBox.gameObject.SetActive(true);
             }
-            if (GameManager.Instance.PlayerInteracted)
+            if (playerInteractedOnThis)
             {
                 if (firstTutoDisplay)
                 {
@@ -93,14 +94,14 @@ public class Crow : MonoBehaviour
                 {
                     DialogueManager.Instance.DisplayNextDialogue();
                 }
-                GameManager.Instance.PlayerInteracted = false;
+                playerInteractedOnThis = false;
             }
             if (DialogueManager.Instance.EndDialogue)
             {
                 this.dialogueBox.gameObject.SetActive(false);
                 this.tuto = false;
                 GameManager.Instance.Tuto = tuto;
-                GameManager.Instance.PlayerInteracted = false;
+                playerInteractedOnThis = false;
                 this.haveAQuest = false;
             }
 
@@ -122,7 +123,7 @@ public class Crow : MonoBehaviour
             dayFlag = false;
         }
 
-        if (haveAQuest && GameManager.Instance.SendGameTime() == GameManager.GameTime.Day && !tuto)
+        if (haveAQuest && GameManager.Instance.SendGameTime() == GameManager.GameTime.Day && !tuto && playerIsOnThis)
         {
             if (!displayQuestNeeds)
             {
@@ -139,7 +140,7 @@ public class Crow : MonoBehaviour
                 if (GameManager.Instance.PlayerInteracted)
                 {
                     displayQuestNeeds = true;
-                    GameManager.Instance.PlayerInteracted = false;
+                    playerInteractedOnThis = false;
                 }
             }
             else
@@ -150,7 +151,7 @@ public class Crow : MonoBehaviour
                     this.dialogueBox.gameObject.SetActive(true);
                     if (GameManager.Instance.PlayerInteracted)
                     {
-                        GameManager.Instance.PlayerInteracted = false;
+                        playerInteractedOnThis = false;
                         PayRessources(ref playerValues.fleshCount, ref neededFlesh);
                         PayRessources(ref playerValues.bonesCount, ref neededBone);
                         PayRessources(ref playerValues.slimeCount, ref neededSlime);
@@ -214,6 +215,7 @@ public class Crow : MonoBehaviour
         displayQuestNeeds = false;
         haveAQuest = false;
         GameManager.Instance.PlayerInteracted = false;
+        playerInteractedOnThis = false;
     }
 
     private void RewardPlayer()
@@ -227,6 +229,7 @@ public class Crow : MonoBehaviour
         if (player != null && GameManager.Instance.SendGameTime() == GameManager.GameTime.Day)
         {
             GameManager.Instance.PlayerCanInteract = true;
+            this.playerIsOnThis = true;
         }
     }
 
@@ -237,6 +240,14 @@ public class Crow : MonoBehaviour
         {
             GameManager.Instance.PlayerCanInteract = false;
         }
+        else if (player != null)
+        {
+            if (GameManager.Instance.PlayerInteracted)
+            {
+                playerInteractedOnThis = true;
+                GameManager.Instance.PlayerInteracted = false;
+            }
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -245,6 +256,8 @@ public class Crow : MonoBehaviour
         if (player != null)
         {
             GameManager.Instance.PlayerCanInteract = false;
+            this.playerIsOnThis = false;
+            this.dialogueBox.gameObject.SetActive(false);
         }
     }
 }

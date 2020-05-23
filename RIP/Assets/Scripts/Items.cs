@@ -8,10 +8,7 @@ public class Items : MonoBehaviour
 
     private bool move;
     private Vector2 onPickupDirection;
-
-    private void Start()
-    {
-    }
+    
 
     private void Update()
     {
@@ -28,6 +25,9 @@ public class Items : MonoBehaviour
                 break;
             case string ectoplasm when ectoplasm.Contains("Ectoplasm"):
                 onPickupDirection = Camera.main.ScreenToWorldPoint(UIManager.Instance.EctoplasmDisplay.rectTransform.transform.position);
+                break;
+            case string flower when flower.Contains("flower"):
+                onPickupDirection = Camera.main.ScreenToWorldPoint(UIManager.Instance.FleshDisplay.rectTransform.transform.position);
                 break;
             default:
                 Debug.Log(this.name + " not recognized in Item script");

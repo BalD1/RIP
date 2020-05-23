@@ -454,6 +454,9 @@ public class Player : MonoBehaviour
                 case string slime when slime.Contains("Slime"):
                     playerValues.slimeCount++;
                     break;
+                case string flower when flower.Contains("flower"):
+                    playerValues.flowerCount++;
+                    break;
                 default:
                     Debug.Log(collision.name + " not recognized as item");
                     break;
