@@ -113,6 +113,8 @@ public class GameManager : MonoBehaviour
 
     public Vector2 PlayerPosition { get; set; }
 
+    public int ExperienceToPlayer { get; set; }
+
     // ------------------  Ennemi Interactions ---------------
 
     public void DamageEnnemi(int damagesEnnemi)

@@ -12,8 +12,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text slimeDisplay;
     [SerializeField] private Text ectoplasmDisplay;
     [SerializeField] private Text score;
+    [SerializeField] private Text level;
 
     [SerializeField] private Image hpBar;
+    [SerializeField] private Image xpBar;
     [SerializeField] private Image fleshImage;
     [SerializeField] private Image boneImage;
     [SerializeField] private Image slimeImage;
@@ -28,6 +30,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private int automaticPauseTime;
     [SerializeField] private int flowerCost;
+
+    [SerializeField] private Animator itemsHUDanimator;
 
     private int compTest;
     private int fleshCost;
@@ -86,10 +90,14 @@ public class UIManager : MonoBehaviour
         upgradeBubbleDisplay = false;
         destroyBubbleDisplay = false;
         refundFlag = false;
+        itemsHUDanimator.SetBool("Show", true);
     }
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+        }
         this.AutomaticPause();
 
         var rand = Random.Range(341, 789);
@@ -102,6 +110,8 @@ public class UIManager : MonoBehaviour
         {
             float fill = (float)playerValues.HpValue / (float)playerValues.maxHP;
             hpBar.fillAmount = fill;
+            fill = (float)playerValues.xpAmount / (float)playerValues.xpNeeded;
+            xpBar.fillAmount = fill;
             this.RessourcesDisplay();
             score.text = "Score : " + compTest.ToString();
         }
@@ -146,6 +156,7 @@ public class UIManager : MonoBehaviour
             automaticPauseTimer = Mathf.Clamp(automaticPauseTimer - Time.deltaTime, 0, automaticPauseTimer);
         }
     }
+    
 
     // -------------------- HUD ----------------------
 
@@ -280,6 +291,25 @@ public class UIManager : MonoBehaviour
         get
         {
             return ectoplasmImage;
+        }
+    }
+
+    public void ChangeLevelDisplay()
+    {
+        this.level.text = playerValues.level.ToString();
+    }
+
+    public void ShowItemsHUD()
+    {
+        if (itemsHUDanimator.GetBool("Show"))
+        {
+            itemsHUDanimator.SetBool("Show", false);
+            itemsHUDanimator.SetBool("Hide", true);
+        }
+        else
+        {
+            itemsHUDanimator.SetBool("Show", true);
+            itemsHUDanimator.SetBool("Hide", false);
         }
     }
 

@@ -12,17 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aa856346660bed4eb581ff2ab73eeb8, type: 3}
   m_Name: PlayerValues
   m_EditorClassIdentifier: 
-  level: 1
-  xpAmount: 0
-  xpNeeded: 0
-  maxHP: 10
-  HpValue: 10
-  invincibleTime: 1
-  speed: 5
-  fireBallDamages: 5
-  fireBallLaunchSpeed: 7
-  fireBallCooldown: 1.5
+  level: 11
+  xpAmount: 25450
+  xpNeeded: 3300
+  baseMaxHP: 10
+  maxHP: 21
+  HpValue: 21
+  baseShovelDamages: 3
   shovelDamages: 3
+  baseFireballDamages: 5
+  fireBallDamages: 0
+  baseFireballLaunchSpeed: 7
+  fireBallLaunchSpeed: 7
+  baseSpeed: 5
+  speed: 5
+  baseInvincibleTime: 1
+  invincibleTime: 1
+  baseFireballCooldown: 1.5
+  fireBallCooldown: 1.5
+  baseShovelCooldown: 1
   shovelCooldown: 1
   fleshCount: 0
   bonesCount: 0

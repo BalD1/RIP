@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour
 {
@@ -72,9 +73,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         GameManager.Instance.SetGameState(GameManager.GameState.InGame); // TEST ONLY
-        playerValues.HpValue = playerValues.maxHP;
         this.playerState = PlayerState.Idle;
-        this.ResetScriptable();
+        this.InstantiateStats();
         shovel = this.gameObject.GetComponentInChildren<Shovel>();
         playerBody = this.GetComponent<Rigidbody2D>();
         spriteRenderer = this.GetComponent<SpriteRenderer>();
@@ -89,6 +89,33 @@ public class Player : MonoBehaviour
     {
         this.Movement();
     }
+
+    private void InstantiateStats()
+    {
+        playerValues.level = 1;
+        playerValues.xpNeeded = 150;
+        playerValues.xpAmount = 0;
+        playerValues.maxHP = playerValues.baseMaxHP;
+        playerValues.shovelDamages = playerValues.baseShovelDamages;
+        playerValues.fireBallDamages = playerValues.baseFireballDamages;
+        playerValues.speed = playerValues.baseSpeed;
+        playerValues.invincibleTime = playerValues.baseInvincibleTime;
+        playerValues.fireBallCooldown = playerValues.baseFireballCooldown;
+        playerValues.shovelCooldown = playerValues.baseShovelCooldown;
+        playerValues.fleshCount = 0;
+        playerValues.bonesCount = 0;
+        playerValues.slimeCount = 0;
+        playerValues.ectoplasmCount = 0;
+        playerValues.flowerCount = 0;
+
+        this.HP = playerValues.baseMaxHP;
+        this.shovelDamages = playerValues.baseShovelDamages;
+        this.fireBallDamages = playerValues.baseFireballDamages;
+        this.speed = playerValues.baseSpeed;
+        this.invincibleTime = playerValues.baseInvincibleTime;
+        this.fireBallCooldown = playerValues.baseFireballCooldown;
+        this.shovelAttackTime = playerValues.baseShovelCooldown;
+    }
     
 
     void Update()
@@ -100,6 +127,8 @@ public class Player : MonoBehaviour
         this.FaceMouse();
         this.UpdateValues();
         this.HealAtDay();
+        this.GetExperienceAmount();
+        
 
         if (this.playerMode == PlayerMode.Fight)
         {
@@ -178,9 +207,24 @@ public class Player : MonoBehaviour
 
     private void Tests()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        Debug.Log("level : " + playerValues.level + "____________" + "xp : " + playerValues.xpAmount + " / " + playerValues.xpNeeded + 
+            "____________" + " dégats S : " + playerValues.shovelDamages + "____________" + " dégats F : " + playerValues.fireBallDamages + "____________" + " hp : " + playerValues.maxHP);
+
+        if (Input.GetKeyDown(KeyCode.H))
         {
-            ResetScriptable();
+            GameManager.Instance.ExperienceToPlayer = 100;
+        }
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            GameManager.Instance.ExperienceToPlayer = 1000;
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            GameManager.Instance.ExperienceToPlayer = 5000;
+        }
+        if (GameManager.Instance.ExperienceToPlayer != 0)
+        {
+            Debug.Log(" received : " + GameManager.Instance.ExperienceToPlayer);
         }
 
         if (Input.GetKeyDown(KeyCode.Return))
@@ -407,6 +451,42 @@ public class Player : MonoBehaviour
         }
     }
 
+    // ------------------------ Player Level ---------------------------
+
+    private void GetExperienceAmount()
+    {
+        int receivedXP = GameManager.Instance.ExperienceToPlayer;
+        if (receivedXP > 0)
+        {
+            playerValues.xpAmount += receivedXP;
+            if (playerValues.xpNeeded <= playerValues.xpAmount)
+            {
+                receivedXP -= playerValues.xpNeeded;
+                playerValues.xpAmount -= playerValues.xpNeeded;
+                GameManager.Instance.ExperienceToPlayer = receivedXP;
+                LevelUP();
+            }
+            else
+            {
+                GameManager.Instance.ExperienceToPlayer = 0;
+            }
+        }
+    }
+
+    private void LevelUP()
+    {
+        playerValues.level++;
+        playerValues.xpNeeded = 25 * playerValues.level * (1 + playerValues.level);
+        playerValues.maxHP = Mathf.FloorToInt( (float) ( (playerValues.level - 1) + (playerValues.maxHP - (playerValues.maxHP * 0.9)) ) * 
+                                              (float) ( (playerValues.level - 1) - ((playerValues.level - 1) * 0.9) ) + playerValues.baseMaxHP );
+
+        playerValues.shovelDamages = Mathf.FloorToInt((playerValues.shovelDamages + (playerValues.level / 2.5f)) - (playerValues.level / playerValues.baseShovelDamages));
+
+        playerValues.fireBallDamages = Mathf.RoundToInt((playerValues.fireBallDamages + (playerValues.level / 2)) - (playerValues.level / 2.5f));
+        playerValues.HpValue = playerValues.maxHP;
+        UIManager.Instance.ChangeLevelDisplay();
+    }
+
     // ------------------------ Values update --------------------------
     
 
@@ -419,6 +499,7 @@ public class Player : MonoBehaviour
         launchSpeed = playerValues.fireBallLaunchSpeed;
         shovelAttackTime = playerValues.shovelCooldown;
         invincibleTime = playerValues.invincibleTime;
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -457,19 +538,5 @@ public class Player : MonoBehaviour
             }
         }
     }
-
-    private void ResetScriptable()          // A supprimer au build, sert à reset les valeurs du scriptable aux valeurs par défaut 
-    {
-        playerValues.HpValue = 10;
-        playerValues.speed = 5;
-        playerValues.fireBallDamages = 5;
-        playerValues.fireBallLaunchSpeed = 7;
-        playerValues.shovelDamages = 3;
-        playerValues.shovelCooldown = 1;
-        playerValues.fleshCount = 0;
-        playerValues.bonesCount = 0;
-        playerValues.slimeCount = 0;
-        playerValues.ectoplasmCount = 0;
-        playerValues.invincibleTime = 1;
-    }
+    
 }
