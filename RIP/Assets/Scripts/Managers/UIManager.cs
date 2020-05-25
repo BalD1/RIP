@@ -313,6 +313,21 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public bool HUDAnimatorBool
+    {
+        get
+        {
+            return itemsHUDanimator.GetBool("Show");
+        }
+        set
+        {
+            itemsHUDanimator.SetBool("Show", value);
+            itemsHUDanimator.SetBool("Hide", !value);
+        }
+    }
+
+    public bool WasHUDHidden { get; set; }
+
     // -------------------- Screens ------------------
 
     private void SetPause()

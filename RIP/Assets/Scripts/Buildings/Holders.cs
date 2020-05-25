@@ -122,6 +122,15 @@ public class Holders : MonoBehaviour
                     UIManager.Instance.GetActiveHolder(this.gameObject);
                     this.isActive = true;
                     this.spriteRenderer.color = Color.gray;
+                    if (UIManager.Instance.HUDAnimatorBool == false)
+                    {
+                        UIManager.Instance.HUDAnimatorBool = true;
+                        UIManager.Instance.WasHUDHidden = true;
+                    }
+                    else
+                    {
+                        UIManager.Instance.WasHUDHidden = false;
+                    }
                 }
                 else if (UIManager.Instance.SendActiveHolder() == this.gameObject)
                 {
@@ -129,6 +138,10 @@ public class Holders : MonoBehaviour
                     this.isActive = false;
                     this.spriteRenderer.color = originalColor;
                     UIManager.Instance.GetActiveHolder(null);
+                    if (UIManager.Instance.WasHUDHidden)
+                    {
+                        UIManager.Instance.HUDAnimatorBool = false;
+                    }
                 }
             }
         }
@@ -182,6 +195,10 @@ public class Holders : MonoBehaviour
             UIManager.Instance.GetActiveHolder(null);
             this.isActive = false;
             this.spriteRenderer.color = originalColor;
+            if (UIManager.Instance.WasHUDHidden)
+            {
+                UIManager.Instance.HUDAnimatorBool = false;
+            }
         }
     }
 

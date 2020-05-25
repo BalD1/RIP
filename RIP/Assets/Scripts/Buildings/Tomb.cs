@@ -196,6 +196,15 @@ public class Tomb : MonoBehaviour
                         UIManager.Instance.GetActiveBuilding(this.gameObject);
                         this.spriteRenderer.color = Color.gray;
                         isSelected = true;
+                        if (UIManager.Instance.HUDAnimatorBool == false)
+                        {
+                            UIManager.Instance.HUDAnimatorBool = true;
+                            UIManager.Instance.WasHUDHidden = true;
+                        }
+                        else
+                        {
+                            UIManager.Instance.WasHUDHidden = false;
+                        }
                     }
                     else if (UIManager.Instance.SendActiveBuilding() == this.gameObject)
                     {
@@ -205,6 +214,10 @@ public class Tomb : MonoBehaviour
                         UIManager.Instance.isBuildingMaxLevel = false;
                         UIManager.Instance.isBuildingFlowered = false;
                         isSelected = false;
+                        if (UIManager.Instance.WasHUDHidden)
+                        {
+                            UIManager.Instance.HUDAnimatorBool = false;
+                        }
                     }
                 }
                 else
@@ -288,6 +301,10 @@ public class Tomb : MonoBehaviour
             UIManager.Instance.GetDestroyBubbleState(false);
             UIManager.Instance.GetActiveBuilding(null);
             this.spriteRenderer.color = originalColor;
+            if (UIManager.Instance.WasHUDHidden)
+            {
+                UIManager.Instance.HUDAnimatorBool = false;
+            }
         }
     }
 

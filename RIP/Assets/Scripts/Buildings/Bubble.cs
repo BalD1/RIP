@@ -12,6 +12,8 @@ public class Bubble : MonoBehaviour
     private Color originalColor;
 
     private Image image;
+
+    private bool wasHUDHidden;
     
 
     private void Start()
@@ -92,6 +94,10 @@ public class Bubble : MonoBehaviour
                 Destroy(UIManager.Instance.SendActiveBuilding());
                 UIManager.Instance.GetDestroyBubbleState(false);
                 UIManager.Instance.GetActiveBuilding(null);
+                if (UIManager.Instance.WasHUDHidden)
+                {
+                    UIManager.Instance.HUDAnimatorBool = false;
+                }
             }
             else if (this.name == "UpgradeButton" && !UIManager.Instance.isBuildingMaxLevel)
             {
@@ -118,6 +124,10 @@ public class Bubble : MonoBehaviour
                         Instantiate(building, holderPos, Quaternion.identity);
                         UIManager.Instance.GetBuildBubblesState(false);
                         UIManager.Instance.GetActiveHolder(null);
+                        if (UIManager.Instance.WasHUDHidden)
+                        {
+                            UIManager.Instance.HUDAnimatorBool = false;
+                        }
                     }
                 }
             }
