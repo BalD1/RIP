@@ -1,48 +1,50 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.LWRP;
 
 public class DayNightCycle : MonoBehaviour
 {
     private Light sunLight;
     private float timer = 0;
     private bool Day = true;
+    public UnityEngine.Experimental.Rendering.Universal.Light2D SUN;
 
     // Start is called before the first frame update
     void Start()
     {
-        sunLight = this.GetComponent<Light>();
+        SUN = GetComponent<UnityEngine.Experimental.Rendering.Universal.Light2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (timer >= 15.0f)
+        if (timer >= 42.0f)
         {
             if (Day == true)
             {
-                    this.sunLight.intensity -= 0.0025f;
+                    SUN.intensity -= 0.0020f;
             }
             else
             {
-                    this.sunLight.intensity += 0.0025f;
+                SUN.intensity += 0.0020f;
             }
         }
-        if (timer <= 20.0f) // Valeur a changer pour changer le temps du cycle jour nuit
+        if (timer <= 50.0f) // Valeur a changer pour changer le temps du cycle jour nuit
         {
             timer += Time.deltaTime;
             if(Day == true)
             {
-                if(this.sunLight.intensity < 1.5f)
+                if(SUN.intensity < 0.9f)
                 {
-                    this.sunLight.intensity += 0.001f;
+                    SUN.intensity += 0.001f;
                 }
             }
             else
             {
-                if(this.sunLight.intensity > 0.35f)
+                if(SUN.intensity > 0.05f)
                 {
-                    this.sunLight.intensity -= 0.001f;
+                    SUN.intensity -= 0.001f;
                 }
             }
         }
