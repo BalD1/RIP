@@ -571,12 +571,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &638565822 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 1921867862505350247, guid: ea9042bf9f6f56543930c64e600b8351,
-    type: 3}
-  m_PrefabInstance: {fileID: 682631827020160210}
-  m_PrefabAsset: {fileID: 0}
 --- !u!223 &799933399 stripped
 Canvas:
   m_CorrespondingSourceObject: {fileID: 5127624853557952658, guid: 5a45624e1ea40d244b9e417e153fc88c,
@@ -940,9 +934,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 682631826583724398, guid: ea9042bf9f6f56543930c64e600b8351,
         type: 3}
-      propertyPath: source
+      propertyPath: Sounds.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 682631826583724398, guid: ea9042bf9f6f56543930c64e600b8351,
+        type: 3}
+      propertyPath: audioArray.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 682631826583724398, guid: ea9042bf9f6f56543930c64e600b8351,
+        type: 3}
+      propertyPath: audioArray.Array.data[8]
       value: 
-      objectReference: {fileID: 638565822}
+      objectReference: {fileID: 8300000, guid: 92cb86b61246e4646995031ed5e4c4ec, type: 3}
+    - target: {fileID: 682631826583724398, guid: ea9042bf9f6f56543930c64e600b8351,
+        type: 3}
+      propertyPath: Sounds.Array.data[10]
+      value: Bone
+      objectReference: {fileID: 0}
+    - target: {fileID: 682631826583724398, guid: ea9042bf9f6f56543930c64e600b8351,
+        type: 3}
+      propertyPath: audioArray.Array.data[10]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1cb0d9ab7852b0f49b47d3b83868d8dd, type: 3}
     - target: {fileID: 682631826583724399, guid: ea9042bf9f6f56543930c64e600b8351,
         type: 3}
       propertyPath: m_LocalPosition.x
