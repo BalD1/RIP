@@ -129,12 +129,9 @@ public class Player : MonoBehaviour
         this.UpdateValues();
         this.HealAtDay();
         this.GetExperienceAmount();
+        
 
-        if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Night)
-        {
-            this.Attacks();
-        }
-        else if (!GameManager.Instance.MouseIsOverSomething)
+        if (this.playerMode == PlayerMode.Fight)
         {
             this.Attacks();
         }
@@ -199,10 +196,6 @@ public class Player : MonoBehaviour
             {
                 UIManager.Instance.BuildDisplayActive = false;
             }
-        }
-        if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Night && UIManager.Instance.BuildDisplayActive)
-        {
-            UIManager.Instance.BuildDisplayActive = false;
         }
 
         
