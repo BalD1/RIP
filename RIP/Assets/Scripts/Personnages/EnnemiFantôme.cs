@@ -67,7 +67,6 @@ public class EnnemiFantôme : EnnemiParent
             LevelUp();
             dayFlag = true;
         }
-        Debug.Log(this.level);
     }
 
     void FixedUpdate()
