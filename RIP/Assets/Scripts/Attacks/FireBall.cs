@@ -54,6 +54,7 @@ public class FireBall : MonoBehaviour
         thisBody.velocity = Vector2.zero;
         thisBody.isKinematic = true;
         animator.SetTrigger("Explosion");
+        AudioManager.Instance.Play("FireImpact");
         StartCoroutine(WaitForAnimationEnd());
 
     }
@@ -62,7 +63,6 @@ public class FireBall : MonoBehaviour
     {
 
         yield return new WaitForSeconds(explosionTime);
-        //AudioManager.Instance.Play("FireImpact");
         Destroy(this.gameObject);
     }
 
