@@ -19,7 +19,7 @@ public class DayNightCycle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timer >= 42.0f)
+        if (timer >= 44.0f)
         {
             if (Day == true)
             {
