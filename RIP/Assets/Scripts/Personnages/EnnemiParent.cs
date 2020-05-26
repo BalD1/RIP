@@ -36,7 +36,6 @@ public class EnnemiParent : MonoBehaviour
     {
         if(preparingAttack == false)
         {
-            Debug.Log("je bouge");
             rigid2d.position = Vector2.MoveTowards(rigid2d.position, GameManager.Instance.PlayerPosition, speed * Time.deltaTime);
             this.rigid2d.MovePosition(rigid2d.position);
         }
@@ -48,6 +47,7 @@ public class EnnemiParent : MonoBehaviour
         hp = (int)( ((hp / 2) + (level /2)) * 1.4 );
         attack = (int)((attack + level) / 2.5);
         dropXP = (int)(5 * (level - 1) + (dropXP / 1.3f));
+        Debug.Log(level);
     }
 
     protected void Damages()

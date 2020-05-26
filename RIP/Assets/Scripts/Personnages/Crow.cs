@@ -212,6 +212,7 @@ public class Crow : MonoBehaviour
         }
         questRessources.Clear();
         Debug.Log("Quest Completed");
+        RewardPlayer();
         dialogueBox.gameObject.SetActive(false);
         displayQuestNeeds = false;
         haveAQuest = false;
@@ -221,7 +222,7 @@ public class Crow : MonoBehaviour
 
     private void RewardPlayer()
     {
-        playerValues.xpAmount += playerValues.level * 100 * experienceRewardMultiplier;
+        GameManager.Instance.ExperienceToPlayer = playerValues.level * 100 * experienceRewardMultiplier;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
