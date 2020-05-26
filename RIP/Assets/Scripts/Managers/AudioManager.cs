@@ -8,7 +8,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private AudioSource source;
 
-    
+    private bool musicFlag = false;
+
     public string[] Sounds = new string[]
     {
         "DeathZombie",
@@ -20,7 +21,9 @@ public class AudioManager : MonoBehaviour
         "PickUp",
         "Building",
         "Destroying",
-        "ShovelHit"
+        "ShovelHit",
+        "Bone",
+        "Musique"
     };
 
     [SerializeField]
@@ -44,6 +47,18 @@ public class AudioManager : MonoBehaviour
         instance = this;
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            PlayBGMusic();
+        }
+        if(!source.isPlaying)
+        {
+            musicFlag = false;
+        }
+    }
+
     public void Play (string name)
     {
         for(int i = 0; i < Sounds.Length; i++)
@@ -53,5 +68,15 @@ public class AudioManager : MonoBehaviour
                 source.PlayOneShot(audioArray[i]);
             }
         }
+    }
+
+    public void PlayBGMusic()
+    {
+        if(musicFlag == false)
+        {
+            musicFlag = true;
+            source.PlayOneShot(audioArray[11]);
+        }
+
     }
 }
