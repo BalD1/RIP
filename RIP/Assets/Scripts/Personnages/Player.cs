@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     private GameObject fireBall;
     [SerializeField]
     private GameObject fireballInstanceCreation;
+    [SerializeField] private GameObject[] levelUpParticles;
 
     [SerializeField] private Canvas interactionButton;
 
@@ -196,6 +197,7 @@ public class Player : MonoBehaviour
                 UIManager.Instance.BuildDisplayActive = false;
             }
         }
+
         
     }
 
@@ -492,6 +494,10 @@ public class Player : MonoBehaviour
 
         playerValues.fireBallDamages = Mathf.RoundToInt((playerValues.fireBallDamages + (playerValues.level / 2)) - (playerValues.level / 2.5f));
         playerValues.HpValue = playerValues.maxHP;
+        foreach(GameObject particles in levelUpParticles)
+        {
+            particles.GetComponent<ParticleSystem>().Play();
+        }
         UIManager.Instance.ChangeLevelDisplay();
     }
 

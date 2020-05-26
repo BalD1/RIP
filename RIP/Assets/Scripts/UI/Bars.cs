@@ -27,7 +27,7 @@ public class Bars : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     private void Update()
     {
-        if (this.name.Equals("PVBar"))
+        if (this.name.Equals("HPBar"))
         {
             this.text.text = playerValues.HpValue.ToString() + " / " + playerValues.maxHP.ToString();
         }
