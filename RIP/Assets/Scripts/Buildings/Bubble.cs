@@ -55,6 +55,8 @@ public class Bubble : MonoBehaviour
 
     private void OnMouseEnter()
     {
+        GameManager.Instance.MouseIsOverSomething = true;
+
         if (this.name == "UpgradeButton" && !UIManager.Instance.isBuildingMaxLevel)
         {
             UIManager.Instance.UpgradeBubbleDisplay = true;
@@ -71,6 +73,8 @@ public class Bubble : MonoBehaviour
 
     private void OnMouseExit()
     {
+        GameManager.Instance.MouseIsOverSomething = false;
+
         if (UIManager.Instance.UpgradeBubbleDisplay)
         {
             UIManager.Instance.UpgradeBubbleDisplay = false;

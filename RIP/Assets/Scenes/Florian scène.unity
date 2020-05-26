@@ -4095,6 +4095,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 37455027}
     m_Modifications:
+    - target: {fileID: 889806491922009990, guid: 5fd3e1f68c864eb41b21e19d467c669e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 889806492968413440, guid: 5fd3e1f68c864eb41b21e19d467c669e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4154,6 +4159,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PauseMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 889806492968413441, guid: 5fd3e1f68c864eb41b21e19d467c669e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5fd3e1f68c864eb41b21e19d467c669e, type: 3}
@@ -4587,6 +4597,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 204307466}
+    - target: {fileID: 3436670503039630981, guid: 9ac8c37242b1328438d7d0aafe37ff33,
+        type: 3}
+      propertyPath: m_FillAmount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7792556911996216576, guid: 9ac8c37242b1328438d7d0aafe37ff33,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4695,7 +4710,7 @@ PrefabInstance:
     - target: {fileID: 7792556911996216588, guid: 9ac8c37242b1328438d7d0aafe37ff33,
         type: 3}
       propertyPath: m_Name
-      value: Canvas
+      value: HUD
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ac8c37242b1328438d7d0aafe37ff33, type: 3}

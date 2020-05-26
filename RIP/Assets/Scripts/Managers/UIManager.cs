@@ -328,6 +328,8 @@ public class UIManager : MonoBehaviour
 
     public bool WasHUDHidden { get; set; }
 
+    public bool BuildDisplayActive { get; set; }
+
     // -------------------- Screens ------------------
 
     private void SetPause()

@@ -101,6 +101,20 @@ public class Tomb : MonoBehaviour
         }
 
         this.Upgrade();
+        if (UIManager.Instance.BuildDisplayActive == false && this.isSelected)
+        {
+            UIManager.Instance.GetDestroyBubbleState(false);
+            UIManager.Instance.GetActiveBuilding(null);
+            this.spriteRenderer.color = originalColor;
+            UIManager.Instance.isBuildingMaxLevel = false;
+            UIManager.Instance.isBuildingFlowered = false;
+            UIManager.Instance.BuildDisplayActive = false;
+            isSelected = false;
+            if (UIManager.Instance.WasHUDHidden)
+            {
+                UIManager.Instance.HUDAnimatorBool = false;
+            }
+        }
     }
 
     private void Upgrade()
@@ -181,6 +195,11 @@ public class Tomb : MonoBehaviour
         }
     }
 
+    private void OnMouseEnter()
+    {
+        GameManager.Instance.MouseIsOverSomething = true;
+    }
+
     private void OnMouseDown()
     {
         if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Day)
@@ -192,6 +211,7 @@ public class Tomb : MonoBehaviour
                     if (UIManager.Instance.SendDestroyBubbleState() == false)
                     {
                         GameManager.Instance.GetBubblesHolderPosition(bubblesHolder);
+                        UIManager.Instance.BuildDisplayActive = true;
                         UIManager.Instance.GetDestroyBubbleState(true);
                         UIManager.Instance.GetActiveBuilding(this.gameObject);
                         this.spriteRenderer.color = Color.gray;
@@ -213,19 +233,31 @@ public class Tomb : MonoBehaviour
                         this.spriteRenderer.color = originalColor;
                         UIManager.Instance.isBuildingMaxLevel = false;
                         UIManager.Instance.isBuildingFlowered = false;
+                        UIManager.Instance.BuildDisplayActive = false;
                         isSelected = false;
                         if (UIManager.Instance.WasHUDHidden)
                         {
                             UIManager.Instance.HUDAnimatorBool = false;
                         }
                     }
+                    else if (UIManager.Instance.SendActiveBuilding() != this.gameObject)
+                    {
+                        UIManager.Instance.BuildDisplayActive = false;
+                        Invoke("OnMouseDown", 0f);
+                    }
                 }
-                else
+                else if (UIManager.Instance.SendActiveHolder() != null && UIManager.Instance.UnlockDisplay == false)
                 {
-
+                    UIManager.Instance.BuildDisplayActive = false;
+                    Invoke("OnMouseDown", 0f);
                 }
             }
         }
+    }
+
+    private void OnMouseExit()
+    {
+        GameManager.Instance.MouseIsOverSomething = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

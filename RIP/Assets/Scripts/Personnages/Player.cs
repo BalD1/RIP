@@ -189,6 +189,14 @@ public class Player : MonoBehaviour
             }
         }
         
+        if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Day && !GameManager.Instance.MouseIsOverSomething)
+        {
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                UIManager.Instance.BuildDisplayActive = false;
+            }
+        }
+        
     }
 
     private void ChangePlayerMode()

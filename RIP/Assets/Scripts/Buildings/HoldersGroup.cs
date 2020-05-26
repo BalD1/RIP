@@ -21,6 +21,11 @@ public class HoldersGroup : MonoBehaviour
         this.gameObject.SetActive(isLocked);
     }
 
+    private void OnMouseEnter()
+    {
+        GameManager.Instance.MouseIsOverSomething = true;
+    }
+
     private void OnMouseOver()
     {
         UIManager.Instance.UnlockDisplay = true;
@@ -39,6 +44,7 @@ public class HoldersGroup : MonoBehaviour
 
     private void OnMouseExit()
     {
+        GameManager.Instance.MouseIsOverSomething = false;
         UIManager.Instance.UnlockDisplay = false;
         unlockSprite.SetActive(false);
         this.GetComponent<SpriteRenderer>().enabled = true;

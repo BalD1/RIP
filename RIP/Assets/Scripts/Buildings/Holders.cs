@@ -90,6 +90,21 @@ public class Holders : MonoBehaviour
                     break;
             }
         }
+        if (UIManager.Instance.BuildDisplayActive == false)
+        {
+            if (this.isActive)
+            {
+                UIManager.Instance.GetBuildBubblesState(false);
+                UIManager.Instance.BuildDisplayActive = false;
+                this.isActive = false;
+                this.spriteRenderer.color = originalColor;
+                UIManager.Instance.GetActiveHolder(null);
+                if (UIManager.Instance.WasHUDHidden)
+                {
+                    UIManager.Instance.HUDAnimatorBool = false;
+                }
+            }
+        }
     }
 
     private void ActivateGhostBuilding(GameObject building)
@@ -108,6 +123,11 @@ public class Holders : MonoBehaviour
         }
     }
 
+    private void OnMouseEnter()
+    {
+        GameManager.Instance.MouseIsOverSomething = true;
+    }
+
     private void OnMouseDown()
     {
         if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Day && GameManager.Instance.SendGameState() == GameManager.GameState.InGame)
@@ -118,6 +138,7 @@ public class Holders : MonoBehaviour
                 if (UIManager.Instance.SendBuildBubblesState() == false)
                 {
                     GameManager.Instance.GetBubblesHolderPosition(bubblesPosition);
+                    UIManager.Instance.BuildDisplayActive = true;
                     UIManager.Instance.GetBuildBubblesState(true);
                     UIManager.Instance.GetActiveHolder(this.gameObject);
                     this.isActive = true;
@@ -135,6 +156,7 @@ public class Holders : MonoBehaviour
                 else if (UIManager.Instance.SendActiveHolder() == this.gameObject)
                 {
                     UIManager.Instance.GetBuildBubblesState(false);
+                    UIManager.Instance.BuildDisplayActive = false;
                     this.isActive = false;
                     this.spriteRenderer.color = originalColor;
                     UIManager.Instance.GetActiveHolder(null);
@@ -143,8 +165,23 @@ public class Holders : MonoBehaviour
                         UIManager.Instance.HUDAnimatorBool = false;
                     }
                 }
+                else if (UIManager.Instance.SendActiveHolder() != this.gameObject)
+                {
+                    UIManager.Instance.BuildDisplayActive = false;
+                    Invoke("OnMouseDown", 0f);
+                }
+            }
+            else if (!this.isUsed && UIManager.Instance.SendActiveBuilding() != null)
+            {
+                UIManager.Instance.BuildDisplayActive = false;
+                Invoke("OnMouseDown", 0f);
             }
         }
+    }
+
+    private void OnMouseExit()
+    {
+        GameManager.Instance.MouseIsOverSomething = false;
     }
 
     public bool IsUsed()

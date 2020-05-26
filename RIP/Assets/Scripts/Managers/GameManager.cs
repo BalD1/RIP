@@ -164,6 +164,8 @@ public class GameManager : MonoBehaviour
         return 0f;
     }
 
+    public bool MouseIsOverSomething { get; set; }
+
     //-------------- Quit Game ------------
 
     public void QuitGame()
