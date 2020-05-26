@@ -49,6 +49,7 @@ public class Items : MonoBehaviour
         Player player = collision.GetComponent<Player>();
         if (player != null)
         {
+            AudioManager.Instance.Play("PickUp");
             move = true;
             this.gameObject.GetComponent<Collider2D>().enabled = false;
         }

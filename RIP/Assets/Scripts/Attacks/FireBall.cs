@@ -21,6 +21,11 @@ public class FireBall : MonoBehaviour
 
     private float playerLookAngle;
 
+    private void Awake()
+    {
+        AudioManager.Instance.Play("CreatingFire");
+    }
+
     private void Start()
     {
         animator = this.GetComponent<Animator>();
@@ -49,6 +54,7 @@ public class FireBall : MonoBehaviour
         thisBody.velocity = Vector2.zero;
         thisBody.isKinematic = true;
         animator.SetTrigger("Explosion");
+        AudioManager.Instance.Play("FireImpact");
         StartCoroutine(WaitForAnimationEnd());
 
     }
@@ -67,5 +73,4 @@ public class FireBall : MonoBehaviour
             DestroyThis();
         
     }
-
 }

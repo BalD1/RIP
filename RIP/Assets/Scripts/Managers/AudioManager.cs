@@ -8,12 +8,19 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private AudioSource source;
 
+    
     public string[] Sounds = new string[]
     {
         "DeathZombie",
         "DeathSkeleton",
         "DeathSlime",
         "DeathGhost",
+        "CreatingFire",
+        "FireImpact",
+        "PickUp",
+        "Building",
+        "Destroying",
+        "ShovelHit"
     };
 
     [SerializeField]
@@ -43,8 +50,7 @@ public class AudioManager : MonoBehaviour
         {
             if (Sounds[i] == name)
             {
-                source.clip = audioArray[i];
-                source.Play();
+                source.PlayOneShot(audioArray[i]);
             }
         }
     }
