@@ -10,8 +10,6 @@ public class EnnemiSlime : EnnemiParent
     [SerializeField]
     private GameObject slime;
 
-    private BoxCollider2D box2d;
-
     private float dashAttackTimer = 0;
 
     void Start()
@@ -19,9 +17,13 @@ public class EnnemiSlime : EnnemiParent
         hp = ennemiValues.slimeHp;//*Nmanches/valeur
         speed = ennemiValues.slimeSpd;
         attack = ennemiValues.slimeAtk;
+        level = ennemiValues.level;
+        dropXP = ennemiValues.dropXP;
         rigid2d = this.GetComponent<Rigidbody2D>();
-        box2d = this.GetComponent<BoxCollider2D>();
+        hitbox = this.GetComponent<PolygonCollider2D>();
+        invincibleTime = ennemiValues.invincibleTime;
         preparingAttack = false;
+        spriteRenderer = this.GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -41,6 +43,21 @@ public class EnnemiSlime : EnnemiParent
         {
             MortEnnemi();
         }
+        if (invincible)
+        {
+            InvincibleClipping();
+        }
+
+        if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Day)
+        {
+            dayFlag = false;
+        }
+        else if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Night && !dayFlag)
+        {
+            LevelUp();
+            dayFlag = true;
+        }
+    
 
     }
 
@@ -91,8 +108,10 @@ public class EnnemiSlime : EnnemiParent
 
         if (shovel != null || fireball != null)
         {
-            this.hp -= GameManager.Instance.SendDamagesEnnemi();
-            GameManager.Instance.DamageEnnemi(0);
+            if (!invincible)
+            {
+                Damages();
+            }
         }
     }
 }

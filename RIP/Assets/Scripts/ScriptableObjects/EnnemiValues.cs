@@ -20,4 +20,8 @@ public class EnnemiValues : ScriptableObject
     public int fantômeHp;
     public float fantômeSpd;
     public int fantômeAtk;
+
+    public float invincibleTime;
+    public int level;
+    public int dropXP;
 }

@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4733d0013fc023e48952b7f85d7dfff5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Ennemy: {fileID: 6461908923582755764, guid: b1be35ef413c3744da17ec9d784ec919, type: 3}
+  Ennemy: {fileID: 1203229927889475110, guid: 83a4c87e4e08eb041b96b71751cf6385, type: 3}
   neededHolders: 2
   playerValues: {fileID: 11400000, guid: 2dad5574c26cf63469c42283a26e33a3, type: 2}
   fleshCost: 2

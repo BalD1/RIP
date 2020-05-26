@@ -7,24 +7,29 @@ public class EnnemiParent : MonoBehaviour
     [SerializeField]
     protected Animator animator;
 
-    [SerializeField]
-    protected int hp;
 
     protected float speed;
+    protected float invincibleTime;
 
+    protected int hp;
     protected int attack;
+    protected int level;
+    protected int dropXP;
 
     protected Rigidbody2D rigid2d;
 
+    protected Collider2D hitbox;
+
     protected bool preparingAttack;
+    protected bool invincible;
+    protected bool dayFlag;
+
+    protected SpriteRenderer spriteRenderer;
+    
 
     void Start()
     {
         rigid2d = this.GetComponent<Rigidbody2D>();
-    }
-
-    void Update()
-    {
     }
 
     protected void Movement()
@@ -37,5 +42,51 @@ public class EnnemiParent : MonoBehaviour
         }
     }
 
-    
+    protected void LevelUp()
+    {
+        level++;
+        hp = (int)( ((hp / 2) + (level /2)) * 1.4 );
+        attack = (int)((attack + level) / 2.5);
+        dropXP = (int)(5 * (level - 1) + (dropXP / 1.3f));
+    }
+
+    protected void Damages()
+    {
+        hp -= GameManager.Instance.SendDamagesEnnemi();
+        Invincible();
+    }
+
+    private void Invincible()
+    {
+        invincible = true;
+        StartCoroutine(Invincible(invincibleTime));
+    }
+
+    IEnumerator Invincible(float hurtTime)
+    {
+        hitbox.enabled = false;
+
+        yield return new WaitForSeconds(hurtTime);
+
+        CancelInvoke();
+        spriteRenderer.enabled = true;
+        invincible = false;
+        hitbox.enabled = true;
+        GameManager.Instance.DamageEnnemi(0);
+
+    }
+
+    protected void InvincibleClipping()
+    {
+        if (spriteRenderer.enabled)
+        {
+            spriteRenderer.enabled = false;
+        }
+        else
+        {
+            spriteRenderer.enabled = true;
+        }
+    }
+
+
 }

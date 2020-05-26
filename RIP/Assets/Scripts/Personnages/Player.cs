@@ -357,7 +357,6 @@ public class Player : MonoBehaviour
         {
             GameManager.Instance.SetGameState(GameManager.GameState.GameOver);
             playerAnimator.SetBool("Death", true);
-            Destroy(this.gameObject);
         }
         invincibleTimer = invincibleTime;
         Invincible();

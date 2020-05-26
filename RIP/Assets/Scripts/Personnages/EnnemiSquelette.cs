@@ -13,8 +13,6 @@ public class EnnemiSquelette : EnnemiParent
     [SerializeField]
     private GameObject projectile;
 
-    private BoxCollider2D box2d;
-
     private float dashAttackTimer = 0;
 
     private Vector2 jPos;
@@ -24,9 +22,13 @@ public class EnnemiSquelette : EnnemiParent
         hp = ennemiValues.squeletteHp;//*Nmanches/valeur
         speed = ennemiValues.squeletteSpd;
         attack = ennemiValues.squeletteAtk;
+        level = ennemiValues.level;
+        dropXP = ennemiValues.dropXP;
         rigid2d = this.GetComponent<Rigidbody2D>();
-        box2d = this.GetComponent<BoxCollider2D>();
+        hitbox = this.GetComponent<PolygonCollider2D>();
+        invincibleTime = ennemiValues.invincibleTime;
         preparingAttack = false;
+        spriteRenderer = this.GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -63,6 +65,19 @@ public class EnnemiSquelette : EnnemiParent
         {
             MortEnnemi();
         }
+        if (invincible)
+        {
+            InvincibleClipping();
+        }
+        if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Day)
+        {
+            dayFlag = false;
+        }
+        else if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Night && !dayFlag)
+        {
+            LevelUp();
+            dayFlag = true;
+        }
 
         Attack();
     }
@@ -88,6 +103,7 @@ public class EnnemiSquelette : EnnemiParent
         //timer
         //animator.SetBool(Mort, true);
         AudioManager.Instance.Play("DeathSkeleton");
+        GameManager.Instance.ExperienceToPlayer = dropXP;
         Destroy(this.gameObject);
     }
 
@@ -116,8 +132,10 @@ public class EnnemiSquelette : EnnemiParent
 
         if (shovel != null || fireball != null)
         {
-            this.hp -= GameManager.Instance.SendDamagesEnnemi();
-            GameManager.Instance.DamageEnnemi(0);
+            if (!invincible)
+            {
+                Damages();
+            }
         }
     }
 }

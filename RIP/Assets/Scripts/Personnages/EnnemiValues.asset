@@ -12,15 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d030c16626b5a8b4b9dbab5421b599d2, type: 3}
   m_Name: EnnemiValues
   m_EditorClassIdentifier: 
-  zombieHp: 2
+  zombieHp: 8
   zombieSpd: 2
   zombieAtk: 1
-  squeletteHp: 2
+  squeletteHp: 10
   squeletteSpd: 1.5
-  squeletteAtk: 1
-  slimeHp: 1
+  squeletteAtk: 2
+  slimeHp: 7
   slimeSpd: 1.75
-  slimeAtk: 1
-  "fant\xF4meHp": 1
+  slimeAtk: 2
+  "fant\xF4meHp": 12
   "fant\xF4meSpd": 2
-  "fant\xF4meAtk": 2
+  "fant\xF4meAtk": 3
+  invincibleTime: 1

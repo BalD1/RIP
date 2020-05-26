@@ -10,8 +10,6 @@ public class EnnemiFantôme : EnnemiParent
     [SerializeField]
     private GameObject ectoplasm;
 
-    private BoxCollider2D box2d;
-
     private float invincibilityTimer = 0;
 
     void Start()
@@ -19,9 +17,13 @@ public class EnnemiFantôme : EnnemiParent
         hp = ennemiValues.fantômeHp;//*Nmanches/valeur
         speed = ennemiValues.fantômeSpd;
         attack = ennemiValues.fantômeAtk;
+        level = ennemiValues.level;
+        dropXP = ennemiValues.dropXP;
         rigid2d = this.GetComponent<Rigidbody2D>();
-        box2d = this.GetComponent<BoxCollider2D>();
+        hitbox = this.GetComponent<PolygonCollider2D>();
+        invincibleTime = ennemiValues.invincibleTime;
         preparingAttack = false;
+        spriteRenderer = this.GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -52,6 +54,20 @@ public class EnnemiFantôme : EnnemiParent
         {
             MortEnnemi();
         }
+        if (invincible)
+        {
+            InvincibleClipping();
+        }
+        if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Day)
+        {
+            dayFlag = false;
+        }
+        else if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Night && !dayFlag)
+        {
+            LevelUp();
+            dayFlag = true;
+        }
+        Debug.Log(this.level);
     }
 
     void FixedUpdate()
@@ -65,6 +81,7 @@ public class EnnemiFantôme : EnnemiParent
         //timer
         //animator.SetBool(Mort, true);
         AudioManager.Instance.Play("DeathGhost");
+        GameManager.Instance.ExperienceToPlayer = dropXP;
         Destroy(this.gameObject);
     }
 
@@ -82,8 +99,10 @@ public class EnnemiFantôme : EnnemiParent
 
         if (shovel != null || fireball != null)
         {
-            this.hp -= GameManager.Instance.SendDamagesEnnemi();
-            GameManager.Instance.DamageEnnemi(0);
+            if (!invincible)
+            {
+                Damages();
+            }
         }
     }
 }

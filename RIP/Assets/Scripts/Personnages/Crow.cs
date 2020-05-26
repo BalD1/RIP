@@ -103,6 +103,7 @@ public class Crow : MonoBehaviour
                 GameManager.Instance.Tuto = tuto;
                 playerInteractedOnThis = false;
                 this.haveAQuest = false;
+                Time.timeScale = 1;
             }
 
         }
