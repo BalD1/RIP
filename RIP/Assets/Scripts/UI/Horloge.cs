@@ -6,7 +6,7 @@ public class Horloge : MonoBehaviour
 {
     Transform transform;
 
-    private int rotate;
+    private float rotate;
 
     void Start()
     {
@@ -15,10 +15,8 @@ public class Horloge : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.G))
-        {
-            rotate += 10;
-            transform.rotation = Quaternion.Euler(0,0,-rotate);
-        }
+        rotate = DayNightCycle.dayNightTimer * -7.2f - 240f;
+
+        transform.rotation = Quaternion.Euler(0,0,rotate);
     }
 }
