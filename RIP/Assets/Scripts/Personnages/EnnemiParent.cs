@@ -25,7 +25,8 @@ public class EnnemiParent : MonoBehaviour
     protected bool dayFlag;
 
     protected SpriteRenderer spriteRenderer;
-    
+
+    protected Vector2 jPos;
 
     void Start()
     {
@@ -86,6 +87,48 @@ public class EnnemiParent : MonoBehaviour
             spriteRenderer.enabled = true;
         }
     }
+
+    protected void Turn()
+    {
+        if (GameManager.Instance.PlayerPosition.y > (this.transform.position.y - 2f)
+            && GameManager.Instance.PlayerPosition.y < (this.transform.position.y + 2f))
+        {
+            jPos.y = 0;
+            if (GameManager.Instance.PlayerPosition.x > this.transform.position.x)
+            {
+                jPos.x = 1;
+                animator.SetBool("Up", false);
+                animator.SetBool("Down", false);
+                animator.SetBool("Left", false);
+                animator.SetBool("Right", true);
+            }
+            else
+            {
+                jPos.x = -1;
+                animator.SetBool("Up", false);
+                animator.SetBool("Down", false);
+                animator.SetBool("Left", true);
+                animator.SetBool("Right", false);
+            }
+        }
+        else if (GameManager.Instance.PlayerPosition.y > this.transform.position.y)
+        {
+            jPos.y = 1;
+            animator.SetBool("Up", true);
+            animator.SetBool("Down", false);
+            animator.SetBool("Left", false);
+            animator.SetBool("Right", false);
+        }
+        else
+        {
+            jPos.y = -1;
+            animator.SetBool("Up", false);
+            animator.SetBool("Down", true);
+            animator.SetBool("Left", false);
+            animator.SetBool("Right", false);
+        }
+    }
+
 
 
 }

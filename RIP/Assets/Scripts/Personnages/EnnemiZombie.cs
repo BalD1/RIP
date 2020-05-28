@@ -24,20 +24,12 @@ public class EnnemiZombie : EnnemiParent
         invincibleTime = ennemiValues.invincibleTime;
         preparingAttack = false;
         spriteRenderer = this.GetComponent<SpriteRenderer>();
+        animator = this.gameObject.GetComponent<Animator>();
     }
 
     void Update()
     {
         Attack();
-
-        if (GameManager.Instance.PlayerPosition.x > this.transform.position.x)
-        {
-            this.GetComponent<SpriteRenderer>().flipX = true;
-        }
-        else if (GameManager.Instance.PlayerPosition.x < this.transform.position.x)
-        {
-            this.GetComponent<SpriteRenderer>().flipX = false;
-        }
 
         if (this.hp <= 0)
         {
@@ -56,6 +48,8 @@ public class EnnemiZombie : EnnemiParent
             LevelUp();
             dayFlag = true;
         }
+
+        Turn();
 
     }
 
@@ -76,12 +70,11 @@ public class EnnemiZombie : EnnemiParent
 
     void Attack()
     {
-        if (GameManager.Instance.PlayerPosition.x - this.rigid2d.position.x > -1.4 && GameManager.Instance.PlayerPosition.x - this.rigid2d.position.x < 1.4 &&
-            GameManager.Instance.PlayerPosition.y - this.rigid2d.position.y > -1.4 && GameManager.Instance.PlayerPosition.y - this.rigid2d.position.y < 1.4 && preparingAttack == false)
+        if (GameManager.Instance.PlayerPosition.x - this.rigid2d.position.x > -1 && GameManager.Instance.PlayerPosition.x - this.rigid2d.position.x < 1 &&
+            GameManager.Instance.PlayerPosition.y - this.rigid2d.position.y > -1 && GameManager.Instance.PlayerPosition.y - this.rigid2d.position.y < 1 && preparingAttack == false)
         {
             preparingAttack = true;
         }
-
 
         if (preparingAttack == true)
         {
