@@ -115,6 +115,14 @@ public class GameManager : MonoBehaviour
 
     public int ExperienceToPlayer { get; set; }
 
+    public bool CrowHaveAQuest { get; set; }
+
+    public bool DisplayCrowBubble { get; set; }
+
+    public bool CrowIsOnScreen { get; set; }
+
+    public Vector3 CrowPositition { get; set; }
+
     // ------------------  Ennemi Interactions ---------------
 
     public void DamageEnnemi(int damagesEnnemi)

@@ -16,6 +16,8 @@ public class Crow : MonoBehaviour
     [SerializeField] private int minRessourcesForQuest;
     [SerializeField] private int questChances;
 
+    [SerializeField] private GameObject point;
+
     private bool haveAQuest;
     private bool dayFlag;
     private bool firstTutoDisplay;
@@ -23,6 +25,7 @@ public class Crow : MonoBehaviour
     private bool tuto;
     private bool playerInteractedOnThis;
     private bool playerIsOnThis;
+    private bool questCanBeCompleted;
 
     private int neededFlesh;
     private int neededBone;
@@ -35,11 +38,14 @@ public class Crow : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
 
+    private Color originalPointColor;
+
     void Start()
     {
         dialogueBox.gameObject.SetActive(false);
         firstTutoDisplay = true;
         displayQuestNeeds = false;
+        questCanBeCompleted = false;
         this.tuto = GameManager.Instance.Tuto;
         this.haveAQuest = GameManager.Instance.Tuto;
         this.animator = this.gameObject.GetComponent<Animator>();
@@ -52,11 +58,23 @@ public class Crow : MonoBehaviour
             dayFlag = true;
         }
         spriteRenderer = this.GetComponent<SpriteRenderer>();
+        originalPointColor = point.GetComponent<SpriteRenderer>().color;
+        point.GetComponent<SpriteRenderer>().color = Color.grey;
     }
 
 
     void Update()
     {
+        GameManager.Instance.CrowPositition = this.transform.position;
+        GameManager.Instance.CrowHaveAQuest = haveAQuest;
+
+        DisplayCrowBubbleConditions();
+
+        if (haveAQuest)
+        {
+            CheckIfQuestCanBeCompleted();
+        }
+
         if (GameManager.Instance.PlayerPosition.x > this.transform.position.x)
         {
             this.spriteRenderer.flipX = true;
@@ -103,6 +121,7 @@ public class Crow : MonoBehaviour
                 GameManager.Instance.Tuto = tuto;
                 playerInteractedOnThis = false;
                 this.haveAQuest = false;
+                questCanBeCompleted = false;
                 Time.timeScale = 1;
             }
 
@@ -142,6 +161,8 @@ public class Crow : MonoBehaviour
                 {
                     displayQuestNeeds = true;
                     playerInteractedOnThis = false;
+                    animator.SetBool("HaveAQuest", true);
+                    point.GetComponent<SpriteRenderer>().color = Color.gray;
                 }
             }
             else
@@ -157,7 +178,10 @@ public class Crow : MonoBehaviour
                         PayRessources(ref playerValues.bonesCount, ref neededBone);
                         PayRessources(ref playerValues.slimeCount, ref neededSlime);
                         PayRessources(ref playerValues.ectoplasmCount, ref neededEctoplasm);
-                        CheckIfQuestCompleted();
+                        if (questCanBeCompleted)
+                        {
+                            CompleteQuest();
+                        }
                     }
                 }
                 else
@@ -181,6 +205,22 @@ public class Crow : MonoBehaviour
 
     }
 
+    private void DisplayCrowBubbleConditions()
+    {
+        if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Day)
+        {
+            if (questCanBeCompleted || (haveAQuest && !displayQuestNeeds) || tuto)
+            {
+                if (!GameManager.Instance.CrowIsOnScreen)
+                {
+                    GameManager.Instance.DisplayCrowBubble = true;
+                    return;
+                }
+            }
+        }
+        GameManager.Instance.DisplayCrowBubble = false;
+    }
+
     private void PayRessources(ref int amount,ref int price)
     {
         if (price > amount)
@@ -196,12 +236,12 @@ public class Crow : MonoBehaviour
         }
     }
 
-    private void CheckIfQuestCompleted()
+    private void CheckIfQuestCanBeCompleted()
     {
-        questRessources.Add(neededFlesh);
-        questRessources.Add(neededBone);
-        questRessources.Add(neededSlime);
-        questRessources.Add(neededEctoplasm);
+        questRessources.Add(neededFlesh - playerValues.fleshCount);
+        questRessources.Add(neededBone - playerValues.bonesCount);
+        questRessources.Add(neededSlime - playerValues.slimeCount);
+        questRessources.Add(neededEctoplasm - playerValues.ectoplasmCount);
         foreach (int price in questRessources)
         {
             if (price > 0)
@@ -211,6 +251,12 @@ public class Crow : MonoBehaviour
             }
         }
         questRessources.Clear();
+        questCanBeCompleted = true;
+        point.GetComponent<SpriteRenderer>().color = originalPointColor;
+    }
+
+    private void CompleteQuest()
+    {
         Debug.Log("Quest Completed");
         RewardPlayer();
         dialogueBox.gameObject.SetActive(false);
@@ -218,6 +264,8 @@ public class Crow : MonoBehaviour
         haveAQuest = false;
         GameManager.Instance.PlayerInteracted = false;
         playerInteractedOnThis = false;
+        animator.SetBool("HaveAQuest", false);
+        questCanBeCompleted = false;
     }
 
     private void RewardPlayer()
@@ -261,5 +309,15 @@ public class Crow : MonoBehaviour
             this.playerIsOnThis = false;
             this.dialogueBox.gameObject.SetActive(false);
         }
+    }
+
+    private void OnBecameInvisible()
+    {
+        GameManager.Instance.CrowIsOnScreen = false;
+    }
+
+    private void OnBecameVisible()
+    {
+        GameManager.Instance.CrowIsOnScreen = true;
     }
 }

@@ -8,11 +8,11 @@ public class Player : MonoBehaviour
     [SerializeField]
     private PlayerValues playerValues;
 
-    [SerializeField]
-    private GameObject fireBall;
-    [SerializeField]
-    private GameObject fireballInstanceCreation;
+    [SerializeField] private GameObject fireBall;
+    [SerializeField] private GameObject fireballInstanceCreation;
     [SerializeField] private GameObject[] levelUpParticles;
+    [SerializeField] private GameObject crowDisplayPoint;
+    [SerializeField] private GameObject crowHead;
 
     [SerializeField] private Canvas interactionButton;
 
@@ -131,6 +131,18 @@ public class Player : MonoBehaviour
         this.UpdateValues();
         this.HealAtDay();
         this.GetExperienceAmount();
+        
+        if (GameManager.Instance.DisplayCrowBubble)
+        {
+            this.crowDisplayPoint.SetActive(true);
+            this.crowHead.SetActive(true);
+            this.MoveCrowDisplayPointPosition();
+        }
+        else
+        {
+            this.crowDisplayPoint.SetActive(false);
+            this.crowHead.SetActive(false);
+        }
 
         if (playerState != PlayerState.Dead)
         {
@@ -228,6 +240,18 @@ public class Player : MonoBehaviour
         {
             this.playerMode = PlayerMode.Fight;
         }
+    }
+
+    // ----------------------- Crow Display -----------------
+
+    private void MoveCrowDisplayPointPosition()
+    {
+        Vector2 crowPosition = GameManager.Instance.CrowPositition - this.transform.position;
+        float crowAngle = Mathf.Atan2(crowPosition.y, crowPosition.x) * Mathf.Rad2Deg;
+
+        crowDisplayPoint.transform.eulerAngles = new Vector3(0f, 0f, crowAngle);
+        crowDisplayPoint.transform.position = this.transform.position - (Vector3.ClampMagnitude(this.transform.position, 2.5f));
+        crowHead.transform.position = (this.transform.position - (Vector3.ClampMagnitude(this.transform.position, 2)));
     }
 
     // ----------------------- Code tests -------------------
