@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
     private float shovelAttackAnimationTime;
     private float fireballAttackAnimationTime;
     private float fireballAttackAnimationTimer;
+    private float deathAnimationTime;
     private float delayedLaunch;
 
     private bool invincible;
@@ -84,6 +85,7 @@ public class Player : MonoBehaviour
         canLaunchFireBall = true;
         shovelAttackAnimationTime = GameManager.Instance.GetAnimationTimes(playerAnimator, "SBack");
         fireballAttackAnimationTime = GameManager.Instance.GetAnimationTimes(playerAnimator, "FBack");
+        deathAnimationTime = GameManager.Instance.GetAnimationTimes(playerAnimator, "Dying");
     }
 
     private void FixedUpdate()
@@ -130,80 +132,87 @@ public class Player : MonoBehaviour
         this.HealAtDay();
         this.GetExperienceAmount();
 
-
-        if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Night)
+        if (playerState != PlayerState.Dead)
         {
-            this.Attacks();
-        }
-        else if (!GameManager.Instance.MouseIsOverSomething)
-        {
-            this.Attacks();
-        }
-
-        damagesReceived = GameManager.Instance.SendDamages();
-        if (damagesReceived != 0 && !invincible)
-        {
-            this.TakeDamages();
-        }
-        if (invincible)
-        {
-            InvokeRepeating("InvincibleClipping", 0.0f, invincibleTime);
-        }
-        this.Tests();
-
-        if (canLaunchFireBall)
-        {
-            fireBallCooldown = playerValues.fireBallCooldown;
-        }
-        else
-        {
-            this.FireballCooldown();
-        }
-
-        if (GameManager.Instance.PlayerCanInteract)
-        {
-            this.interactionButton.gameObject.SetActive(true);
-        }
-        else
-        {
-            this.interactionButton.gameObject.SetActive(false);
-        }
-
-        if (this.interactionButton.isActiveAndEnabled)
-        {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Night)
             {
-                GameManager.Instance.PlayerInteracted = true;
+                this.Attacks();
             }
-        }
-
-        if (fireballAttackAnimationTimer > 0)
-        {
-            fireballAttackAnimationTimer = Mathf.Clamp(fireballAttackAnimationTimer - Time.deltaTime, 0, fireballAttackAnimationTime);
-            if (fireballAttackAnimationTimer == 0)
+            else if (!GameManager.Instance.MouseIsOverSomething)
             {
-                if (this.playerBody.velocity == Vector2.zero)
-                {
-                    playerAnimator.SetBool("Idle", true);
-                }
-                else
-                {
-                    playerAnimator.SetBool("Idle", false);
-                }
-                playerAnimator.SetBool("FireballAttacking", false);
+                this.Attacks();
             }
-        }
-        
-        if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Day && !GameManager.Instance.MouseIsOverSomething)
-        {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+
+            damagesReceived = GameManager.Instance.SendDamages();
+            if (damagesReceived != 0 && !invincible)
+            {
+                this.TakeDamages();
+            }
+            if (invincible)
+            {
+                InvokeRepeating("InvincibleClipping", 0.0f, invincibleTime);
+            }
+            this.Tests();
+
+            if (canLaunchFireBall)
+            {
+                fireBallCooldown = playerValues.fireBallCooldown;
+            }
+            else
+            {
+                this.FireballCooldown();
+            }
+
+            if (GameManager.Instance.PlayerCanInteract)
+            {
+                this.interactionButton.gameObject.SetActive(true);
+            }
+            else
+            {
+                this.interactionButton.gameObject.SetActive(false);
+            }
+
+            if (this.interactionButton.isActiveAndEnabled)
+            {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    GameManager.Instance.PlayerInteracted = true;
+                }
+            }
+
+            if (fireballAttackAnimationTimer > 0)
+            {
+                fireballAttackAnimationTimer = Mathf.Clamp(fireballAttackAnimationTimer - Time.deltaTime, 0, fireballAttackAnimationTime);
+                if (fireballAttackAnimationTimer == 0)
+                {
+                    if (this.playerBody.velocity == Vector2.zero)
+                    {
+                        playerAnimator.SetBool("Idle", true);
+                    }
+                    else
+                    {
+                        playerAnimator.SetBool("Idle", false);
+                    }
+                    playerAnimator.SetBool("FireballAttacking", false);
+                }
+            }
+
+            if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Day && !GameManager.Instance.MouseIsOverSomething)
+            {
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    UIManager.Instance.BuildDisplayActive = false;
+                }
+            }
+            if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Night && UIManager.Instance.BuildDisplayActive)
             {
                 UIManager.Instance.BuildDisplayActive = false;
             }
         }
-        if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Night && UIManager.Instance.BuildDisplayActive)
+
+        if (playerState == PlayerState.Dead)
         {
-            UIManager.Instance.BuildDisplayActive = false;
+            Death();
         }
 
 
@@ -228,6 +237,10 @@ public class Player : MonoBehaviour
         Debug.Log("level : " + playerValues.level + "____________" + "xp : " + playerValues.xpAmount + " / " + playerValues.xpNeeded + 
             "____________" + " dégats S : " + playerValues.shovelDamages + "____________" + " dégats F : " + playerValues.fireBallDamages + "____________" + " hp : " + playerValues.maxHP);
 
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            GameManager.Instance.DamagePlayer(5);
+        }
         if (Input.GetKeyDown(KeyCode.H))
         {
             GameManager.Instance.ExperienceToPlayer = 100;
@@ -363,12 +376,14 @@ public class Player : MonoBehaviour
         HP = playerValues.HpValue;
         if (HP <= 0)
         {
-            GameManager.Instance.SetGameState(GameManager.GameState.GameOver);
-            playerAnimator.SetBool("Death", true);
+            playerState = PlayerState.Dead;
         }
-        invincibleTimer = invincibleTime;
-        Invincible();
-        invincible = true;
+        else
+        {
+            invincibleTimer = invincibleTime;
+            Invincible();
+            invincible = true;
+        }
 
     }
 
@@ -394,6 +409,8 @@ public class Player : MonoBehaviour
 
     private void InvincibleClipping()
     {
+        if (playerState != PlayerState.Dead)
+        {
         if (this.spriteRenderer.enabled)
         {
             this.spriteRenderer.enabled = false;
@@ -401,6 +418,7 @@ public class Player : MonoBehaviour
         else
         {
             this.spriteRenderer.enabled = true;
+        }
         }
     }
 
@@ -415,6 +433,22 @@ public class Player : MonoBehaviour
         {
             healFlag = false;
         }
+    }
+
+    private void Death()
+    {
+        playerAnimator.SetBool("Death", true);
+        StartCoroutine(WaitForDeathAnimation(deathAnimationTime));
+    }
+
+    IEnumerator WaitForDeathAnimation(float time)
+    {
+
+        yield return new WaitForSeconds(time);
+
+        CancelInvoke();
+        GameManager.Instance.SetGameState(GameManager.GameState.GameOver);
+
     }
 
     // ------------------------ Player attacks --------------------------

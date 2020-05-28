@@ -1,0 +1,658 @@
+fileFormatVersion: 2
+guid: c55054b6f8afab840b0a91b8e56a7559
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6729350389417907904
+    second: fossoyeurmortleft_0
+  - first:
+      213: 8483084835221729507
+    second: fossoyeurmortleft_1
+  - first:
+      213: -2253839542475528516
+    second: fossoyeurmortleft_2
+  - first:
+      213: 3961253038390461225
+    second: fossoyeurmortleft_3
+  - first:
+      213: 6178949050932807684
+    second: fossoyeurmortleft_4
+  - first:
+      213: -3623596481104242119
+    second: fossoyeurmortleft_5
+  - first:
+      213: 8296646919241477314
+    second: fossoyeurmortleft_6
+  - first:
+      213: -1989108005701195367
+    second: fossoyeurmortleft_7
+  - first:
+      213: 1079092007926645535
+    second: fossoyeurmortleft_8
+  - first:
+      213: 1941767038500961274
+    second: fossoyeurmortleft_9
+  - first:
+      213: 7251238169265609284
+    second: fossoyeurmortleft_10
+  - first:
+      213: -6552251649698027741
+    second: fossoyeurmortleft_11
+  - first:
+      213: -3268648246645326956
+    second: fossoyeurmortleft_12
+  - first:
+      213: -8364337347397851888
+    second: fossoyeurmortleft_13
+  - first:
+      213: 6642541118914272545
+    second: fossoyeurmortleft_14
+  - first:
+      213: -2985775197248167535
+    second: fossoyeurmortleft_15
+  - first:
+      213: -1056840910501261329
+    second: fossoyeurmortleft_16
+  - first:
+      213: 15472291047003311
+    second: fossoyeurmortleft_17
+  - first:
+      213: -7045346272574389814
+    second: fossoyeurmortleft_18
+  - first:
+      213: -7478278869778339815
+    second: fossoyeurmortleft_19
+  - first:
+      213: 2359233816003469534
+    second: fossoyeurmortleft_20
+  - first:
+      213: 2750491044702067514
+    second: fossoyeurmortleft_21
+  - first:
+      213: 1209078232232952390
+    second: fossoyeurmortleft_22
+  - first:
+      213: -4129723236997555561
+    second: fossoyeurmortleft_23
+  - first:
+      213: 7148708912583760748
+    second: fossoyeurmortleft_24
+  - first:
+      213: -1449191292027921914
+    second: fossoyeurmortleft_25
+  - first:
+      213: 880314298078084183
+    second: fossoyeurmortleft_26
+  - first:
+      213: 3928824423445074632
+    second: fossoyeurmortleft_27
+  - first:
+      213: 288761320083735452
+    second: fossoyeurmortleft_28
+  - first:
+      213: 2650792047522020234
+    second: fossoyeurmortleft_29
+  - first:
+      213: 4713339061212222794
+    second: fossoyeurmortleft_30
+  - first:
+      213: 402590216428498756
+    second: fossoyeurmortleft_31
+  - first:
+      213: 5789712547278111638
+    second: fossoyeurmortleft_32
+  - first:
+      213: 426904490439300910
+    second: fossoyeurmortleft_33
+  - first:
+      213: -3550358351601248345
+    second: fossoyeurmortleft_34
+  - first:
+      213: -1120641802699422175
+    second: fossoyeurmortleft_35
+  - first:
+      213: 6181015272615881168
+    second: fossoyeurmortleft_36
+  - first:
+      213: 3578810150071012507
+    second: fossoyeurmortleft_37
+  - first:
+      213: -4535301063781217620
+    second: fossoyeurmortleft_38
+  - first:
+      213: -3523679086866434601
+    second: fossoyeurmortleft_39
+  - first:
+      213: -5421194031921449644
+    second: fossoyeurmortleft_40
+  - first:
+      213: -7985568421049922347
+    second: fossoyeurmortleft_41
+  - first:
+      213: 3586159607860732428
+    second: fossoyeurmortleft_42
+  - first:
+      213: 3140036470497374113
+    second: fossoyeurmortleft_43
+  - first:
+      213: -2146147167914359805
+    second: fossoyeurmortleft_44
+  - first:
+      213: -7188819964619268229
+    second: fossoyeurmortleft_45
+  - first:
+      213: -2677039025572457666
+    second: fossoyeurmortleft_46
+  - first:
+      213: 3418525794249261620
+    second: fossoyeurmortleft_47
+  - first:
+      213: -4575793576158668928
+    second: fossoyeurmortleft_48
+  - first:
+      213: 1347625349402653083
+    second: fossoyeurmortleft_49
+  - first:
+      213: 3529803602966911306
+    second: fossoyeurmortleft_50
+  - first:
+      213: -5252074677451714935
+    second: fossoyeurmortleft_51
+  - first:
+      213: 8592770744175064465
+    second: fossoyeurmortleft_52
+  - first:
+      213: -1112469391796714672
+    second: fossoyeurmortleft_53
+  - first:
+      213: 7998235654421328921
+    second: fossoyeurmortleft_54
+  - first:
+      213: 3764424179487605861
+    second: fossoyeurmortleft_55
+  - first:
+      213: 6817551402425682231
+    second: fossoyeurmortleft_56
+  - first:
+      213: -3759314545954134633
+    second: fossoyeurmortleft_57
+  - first:
+      213: 17341734086176789
+    second: fossoyeurmortleft_58
+  - first:
+      213: -6128337938069448670
+    second: fossoyeurmortleft_59
+  - first:
+      213: -4903839971021213172
+    second: fossoyeurmortleft_60
+  - first:
+      213: -3932450554415028915
+    second: fossoyeurmortleft_61
+  - first:
+      213: -51520882165009207
+    second: fossoyeurmortleft_62
+  - first:
+      213: 2583315092691709962
+    second: fossoyeurmortleft_63
+  - first:
+      213: 3898619398200413521
+    second: fossoyeurmortleft_64
+  - first:
+      213: -5186034976949122395
+    second: fossoyeurmortleft_65
+  - first:
+      213: 8350917015114170917
+    second: fossoyeurmortleft_66
+  - first:
+      213: 4993979219972812363
+    second: fossoyeurmortleft_67
+  - first:
+      213: 6514016668218446632
+    second: fossoyeurmortleft_68
+  - first:
+      213: -8743525808254774719
+    second: fossoyeurmortleft_69
+  - first:
+      213: -4800499427434895582
+    second: fossoyeurmortleft_70
+  - first:
+      213: -4936300987065005750
+    second: fossoyeurmortleft_71
+  - first:
+      213: -8870833236750694596
+    second: fossoyeurmortleft_72
+  - first:
+      213: -1488487821185600063
+    second: fossoyeurmortleft_73
+  - first:
+      213: -3210158513140329497
+    second: fossoyeurmortleft_74
+  - first:
+      213: 6662739379413164863
+    second: fossoyeurmortleft_75
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: fossoyeurmortleft_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 30
+        width: 250
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c6146a8684736d50800000000000000
+      internalID: 6729350389417907904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fossoyeurmortleft_1
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 30
+        width: 250
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e0f4ea56b8f9b570800000000000000
+      internalID: 8483084835221729507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fossoyeurmortleft_2
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 30
+        width: 250
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb66402a0e0c8b0e0800000000000000
+      internalID: -2253839542475528516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fossoyeurmortleft_3
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 30
+        width: 250
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92343ba96a239f630800000000000000
+      internalID: 3961253038390461225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fossoyeurmortleft_4
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 30
+        width: 250
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4084612ac6900c550800000000000000
+      internalID: 6178949050932807684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fossoyeurmortleft_5
+      rect:
+        serializedVersion: 2
+        x: 1250
+        y: 30
+        width: 250
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93a1d66f23666bdc0800000000000000
+      internalID: -3623596481104242119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fossoyeurmortleft_6
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 30
+        width: 250
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cc2a306a6c932370800000000000000
+      internalID: 8296646919241477314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fossoyeurmortleft_7
+      rect:
+        serializedVersion: 2
+        x: 1750
+        y: 30
+        width: 250
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9996b4cbec44564e0800000000000000
+      internalID: -1989108005701195367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fossoyeurmortleft_8
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 30
+        width: 250
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f134e64c674b9fe00800000000000000
+      internalID: 1079092007926645535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fossoyeurmortleft_9
+      rect:
+        serializedVersion: 2
+        x: 2250
+        y: 30
+        width: 250
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afb796665da82fa10800000000000000
+      internalID: 1941767038500961274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fossoyeurmortleft_10
+      rect:
+        serializedVersion: 2
+        x: 2500
+        y: 30
+        width: 250
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44a94dc32b291a460800000000000000
+      internalID: 7251238169265609284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fossoyeurmortleft_11
+      rect:
+        serializedVersion: 2
+        x: 2746
+        y: 30
+        width: 250
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32728c407d9b115a0800000000000000
+      internalID: -6552251649698027741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fossoyeurmortleft_12
+      rect:
+        serializedVersion: 2
+        x: 3000
+        y: 30
+        width: 250
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49b700bdcbd63a2d0800000000000000
+      internalID: -3268648246645326956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fossoyeurmortleft_13
+      rect:
+        serializedVersion: 2
+        x: 3250
+        y: 30
+        width: 250
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01561daaf77ebeb80800000000000000
+      internalID: -8364337347397851888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fossoyeurmortleft_14
+      rect:
+        serializedVersion: 2
+        x: 3500
+        y: 30
+        width: 250
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12d9fc634fb0f2c50800000000000000
+      internalID: 6642541118914272545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
