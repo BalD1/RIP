@@ -44,13 +44,14 @@ GameObject:
   - component: {fileID: 1203229927889475117}
   - component: {fileID: 1203229927889475114}
   - component: {fileID: 1203229927889475112}
+  - component: {fileID: 456100045}
   m_Layer: 10
   m_Name: EnnemitriangleSque
   m_TagString: Ennemie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1203229927889475119
 Transform:
   m_ObjectHideFlags: 0
@@ -129,7 +130,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  hp: 0
   ennemiValues: {fileID: 11400000, guid: a1b801112546f1b4b8a5f6e5d647bf34, type: 2}
   bone: {fileID: 2086347429913944115, guid: 4aadb7e5d6259614f86e405787e277d1, type: 3}
   projectile: {fileID: 4202890148178478980, guid: 78254955402ee5c409665ce53070a5e6,
@@ -186,6 +186,25 @@ PolygonCollider2D:
       - {x: 0.5, y: -0.5}
       - {x: 0.5, y: -0.42}
       - {x: 0.04, y: 0.5}
+--- !u!95 &456100045
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1203229927889475110}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0508d28d9d722a941b68dfcd25a00e9c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6427812357707542524
 GameObject:
   m_ObjectHideFlags: 0
