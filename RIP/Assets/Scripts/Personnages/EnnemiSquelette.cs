@@ -15,8 +15,6 @@ public class EnnemiSquelette : EnnemiParent
 
     private float dashAttackTimer = 0;
 
-    private Vector2 jPos;
-
     void Start()
     {
         hp = ennemiValues.squeletteHp;//*Nmanches/valeur
@@ -33,34 +31,7 @@ public class EnnemiSquelette : EnnemiParent
 
     void Update()
     {
-        if(GameManager.Instance.PlayerPosition.y > (this.transform.position.y - 0.5f)
-            && GameManager.Instance.PlayerPosition.y < (this.transform.position.y + 0.5f))
-        {
-            jPos.y = 0;
-        }
-        else if(GameManager.Instance.PlayerPosition.y > this.transform.position.y)
-        {
-            jPos.y = 1;
-        }
-        else
-        {
-            jPos.y = -1;
-        }
         
-        if (GameManager.Instance.PlayerPosition.x > (this.transform.position.x - 0.5f)
-            && GameManager.Instance.PlayerPosition.x < (this.transform.position.x + 0.5f))
-        {
-            jPos.x = 0;
-        }
-        else if (GameManager.Instance.PlayerPosition.x > this.transform.position.x)
-        {
-            jPos.x = 1;
-        }
-        else
-        {
-            jPos.x = -1;
-        }
-
         if (this.hp <= 0)
         {
             MortEnnemi();
@@ -109,7 +80,35 @@ public class EnnemiSquelette : EnnemiParent
 
     void Attack()
     {
-        if(Random.Range(0, 600) == 0)
+        if (GameManager.Instance.PlayerPosition.y > (this.transform.position.y - 0.5f)
+            && GameManager.Instance.PlayerPosition.y < (this.transform.position.y + 0.5f))
+        {
+            jPos.y = 0;
+        }
+        else if (GameManager.Instance.PlayerPosition.y > this.transform.position.y)
+        {
+            jPos.y = 1;
+        }
+        else
+        {
+            jPos.y = -1;
+        }
+
+        if (GameManager.Instance.PlayerPosition.x > (this.transform.position.x - 0.5f)
+            && GameManager.Instance.PlayerPosition.x < (this.transform.position.x + 0.5f))
+        {
+            jPos.x = 0;
+        }
+        else if (GameManager.Instance.PlayerPosition.x > this.transform.position.x)
+        {
+            jPos.x = 1;
+        }
+        else
+        {
+            jPos.x = -1;
+        }
+
+        if (Random.Range(0, 600) == 0)
         {
             GameObject shot = Instantiate(projectile, this.transform.position, Quaternion.identity);
             shot.gameObject.GetComponent<Rigidbody2D>().AddForce(jPos*300);

@@ -1,0 +1,496 @@
+fileFormatVersion: 2
+guid: acb38806ac21e13489d6d8f8eff5104d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1683937204954013357
+    second: zombie_face-Sheet_0
+  - first:
+      213: 3056439354389914243
+    second: zombie_face-Sheet_1
+  - first:
+      213: -1396015019712114788
+    second: zombie_face-Sheet_2
+  - first:
+      213: -997176077675562783
+    second: zombie_face-Sheet_3
+  - first:
+      213: -2073321346132273351
+    second: zombie_face-Sheet_4
+  - first:
+      213: -3804150955874324114
+    second: zombie_face-Sheet_5
+  - first:
+      213: 8071277059187152683
+    second: zombie_face-Sheet_6
+  - first:
+      213: -1510369461111760145
+    second: zombie_face-Sheet_7
+  - first:
+      213: 565254596030302038
+    second: zombie_face-Sheet_8
+  - first:
+      213: -972288932257027027
+    second: zombie_face-Sheet_9
+  - first:
+      213: 1694628345031980453
+    second: zombie_face-Sheet_10
+  - first:
+      213: -4507486812255594863
+    second: zombie_face-Sheet_11
+  - first:
+      213: -4034994721078513603
+    second: zombie_face-Sheet_12
+  - first:
+      213: 5952034746843836158
+    second: zombie_face-Sheet_13
+  - first:
+      213: -2528767042813140577
+    second: zombie_face-Sheet_14
+  - first:
+      213: 3140734670036022890
+    second: zombie_face-Sheet_15
+  - first:
+      213: 8994718195254609759
+    second: zombie_face-Sheet_16
+  - first:
+      213: -4889943377787560140
+    second: zombie_face-Sheet_17
+  - first:
+      213: 3227667026157920551
+    second: zombie_face-Sheet_18
+  - first:
+      213: -6920124297596758097
+    second: zombie_face-Sheet_19
+  - first:
+      213: 170234808526658402
+    second: zombie_face-Sheet_20
+  - first:
+      213: -2747635020726028417
+    second: zombie_face-Sheet_21
+  - first:
+      213: -2269831623291765923
+    second: zombie_face-Sheet_22
+  - first:
+      213: -7038814445066892186
+    second: zombie_face-Sheet_23
+  - first:
+      213: -1947733742707230087
+    second: zombie_face-Sheet_24
+  - first:
+      213: -5539765340705664046
+    second: zombie_face-Sheet_25
+  - first:
+      213: -3699831700458182933
+    second: zombie_face-Sheet_26
+  - first:
+      213: 1460051398866067134
+    second: zombie_face-Sheet_27
+  - first:
+      213: 1347433852666065201
+    second: zombie_face-Sheet_28
+  - first:
+      213: -4085081220204923210
+    second: zombie_face-Sheet_29
+  - first:
+      213: -6850475410326929609
+    second: zombie_face-Sheet_30
+  - first:
+      213: 3960852653733194021
+    second: zombie_face-Sheet_31
+  - first:
+      213: -8184203365769776139
+    second: zombie_face-Sheet_32
+  - first:
+      213: -3030202537658317193
+    second: zombie_face-Sheet_33
+  - first:
+      213: -5960299834775180192
+    second: zombie_face-Sheet_34
+  - first:
+      213: -1028715774020475167
+    second: zombie_face-Sheet_35
+  - first:
+      213: -5323929098461483401
+    second: zombie_face-Sheet_36
+  - first:
+      213: -3998835576265911025
+    second: zombie_face-Sheet_37
+  - first:
+      213: 6320737699782770896
+    second: zombie_face-Sheet_38
+  - first:
+      213: -6331238689826235813
+    second: zombie_face-Sheet_39
+  - first:
+      213: -6082946347171214108
+    second: zombie_face-Sheet_40
+  - first:
+      213: -7447802007903793216
+    second: zombie_face-Sheet_41
+  - first:
+      213: -6232081766456057563
+    second: zombie_face-Sheet_42
+  - first:
+      213: -8145658014061573112
+    second: zombie_face-Sheet_43
+  - first:
+      213: 7477995692561194514
+    second: zombie_face-Sheet_44
+  - first:
+      213: -75398633896287490
+    second: zombie_face-Sheet_45
+  - first:
+      213: -287270639535289660
+    second: zombie_face-Sheet_46
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: zombie_face-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 150
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 351e6a2b80471a8e0800000000000000
+      internalID: -1683937204954013357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zombie_face-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 0
+        width: 150
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3826feb2667aa6a20800000000000000
+      internalID: 3056439354389914243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zombie_face-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 0
+        width: 150
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9f03f86cbb50ace0800000000000000
+      internalID: -1396015019712114788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zombie_face-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 0
+        width: 150
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e871aff3a15922f0800000000000000
+      internalID: -997176077675562783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zombie_face-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 0
+        width: 150
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9371d8a78351a33e0800000000000000
+      internalID: -2073321346132273351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zombie_face-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 0
+        width: 150
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e61f5236cd0f43bc0800000000000000
+      internalID: -3804150955874324114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zombie_face-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 0
+        width: 150
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b271c9cc8bfe20070800000000000000
+      internalID: 8071277059187152683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zombie_face-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 1050
+        y: 0
+        width: 150
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fead5d63af61a0be0800000000000000
+      internalID: -1510369461111760145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zombie_face-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 0
+        width: 150
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6570b0c6f0038d700800000000000000
+      internalID: 565254596030302038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zombie_face-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 1350
+        y: 0
+        width: 150
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2ca6c51e5cb182f0800000000000000
+      internalID: -972288932257027027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zombie_face-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 0
+        width: 150
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a570f35087848710800000000000000
+      internalID: 1694628345031980453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zombie_face-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 1650
+        y: 0
+        width: 150
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1965fbd30a03271c0800000000000000
+      internalID: -4507486812255594863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

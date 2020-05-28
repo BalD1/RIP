@@ -487,6 +487,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &216483655 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6586836283308708217, guid: a03838d7636a64f42938120f07f54d19,
+    type: 3}
+  m_PrefabInstance: {fileID: 6586836282525534318}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &216483656
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 216483655}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7901386384e0324478639b44ed8eda32, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!223 &227450636 stripped
 Canvas:
   m_CorrespondingSourceObject: {fileID: 3548769210391893287, guid: 5a45624e1ea40d244b9e417e153fc88c,
@@ -1080,6 +1105,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnnemitriangleSque
       objectReference: {fileID: 0}
+    - target: {fileID: 1203229927889475110, guid: 83a4c87e4e08eb041b96b71751cf6385,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1203229927889475119, guid: 83a4c87e4e08eb041b96b71751cf6385,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1144,15 +1174,35 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6586836283308708214, guid: a03838d7636a64f42938120f07f54d19,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6586836283308708214, guid: a03838d7636a64f42938120f07f54d19,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6586836283308708214, guid: a03838d7636a64f42938120f07f54d19,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6586836283308708214, guid: a03838d7636a64f42938120f07f54d19,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6586836283308708215, guid: a03838d7636a64f42938120f07f54d19,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.49
+      value: 3.73
       objectReference: {fileID: 0}
     - target: {fileID: 6586836283308708215, guid: a03838d7636a64f42938120f07f54d19,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.51
+      value: -0.37
       objectReference: {fileID: 0}
     - target: {fileID: 6586836283308708215, guid: a03838d7636a64f42938120f07f54d19,
         type: 3}
