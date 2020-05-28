@@ -351,7 +351,7 @@ public class UIManager : MonoBehaviour
     private void GameOver()
     {
         this.HUD.SetActive(false);
-        this.gameOverScreen.SetActive(false);
+        this.gameOverScreen.SetActive(true);
         Time.timeScale = 0;
     }
 
