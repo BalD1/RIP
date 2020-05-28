@@ -6,7 +6,7 @@ using UnityEngine.Experimental.Rendering.LWRP;
 public class DayNightCycle : MonoBehaviour
 {
     private Light sunLight;
-    private float timer = 0;
+    public static float dayNightTimer = 0;
     private bool Day = true;
     public UnityEngine.Experimental.Rendering.Universal.Light2D SUN;
 
@@ -19,7 +19,7 @@ public class DayNightCycle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timer >= 44.0f)
+        if (dayNightTimer >= 44.0f)
         {
             if (Day == true)
             {
@@ -30,9 +30,9 @@ public class DayNightCycle : MonoBehaviour
                 SUN.intensity += 0.0020f;
             }
         }
-        if (timer <= 50.0f) // Valeur a changer pour changer le temps du cycle jour nuit
+        if (dayNightTimer <= 50.0f) // Valeur a changer pour changer le temps du cycle jour nuit
         {
-            timer += Time.deltaTime;
+            dayNightTimer += Time.deltaTime;
             if(Day == true)
             {
                 if(SUN.intensity < 0.9f)
@@ -51,14 +51,14 @@ public class DayNightCycle : MonoBehaviour
         else if (Day == true)
         {
             GameManager.Instance.SetGameTime(GameManager.GameTime.Night);
-            timer = 0;
+            dayNightTimer = 0;
             Day = false;
 
         }
         else if (Day == false)
         {
             GameManager.Instance.SetGameTime(GameManager.GameTime.Day);
-            timer = 0;
+            dayNightTimer = 0;
             Day = true;
         }
     }
