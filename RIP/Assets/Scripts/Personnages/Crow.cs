@@ -257,7 +257,7 @@ public class Crow : MonoBehaviour
 
     private void CompleteQuest()
     {
-        Debug.Log("Quest Completed");
+        UIManager.Instance.DisplayFeedbackText("quest completed");
         RewardPlayer();
         dialogueBox.gameObject.SetActive(false);
         displayQuestNeeds = false;

@@ -263,7 +263,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.A))
         {
-            GameManager.Instance.DamagePlayer(5);
+            UIManager.Instance.DisplayFeedbackText("Bite");
         }
         if (Input.GetKeyDown(KeyCode.H))
         {
@@ -564,6 +564,7 @@ public class Player : MonoBehaviour
             particles.GetComponent<ParticleSystem>().Play();
         }
         UIManager.Instance.ChangeLevelDisplay();
+        UIManager.Instance.DisplayFeedbackText("level up");
     }
 
     // ------------------------ Values update --------------------------

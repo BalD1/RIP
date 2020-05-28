@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.EventSystems;
 
 public class UIManager : MonoBehaviour
@@ -13,6 +14,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text ectoplasmDisplay;
     [SerializeField] private Text score;
     [SerializeField] private Text level;
+    [SerializeField] private TextMeshProUGUI feedbackText;
 
     [SerializeField] private Image hpBar;
     [SerializeField] private Image xpBar;
@@ -30,8 +32,10 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private int automaticPauseTime;
     [SerializeField] private int flowerCost;
+    [SerializeField] private int feedbackTextStopTime;
 
     [SerializeField] private Animator itemsHUDanimator;
+    [SerializeField] private Animator feedbackTextAnimator;
 
     private int compTest;
     private int fleshCost;
@@ -88,6 +92,7 @@ public class UIManager : MonoBehaviour
         destroyBubble.enabled = false;
         notEnoughRessources = false;
         upgradeBubbleDisplay = false;
+        feedbackText.enabled = false;
         destroyBubbleDisplay = false;
         refundFlag = false;
         itemsHUDanimator.SetBool("Show", true);
@@ -329,6 +334,36 @@ public class UIManager : MonoBehaviour
     public bool WasHUDHidden { get; set; }
 
     public bool BuildDisplayActive { get; set; }
+
+    public void DisplayFeedbackText(string text)
+    {
+        float waitTime = (GameManager.Instance.GetAnimationTimes(feedbackTextAnimator, "FeedbackText") * 2);
+        if (feedbackTextAnimator.GetBool("Play") == false)
+        {
+            feedbackText.enabled = true;
+            feedbackText.text = text;
+            feedbackTextAnimator.SetBool("Play", true);
+            StartCoroutine(WaitForAnimationEnd((waitTime / 2), ""));
+        }
+        else
+        {
+            StartCoroutine(WaitForAnimationEnd(waitTime, text));
+        }
+    }
+
+    IEnumerator WaitForAnimationEnd(float time, string text)
+    {
+        yield return new WaitForSeconds(time);
+
+        if (text == "")
+        {
+            feedbackTextAnimator.SetBool("Play", false);
+        }
+        else
+        {
+            DisplayFeedbackText(text);
+        }
+    }
 
     // -------------------- Screens ------------------
 
