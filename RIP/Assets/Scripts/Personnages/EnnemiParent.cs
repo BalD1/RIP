@@ -1,15 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class EnnemiParent : MonoBehaviour
 {
-    [SerializeField]
     protected Animator animator;
 
+    protected GameObject damageText;
 
     protected float speed;
     protected float invincibleTime;
+    protected float damageTextTime;
 
     protected int hp;
     protected int attack;
@@ -54,6 +56,16 @@ public class EnnemiParent : MonoBehaviour
     {
         hp -= GameManager.Instance.SendDamagesEnnemi();
         Invincible();
+        GameObject damage = Instantiate(damageText, this.transform);
+        damage.GetComponentInChildren<TextMeshProUGUI>().text = "- " + GameManager.Instance.SendDamagesEnnemi().ToString();
+        StartCoroutine(DamageText((damageTextTime), damage));
+    }
+
+    IEnumerator DamageText(float time, GameObject text)
+    {
+        yield return new WaitForSeconds(time);
+
+        Destroy(text);
     }
 
     private void Invincible()

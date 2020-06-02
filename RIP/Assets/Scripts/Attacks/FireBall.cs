@@ -51,6 +51,7 @@ public class FireBall : MonoBehaviour
 
     private void DestroyThis()
     {
+        this.gameObject.GetComponent<Collider2D>().enabled = false;
         thisBody.velocity = Vector2.zero;
         thisBody.isKinematic = true;
         animator.SetTrigger("Explosion");

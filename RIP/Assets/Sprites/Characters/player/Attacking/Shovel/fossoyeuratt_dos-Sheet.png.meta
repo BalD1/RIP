@@ -1,0 +1,586 @@
+fileFormatVersion: 2
+guid: cd6268704f305f340a3cd0bef43bbcfa
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -724572016953430312
+    second: fossoyeuratt_dos-Sheet_0
+  - first:
+      213: 8005400624105831274
+    second: fossoyeuratt_dos-Sheet_1
+  - first:
+      213: 4732818723733062396
+    second: fossoyeuratt_dos-Sheet_2
+  - first:
+      213: -7866549952753042103
+    second: fossoyeuratt_dos-Sheet_3
+  - first:
+      213: 6385954962161173944
+    second: fossoyeuratt_dos-Sheet_4
+  - first:
+      213: -5780256172304181333
+    second: fossoyeuratt_dos-Sheet_5
+  - first:
+      213: 209645758727219425
+    second: fossoyeuratt_dos-Sheet_6
+  - first:
+      213: 7224142533193898408
+    second: fossoyeuratt_dos-Sheet_7
+  - first:
+      213: 8213128141351399943
+    second: fossoyeuratt_dos-Sheet_8
+  - first:
+      213: -6258028055615395539
+    second: fossoyeuratt_dos-Sheet_9
+  - first:
+      213: 8251218864940338436
+    second: fossoyeuratt_dos-Sheet_10
+  - first:
+      213: -1168370160089027941
+    second: fossoyeuratt_dos-Sheet_11
+  - first:
+      213: 1475857355278991468
+    second: fossoyeuratt_dos-Sheet_12
+  - first:
+      213: -2385576591911462751
+    second: fossoyeuratt_dos-Sheet_13
+  - first:
+      213: -7206381372655903727
+    second: fossoyeuratt_dos-Sheet_14
+  - first:
+      213: 1987852770018039964
+    second: fossoyeuratt_dos-Sheet_15
+  - first:
+      213: -7073289107864336745
+    second: fossoyeuratt_dos-Sheet_16
+  - first:
+      213: -344203504067191947
+    second: fossoyeuratt_dos-Sheet_17
+  - first:
+      213: -8724479602193509888
+    second: fossoyeuratt_dos-Sheet_18
+  - first:
+      213: 6451111513556139419
+    second: fossoyeuratt_dos-Sheet_19
+  - first:
+      213: 2394082981437280522
+    second: fossoyeuratt_dos-Sheet_20
+  - first:
+      213: 2375962500481082604
+    second: fossoyeuratt_dos-Sheet_21
+  - first:
+      213: 5587489403979639101
+    second: fossoyeuratt_dos-Sheet_22
+  - first:
+      213: -772728741411905743
+    second: fossoyeuratt_dos-Sheet_23
+  - first:
+      213: -1504421278732543018
+    second: fossoyeuratt_dos-Sheet_24
+  - first:
+      213: 3998012143073885688
+    second: fossoyeuratt_dos-Sheet_25
+  - first:
+      213: -6045064770711583934
+    second: fossoyeuratt_dos-Sheet_26
+  - first:
+      213: -3885089749924613794
+    second: fossoyeuratt_dos-Sheet_27
+  - first:
+      213: -4572874181622191187
+    second: fossoyeuratt_dos-Sheet_28
+  - first:
+      213: 5534982193382761490
+    second: fossoyeuratt_dos-Sheet_29
+  - first:
+      213: 3865150552748909418
+    second: fossoyeuratt_dos-Sheet_30
+  - first:
+      213: -7360694643678109472
+    second: fossoyeuratt_dos-Sheet_31
+  - first:
+      213: -1402014255740647432
+    second: fossoyeuratt_dos-Sheet_32
+  - first:
+      213: -6511106738044204318
+    second: fossoyeuratt_dos-Sheet_33
+  - first:
+      213: -6849950526094740183
+    second: fossoyeuratt_dos-Sheet_34
+  - first:
+      213: -3383027795451778614
+    second: fossoyeuratt_dos-Sheet_35
+  - first:
+      213: 6434965751869771721
+    second: fossoyeuratt_dos-Sheet_36
+  - first:
+      213: -5025500054958163529
+    second: fossoyeuratt_dos-Sheet_37
+  - first:
+      213: -4504479836525685380
+    second: fossoyeuratt_dos-Sheet_38
+  - first:
+      213: 6789347596080710937
+    second: fossoyeuratt_dos-Sheet_39
+  - first:
+      213: 1734456209918623430
+    second: fossoyeuratt_dos-Sheet_40
+  - first:
+      213: -4344205335216090371
+    second: fossoyeuratt_dos-Sheet_41
+  - first:
+      213: 5152482703690193736
+    second: fossoyeuratt_dos-Sheet_42
+  - first:
+      213: -3068640048554748750
+    second: fossoyeuratt_dos-Sheet_43
+  - first:
+      213: 979088762593742183
+    second: fossoyeuratt_dos-Sheet_44
+  - first:
+      213: 8396866946482659867
+    second: fossoyeuratt_dos-Sheet_45
+  - first:
+      213: 5411004429274514449
+    second: fossoyeuratt_dos-Sheet_46
+  - first:
+      213: 3432189631039234990
+    second: fossoyeuratt_dos-Sheet_47
+  - first:
+      213: 6650240248529100139
+    second: fossoyeuratt_dos-Sheet_48
+  - first:
+      213: 8877635520432524556
+    second: fossoyeuratt_dos-Sheet_49
+  - first:
+      213: -7592021615238883162
+    second: fossoyeuratt_dos-Sheet_50
+  - first:
+      213: -2410491258235299834
+    second: fossoyeuratt_dos-Sheet_51
+  - first:
+      213: -7128805958899921016
+    second: fossoyeuratt_dos-Sheet_52
+  - first:
+      213: 6829579601011205952
+    second: fossoyeuratt_dos-Sheet_53
+  - first:
+      213: 4120996726801798904
+    second: fossoyeuratt_dos-Sheet_54
+  - first:
+      213: -7102766310848460262
+    second: fossoyeuratt_dos-Sheet_55
+  - first:
+      213: 6801491475832691935
+    second: fossoyeuratt_dos-Sheet_56
+  - first:
+      213: 672207047942913596
+    second: fossoyeuratt_dos-Sheet_57
+  - first:
+      213: 1497594012331218040
+    second: fossoyeuratt_dos-Sheet_58
+  - first:
+      213: 1049823236750046154
+    second: fossoyeuratt_dos-Sheet_59
+  - first:
+      213: -1277701264729781645
+    second: fossoyeuratt_dos-Sheet_60
+  - first:
+      213: -495427995910072989
+    second: fossoyeuratt_dos-Sheet_61
+  - first:
+      213: 5573734869726296408
+    second: fossoyeuratt_dos-Sheet_62
+  - first:
+      213: -6869579681072566081
+    second: fossoyeuratt_dos-Sheet_63
+  - first:
+      213: -853858965624983632
+    second: fossoyeuratt_dos-Sheet_64
+  - first:
+      213: 2525497275264413048
+    second: fossoyeuratt_dos-Sheet_65
+  - first:
+      213: 3387094852851846393
+    second: fossoyeuratt_dos-Sheet_66
+  - first:
+      213: -6484612686120891743
+    second: fossoyeuratt_dos-Sheet_67
+  - first:
+      213: -6206784144625482247
+    second: fossoyeuratt_dos-Sheet_68
+  - first:
+      213: -1563832861462510078
+    second: fossoyeuratt_dos-Sheet_69
+  - first:
+      213: -1150900931576097377
+    second: fossoyeuratt_dos-Sheet_70
+  - first:
+      213: -8441863532287498693
+    second: fossoyeuratt_dos-Sheet_71
+  - first:
+      213: -4629961657956893312
+    second: fossoyeuratt_dos-Sheet_72
+  - first:
+      213: 200848363177321607
+    second: fossoyeuratt_dos-Sheet_73
+  - first:
+      213: -2564923865152627882
+    second: fossoyeuratt_dos-Sheet_74
+  - first:
+      213: -5617131373375522041
+    second: fossoyeuratt_dos-Sheet_75
+  - first:
+      213: 7737646864852012325
+    second: fossoyeuratt_dos-Sheet_76
+  - first:
+      213: -3618997020336231353
+    second: fossoyeuratt_dos-Sheet_0
+  - first:
+      213: -4029510864448351277
+    second: fossoyeuratt_dos-Sheet_1
+  - first:
+      213: 4952681803946188527
+    second: fossoyeuratt_dos-Sheet_2
+  - first:
+      213: -6901777075488421172
+    second: fossoyeuratt_dos-Sheet_3
+  - first:
+      213: -3561846614881131393
+    second: fossoyeuratt_dos-Sheet_4
+  - first:
+      213: -3006847929714452765
+    second: fossoyeuratt_dos-Sheet_5
+  - first:
+      213: -416896723928912958
+    second: fossoyeuratt_dos-Sheet_6
+  - first:
+      213: -6928071975697342084
+    second: fossoyeuratt_dos-Sheet_7
+  - first:
+      213: -3786025626008461120
+    second: fossoyeuratt_dos-Sheet_8
+  - first:
+      213: 5629892381927006848
+    second: fossoyeuratt_dos-Sheet_9
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: fossoyeuratt_dos-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 300
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74c69af526db6cdc0800000000000000
+      internalID: -3618997020336231353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fossoyeuratt_dos-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 0
+        width: 300
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d39af1d73d4418c0800000000000000
+      internalID: -4029510864448351277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fossoyeuratt_dos-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 0
+        width: 300
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: feed0c93cd57bb440800000000000000
+      internalID: 4952681803946188527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fossoyeuratt_dos-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 0
+        width: 300
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cca04982156f730a0800000000000000
+      internalID: -6901777075488421172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fossoyeuratt_dos-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 0
+        width: 300
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f74259f0067c19ec0800000000000000
+      internalID: -3561846614881131393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fossoyeuratt_dos-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 0
+        width: 300
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e650c72db78546d0800000000000000
+      internalID: -3006847929714452765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fossoyeuratt_dos-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 0
+        width: 300
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cb613e63a2e63af0800000000000000
+      internalID: -416896723928912958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fossoyeuratt_dos-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 2100
+        y: 0
+        width: 300
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c71a83e9e3b8adf90800000000000000
+      internalID: -6928071975697342084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fossoyeuratt_dos-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 0
+        width: 300
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c06d3b90c5557bc0800000000000000
+      internalID: -3786025626008461120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fossoyeuratt_dos-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 2700
+        y: 0
+        width: 300
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 082ef6cfa45612e40800000000000000
+      internalID: 5629892381927006848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

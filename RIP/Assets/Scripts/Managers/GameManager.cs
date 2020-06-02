@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private bool tuto;
 
+    [SerializeField] private GameObject healthChangeText;
+
     private GameState currentState;
     private GameTime currentTime;
 
@@ -123,6 +125,10 @@ public class GameManager : MonoBehaviour
 
     public Vector3 CrowPositition { get; set; }
 
+    public int GainedShovelDamages { get; set; }
+
+    public int GainedFireballDamages { get; set; }
+
     // ------------------  Ennemi Interactions ---------------
 
     public void DamageEnnemi(int damagesEnnemi)
@@ -173,6 +179,14 @@ public class GameManager : MonoBehaviour
     }
 
     public bool MouseIsOverSomething { get; set; }
+
+    public GameObject HealthChangeText
+    {
+        get
+        {
+            return healthChangeText;
+        }
+    }
 
     //-------------- Quit Game ------------
 

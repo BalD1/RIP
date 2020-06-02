@@ -17,6 +17,8 @@ public class EnnemiSquelette : EnnemiParent
 
     void Start()
     {
+        base.damageText = GameManager.Instance.HealthChangeText;
+        base.damageTextTime = GameManager.Instance.GetAnimationTimes(damageText.GetComponentInChildren<Animator>(), "Health change");
         hp = ennemiValues.squeletteHp;//*Nmanches/valeur
         speed = ennemiValues.squeletteSpd;
         attack = ennemiValues.squeletteAtk;
@@ -131,7 +133,7 @@ public class EnnemiSquelette : EnnemiParent
 
         if (shovel != null || fireball != null)
         {
-            if (!invincible)
+            if (!invincible && GameManager.Instance.SendDamagesEnnemi() > 0)
             {
                 Damages();
             }

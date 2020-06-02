@@ -9,11 +9,14 @@ public class EnnemiSlime : EnnemiParent
 
     [SerializeField]
     private GameObject slime;
+    
 
     private float dashAttackTimer = 0;
 
     void Start()
     {
+        base.damageText = GameManager.Instance.HealthChangeText;
+        base.damageTextTime = GameManager.Instance.GetAnimationTimes(damageText.GetComponentInChildren<Animator>(), "Health change");
         hp = ennemiValues.slimeHp;//*Nmanches/valeur
         speed = ennemiValues.slimeSpd;
         attack = ennemiValues.slimeAtk;
@@ -108,7 +111,7 @@ public class EnnemiSlime : EnnemiParent
 
         if (shovel != null || fireball != null)
         {
-            if (!invincible)
+            if (!invincible && GameManager.Instance.SendDamagesEnnemi() > 0)
             {
                 Damages();
             }

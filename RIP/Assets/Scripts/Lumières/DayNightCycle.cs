@@ -30,36 +30,39 @@ public class DayNightCycle : MonoBehaviour
                 SUN.intensity += 0.0020f;
             }
         }
-        if (dayNightTimer <= 50.0f) // Valeur a changer pour changer le temps du cycle jour nuit
+        if (!GameManager.Instance.Tuto)
         {
-            dayNightTimer += Time.deltaTime;
-            if(Day == true)
+            if (dayNightTimer <= 50.0f) // Valeur a changer pour changer le temps du cycle jour nuit
             {
-                if(SUN.intensity < 0.9f)
+                dayNightTimer += Time.deltaTime;
+                if (Day == true)
                 {
-                    SUN.intensity += 0.001f;
+                    if (SUN.intensity < 0.9f)
+                    {
+                        SUN.intensity += 0.001f;
+                    }
+                }
+                else
+                {
+                    if (SUN.intensity > 0.05f)
+                    {
+                        SUN.intensity -= 0.001f;
+                    }
                 }
             }
-            else
+            else if (Day == true)
             {
-                if(SUN.intensity > 0.05f)
-                {
-                    SUN.intensity -= 0.001f;
-                }
-            }
-        }
-        else if (Day == true)
-        {
-            GameManager.Instance.SetGameTime(GameManager.GameTime.Night);
-            dayNightTimer = 0;
-            Day = false;
+                GameManager.Instance.SetGameTime(GameManager.GameTime.Night);
+                dayNightTimer = 0;
+                Day = false;
 
-        }
-        else if (Day == false)
-        {
-            GameManager.Instance.SetGameTime(GameManager.GameTime.Day);
-            dayNightTimer = 0;
-            Day = true;
+            }
+            else if (Day == false)
+            {
+                GameManager.Instance.SetGameTime(GameManager.GameTime.Day);
+                dayNightTimer = 0;
+                Day = true;
+            }
         }
     }
 }

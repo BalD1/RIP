@@ -18,11 +18,13 @@ public class Bars : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void OnPointerEnter(PointerEventData pointerEvent)
     {
         this.text.gameObject.SetActive(true);
+        UIManager.Instance.StatsWindow(true);
     }
 
     public void OnPointerExit(PointerEventData pointerEvent)
     {
         this.text.gameObject.SetActive(false);
+        UIManager.Instance.StatsWindow(false);
     }
 
     private void Update()

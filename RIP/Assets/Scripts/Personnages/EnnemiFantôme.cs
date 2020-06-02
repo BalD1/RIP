@@ -14,6 +14,8 @@ public class EnnemiFantôme : EnnemiParent
 
     void Start()
     {
+        base.damageText = GameManager.Instance.HealthChangeText;
+        base.damageTextTime = GameManager.Instance.GetAnimationTimes(damageText.GetComponentInChildren<Animator>(), "Health change");
         hp = ennemiValues.fantômeHp;//*Nmanches/valeur
         speed = ennemiValues.fantômeSpd;
         attack = ennemiValues.fantômeAtk;
@@ -99,7 +101,7 @@ public class EnnemiFantôme : EnnemiParent
 
         if (shovel != null || fireball != null)
         {
-            if (!invincible)
+            if (!invincible && GameManager.Instance.SendDamagesEnnemi() > 0)
             {
                 Damages();
             }

@@ -88,7 +88,6 @@ public class Crow : MonoBehaviour
 
         if (tuto && GameManager.Instance.SendGameTime() == GameManager.GameTime.Night)
         {
-            tuto = false;
             haveAQuest = false;
         }
         if (tuto && GameManager.Instance.SendGameTime() == GameManager.GameTime.Day && playerIsOnThis)

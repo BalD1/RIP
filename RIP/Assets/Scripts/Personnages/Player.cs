@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -37,6 +38,7 @@ public class Player : MonoBehaviour
     private float fireballAttackAnimationTimer;
     private float deathAnimationTime;
     private float delayedLaunch;
+    private float damageTextTime;
 
     private bool invincible;
     private bool canLaunchFireBall;
@@ -54,6 +56,8 @@ public class Player : MonoBehaviour
     private PlayerMode playerMode;
 
     private Shovel shovel;
+
+    private GameObject damageText;
 
     private enum PlayerState
     {
@@ -74,6 +78,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        this.damageText = GameManager.Instance.HealthChangeText;
         GameManager.Instance.SetGameState(GameManager.GameState.InGame); // TEST ONLY
         this.playerState = PlayerState.Idle;
         this.InstantiateStats();
@@ -86,6 +91,8 @@ public class Player : MonoBehaviour
         shovelAttackAnimationTime = GameManager.Instance.GetAnimationTimes(playerAnimator, "SBack");
         fireballAttackAnimationTime = GameManager.Instance.GetAnimationTimes(playerAnimator, "FBack");
         deathAnimationTime = GameManager.Instance.GetAnimationTimes(playerAnimator, "Dying");
+        UIManager.Instance.ChangeStatsDisplay();
+        damageTextTime = GameManager.Instance.GetAnimationTimes(damageText.GetComponentInChildren<Animator>(), "Health change");
     }
 
     private void FixedUpdate()
@@ -408,7 +415,18 @@ public class Player : MonoBehaviour
             Invincible();
             invincible = true;
         }
+        GameObject damage = Instantiate(damageText, this.transform);
+        damage.GetComponentInChildren<TextMeshProUGUI>().text = "- " + damagesReceived.ToString();
+        StartCoroutine(DamageText((damageTextTime), damage));
 
+
+    }
+
+    IEnumerator DamageText(float time, GameObject text)
+    {
+        yield return new WaitForSeconds(time);
+
+        Destroy(text);
     }
 
     private void Invincible()
@@ -483,7 +501,6 @@ public class Player : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Mouse1))
             {
-                shovel.Activate(whereIsLooking);
                 this.playerState = PlayerState.ShovelAttacking;
                 playerAnimator.SetBool("ShovelAttacking", true);
                 shovelAttackTimer = shovelAttackTime;
@@ -555,9 +572,14 @@ public class Player : MonoBehaviour
         playerValues.maxHP = Mathf.FloorToInt( (float) ( (playerValues.level - 1) + (playerValues.maxHP - (playerValues.maxHP * 0.9)) ) * 
                                               (float) ( (playerValues.level - 1) - ((playerValues.level - 1) * 0.9) ) + playerValues.baseMaxHP );
 
+        int pastDamages = playerValues.shovelDamages;
         playerValues.shovelDamages = Mathf.FloorToInt((playerValues.shovelDamages + (playerValues.level / 2.5f)) - (playerValues.level / playerValues.baseShovelDamages));
+        GameManager.Instance.GainedShovelDamages = playerValues.shovelDamages - pastDamages;
 
+        pastDamages = playerValues.fireBallDamages;
         playerValues.fireBallDamages = Mathf.RoundToInt((playerValues.fireBallDamages + (playerValues.level / 2)) - (playerValues.level / 2.5f));
+        GameManager.Instance.GainedFireballDamages = playerValues.fireBallDamages - pastDamages;
+
         playerValues.HpValue = playerValues.maxHP;
         foreach(GameObject particles in levelUpParticles)
         {

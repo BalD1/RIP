@@ -14,6 +14,8 @@ public class EnnemiZombie : EnnemiParent
 
     void Start()
     {
+        base.damageText = GameManager.Instance.HealthChangeText;
+        base.damageTextTime = GameManager.Instance.GetAnimationTimes(damageText.GetComponentInChildren<Animator>(), "Health change");
         hp = ennemiValues.zombieHp;//*Nmanches/valeur
         speed = ennemiValues.zombieSpd;
         attack = ennemiValues.zombieAtk;
@@ -101,7 +103,7 @@ public class EnnemiZombie : EnnemiParent
 
         if (shovel != null || fireball != null)
         {
-            if (!invincible)
+            if (!invincible && GameManager.Instance.SendDamagesEnnemi() > 0)
             {
                 Damages();
             }

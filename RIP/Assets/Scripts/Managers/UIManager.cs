@@ -15,6 +15,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text score;
     [SerializeField] private Text level;
     [SerializeField] private TextMeshProUGUI feedbackText;
+    [SerializeField] private TextMeshProUGUI shovelDamages;
+    [SerializeField] private TextMeshProUGUI fireballDamages;
 
     [SerializeField] private Image hpBar;
     [SerializeField] private Image xpBar;
@@ -36,6 +38,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private Animator itemsHUDanimator;
     [SerializeField] private Animator feedbackTextAnimator;
+    [SerializeField] private Animator statsWindowAnimator;
 
     private int compTest;
     private int fleshCost;
@@ -344,6 +347,8 @@ public class UIManager : MonoBehaviour
             feedbackText.text = text;
             feedbackTextAnimator.SetBool("Play", true);
             StartCoroutine(WaitForAnimationEnd((waitTime / 2), ""));
+            ShowGainedDamages();
+            StatsWindow(true);
         }
         else
         {
@@ -358,11 +363,30 @@ public class UIManager : MonoBehaviour
         if (text == "")
         {
             feedbackTextAnimator.SetBool("Play", false);
+            ChangeStatsDisplay();
+            StatsWindow(false);
         }
         else
         {
             DisplayFeedbackText(text);
         }
+    }
+
+    public void ShowGainedDamages()
+    {
+        this.shovelDamages.text += " + " + GameManager.Instance.GainedShovelDamages;
+        this.fireballDamages.text += " + " + GameManager.Instance.GainedFireballDamages;
+    }
+
+    public void ChangeStatsDisplay()
+    {
+        this.shovelDamages.text = "Shovel : " + playerValues.shovelDamages;
+        this.fireballDamages.text = "Fireball : " + playerValues.fireBallDamages;
+    }
+
+    public void StatsWindow(bool show)
+    {
+        statsWindowAnimator.SetBool("Show", show);
     }
 
     // -------------------- Screens ------------------
