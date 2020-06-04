@@ -15,6 +15,7 @@ public class EnnemiSlime : EnnemiParent
 
     void Start()
     {
+        base.fleePoint = this.transform.position;
         base.damageText = GameManager.Instance.HealthChangeText;
         base.damageTextTime = GameManager.Instance.GetAnimationTimes(damageText.GetComponentInChildren<Animator>(), "Health change");
         hp = ennemiValues.slimeHp;//*Nmanches/valeur
@@ -22,6 +23,15 @@ public class EnnemiSlime : EnnemiParent
         attack = ennemiValues.slimeAtk;
         level = ennemiValues.level;
         dropXP = ennemiValues.dropXP;
+        if (GameManager.Instance.DayCount > this.level)
+        {
+            base.LevelUp();
+            ennemiValues.level = this.level;
+            ennemiValues.slimeHp = this.hp;
+            ennemiValues.slimeSpd = this.speed;
+            ennemiValues.slimeAtk = this.attack;
+            ennemiValues.dropXP = this.dropXP;
+        }
         rigid2d = this.GetComponent<Rigidbody2D>();
         hitbox = this.GetComponent<PolygonCollider2D>();
         invincibleTime = ennemiValues.invincibleTime;
@@ -31,7 +41,11 @@ public class EnnemiSlime : EnnemiParent
 
     void Update()
     {
-        Attack();
+        base.FleeAtDay();
+        if (!flee)
+        {
+            Attack();
+        }
 
         if (GameManager.Instance.PlayerPosition.x > this.transform.position.x)
         {
@@ -50,17 +64,8 @@ public class EnnemiSlime : EnnemiParent
         {
             InvincibleClipping();
         }
+        
 
-        if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Day)
-        {
-            dayFlag = false;
-        }
-        else if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Night && !dayFlag)
-        {
-            LevelUp();
-            dayFlag = true;
-        }
-    
 
     }
 
@@ -69,11 +74,11 @@ public class EnnemiSlime : EnnemiParent
         dashAttackTimer += Time.deltaTime;
         if (dashAttackTimer >= 1.5f && dashAttackTimer <= 2)
         {
-            this.speed = 5f;
+            this.speed = ennemiValues.slimeSpd * 2;
         }
         else if (dashAttackTimer >= 2)
         {
-            this.speed = 0;
+            this.speed = ennemiValues.slimeSpd;
             dashAttackTimer = 0;
             preparingAttack = false;
         }

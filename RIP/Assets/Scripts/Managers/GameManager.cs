@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject healthChangeText;
 
+    [SerializeField] private EnnemiValues ennemiValues;
+
     private GameState currentState;
     private GameTime currentTime;
 
@@ -45,6 +47,7 @@ public class GameManager : MonoBehaviour
     {
         this.currentTime = GameTime.Day;
         DayCount = 1;
+        ennemiValues.InitializeStats();
     }
 
     // -------------------  GameState & GameTime ----------------

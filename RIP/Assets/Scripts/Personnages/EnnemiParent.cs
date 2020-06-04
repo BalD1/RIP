@@ -25,10 +25,13 @@ public class EnnemiParent : MonoBehaviour
     protected bool preparingAttack;
     protected bool invincible;
     protected bool dayFlag;
+    protected bool flee;
 
     protected SpriteRenderer spriteRenderer;
 
     protected Vector2 jPos;
+    private Vector2 targetDirection;
+    protected Vector3 fleePoint;
 
     void Start()
     {
@@ -37,10 +40,19 @@ public class EnnemiParent : MonoBehaviour
 
     protected void Movement()
     {
-        if(preparingAttack == false)
+        if (!flee)
         {
-            rigid2d.position = Vector2.MoveTowards(rigid2d.position, GameManager.Instance.PlayerPosition, speed * Time.deltaTime);
+            targetDirection = GameManager.Instance.PlayerPosition;
+        }
+
+        if (preparingAttack == false)
+        {
+            rigid2d.position = Vector2.MoveTowards(rigid2d.position, targetDirection, speed * Time.deltaTime);
             this.rigid2d.MovePosition(rigid2d.position);
+        }
+        if (flee && this.transform.position == fleePoint)
+        {
+            Destroy(this.gameObject);
         }
     }
 
@@ -138,6 +150,16 @@ public class EnnemiParent : MonoBehaviour
             animator.SetBool("Down", true);
             animator.SetBool("Left", false);
             animator.SetBool("Right", false);
+        }
+    }
+
+    protected void FleeAtDay()
+    {
+        if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Day)
+        {
+            flee = true;
+            targetDirection = fleePoint;
+            speed = 6;
         }
     }
 

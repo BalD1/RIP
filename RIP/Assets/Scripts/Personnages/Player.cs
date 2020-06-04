@@ -265,8 +265,6 @@ public class Player : MonoBehaviour
 
     private void Tests()
     {
-        Debug.Log("level : " + playerValues.level + "____________" + "xp : " + playerValues.xpAmount + " / " + playerValues.xpNeeded + 
-            "____________" + " dégats S : " + playerValues.shovelDamages + "____________" + " dégats F : " + playerValues.fireBallDamages + "____________" + " hp : " + playerValues.maxHP);
 
         if (Input.GetKeyDown(KeyCode.A))
         {
@@ -341,9 +339,12 @@ public class Player : MonoBehaviour
         lookAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
 
         // Animator variables
-        Vector2 clampedLookDirection = new Vector2();
-        clampedLookDirection.x = Mathf.Clamp(lookDirection.x, -5f, 5f);
-        clampedLookDirection.y = Mathf.Clamp(lookDirection.y, -5f, 5f);
+        Vector2 clampedLookDirection = new Vector2
+        {
+            x = Mathf.Clamp(lookDirection.x, -5f, 5f),
+            y = Mathf.Clamp(lookDirection.y, -5f, 5f)
+        };
+
         if (this.playerState != PlayerState.ShovelAttacking && GameManager.Instance.SendGameState() == GameManager.GameState.InGame)
         {
             playerAnimator.SetFloat("Look X", clampedLookDirection.x);

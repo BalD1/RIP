@@ -14,6 +14,7 @@ public class EnnemiFantôme : EnnemiParent
 
     void Start()
     {
+        base.fleePoint = this.transform.position;
         base.damageText = GameManager.Instance.HealthChangeText;
         base.damageTextTime = GameManager.Instance.GetAnimationTimes(damageText.GetComponentInChildren<Animator>(), "Health change");
         hp = ennemiValues.fantômeHp;//*Nmanches/valeur
@@ -21,6 +22,15 @@ public class EnnemiFantôme : EnnemiParent
         attack = ennemiValues.fantômeAtk;
         level = ennemiValues.level;
         dropXP = ennemiValues.dropXP;
+        if (GameManager.Instance.DayCount > this.level)
+        {
+            base.LevelUp();
+            ennemiValues.level = this.level;
+            ennemiValues.fantômeHp = this.hp;
+            ennemiValues.fantômeSpd = this.speed;
+            ennemiValues.fantômeAtk = this.attack;
+            ennemiValues.dropXP = this.dropXP;
+        }
         rigid2d = this.GetComponent<Rigidbody2D>();
         hitbox = this.GetComponent<PolygonCollider2D>();
         invincibleTime = ennemiValues.invincibleTime;
@@ -30,6 +40,7 @@ public class EnnemiFantôme : EnnemiParent
 
     void Update()
     {
+        base.FleeAtDay();
         if (GameManager.Instance.PlayerPosition.x > this.transform.position.x)
         {
             this.GetComponent<SpriteRenderer>().flipX = true;
@@ -40,16 +51,24 @@ public class EnnemiFantôme : EnnemiParent
         }
 
         invincibilityTimer += Time.deltaTime;
-        if(invincibilityTimer >= 2)
+        if(invincibilityTimer >= 2 && !flee)
         {
             this.gameObject.GetComponent<PolygonCollider2D>().enabled = false;
             this.gameObject.GetComponent<SpriteRenderer>().material.color = new Color(1f, 1f, 1f, 0.5f);
+            this.speed = ennemiValues.fantômeSpd * 1.2f;
             if(invincibilityTimer >= 4)
             {
                 this.gameObject.GetComponent<PolygonCollider2D>().enabled = true;
                 this.gameObject.GetComponent<SpriteRenderer>().material.color = new Color(1f, 1f, 1f, 1f);
                 invincibilityTimer = 0;
+                this.speed = ennemiValues.fantômeSpd;
             }
+        }
+
+        if (flee)
+        {
+            this.gameObject.GetComponent<PolygonCollider2D>().enabled = true;
+            this.gameObject.GetComponent<SpriteRenderer>().material.color = new Color(1f, 1f, 1f, 1f);
         }
 
         if (this.hp <= 0)
@@ -60,16 +79,7 @@ public class EnnemiFantôme : EnnemiParent
         {
             InvincibleClipping();
         }
-        if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Day)
-        {
-            dayFlag = false;
-        }
-        else if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Night && !dayFlag)
-        {
-            LevelUp();
-            dayFlag = true;
-        }
-        Debug.Log(this.level);
+
     }
 
     void FixedUpdate()

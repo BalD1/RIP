@@ -30,7 +30,7 @@ public class HoldersGroup : MonoBehaviour
     {
         UIManager.Instance.UnlockDisplay = true;
         UIManager.Instance.GetBuildingsCosts(fleshCost, boneCost, slimeCost, ectoplasmCost);
-        if (UIManager.Instance.CanUnlock)
+        if (UIManager.Instance.CanUnlock && GameManager.Instance.SendGameTime() == GameManager.GameTime.Day)
         {
             this.GetComponent<SpriteRenderer>().enabled = false;
             unlockSprite.SetActive(true);

@@ -33,20 +33,19 @@ public class Shovel : MonoBehaviour
         GameManager.Instance.DamageEnnemi(damages);
         if (collision.CompareTag("Ennemie"))
         {
-            
             Rigidbody2D ennemieBody = collision.GetComponent<Rigidbody2D>();
             if (ennemieBody != null)
             {
                 ennemieBody.isKinematic = false;
                 ennemieBody.AddForce(knockbackDirection * knockbackStrenght, ForceMode2D.Impulse);
-                StartCoroutine(KnockBack(ennemieBody));
+                StartCoroutine(KnockBack(knockbackDuration, ennemieBody));
             }
         }
     }
 
-    private IEnumerator KnockBack(Rigidbody2D ennemie)
+    private IEnumerator KnockBack(float time, Rigidbody2D ennemie)
     {
-        yield return new WaitForSeconds(knockbackDuration);
+        yield return new WaitForSeconds(time);
         if (ennemie != null)
         {
             ennemie.velocity = Vector2.zero;

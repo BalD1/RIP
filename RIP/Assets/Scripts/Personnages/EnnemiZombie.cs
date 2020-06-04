@@ -14,6 +14,7 @@ public class EnnemiZombie : EnnemiParent
 
     void Start()
     {
+        base.fleePoint = this.transform.position;
         base.damageText = GameManager.Instance.HealthChangeText;
         base.damageTextTime = GameManager.Instance.GetAnimationTimes(damageText.GetComponentInChildren<Animator>(), "Health change");
         hp = ennemiValues.zombieHp;//*Nmanches/valeur
@@ -21,6 +22,15 @@ public class EnnemiZombie : EnnemiParent
         attack = ennemiValues.zombieAtk;
         level = ennemiValues.level;
         dropXP = ennemiValues.dropXP;
+        if (GameManager.Instance.DayCount > this.level)
+        {
+            base.LevelUp();
+            ennemiValues.level = this.level;
+            ennemiValues.zombieHp = this.hp;
+            ennemiValues.zombieSpd = this.speed;
+            ennemiValues.zombieAtk = this.attack;
+            ennemiValues.dropXP = this.dropXP;
+        }
         rigid2d = this.GetComponent<Rigidbody2D>();
         hitbox = this.GetComponent<PolygonCollider2D>();
         invincibleTime = ennemiValues.invincibleTime;
@@ -31,7 +41,7 @@ public class EnnemiZombie : EnnemiParent
 
     void Update()
     {
-        Attack();
+        base.FleeAtDay();
 
         if (this.hp <= 0)
         {
@@ -41,15 +51,7 @@ public class EnnemiZombie : EnnemiParent
         {
             InvincibleClipping();
         }
-        if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Day)
-        {
-            dayFlag = false;
-        }
-        else if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Night && !dayFlag)
-        {
-            LevelUp();
-            dayFlag = true;
-        }
+
 
         Turn();
 
@@ -68,25 +70,6 @@ public class EnnemiZombie : EnnemiParent
         AudioManager.Instance.Play("DeathZombie");
         GameManager.Instance.ExperienceToPlayer = dropXP;
         Destroy(this.gameObject);
-    }
-
-    void Attack()
-    {
-        if (GameManager.Instance.PlayerPosition.x - this.rigid2d.position.x > -1 && GameManager.Instance.PlayerPosition.x - this.rigid2d.position.x < 1 &&
-            GameManager.Instance.PlayerPosition.y - this.rigid2d.position.y > -1 && GameManager.Instance.PlayerPosition.y - this.rigid2d.position.y < 1 && preparingAttack == false)
-        {
-            preparingAttack = true;
-        }
-
-        if (preparingAttack == true)
-        {
-            dashAttackTimer += Time.deltaTime;
-            if (dashAttackTimer > 3)
-            {
-                preparingAttack = false;
-                dashAttackTimer = 0;
-            }
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

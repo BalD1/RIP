@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 503777638459710046}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.947, y: -2.577, z: 0}
-  m_LocalScale: {x: 0.37, y: 0.4, z: 1}
+  m_LocalScale: {x: 0.9401207, y: 1.0163468, z: 2.5408666}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e5832b4015f68474ea3f02cf218f5e50, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 263d77ce08585584db129bce49a32461, type: 3}
   m_Color: {r: 0, g: 0.7924528, b: 0.025645912, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,7 +100,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.52, y: 0.28}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -108,23 +108,14 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.5, y: -0.17}
-      - {x: 0.5, y: 0.17}
-      - {x: 0.45, y: 0.31}
-      - {x: 0.26999998, y: 0.45999998}
-      - {x: 0.17, y: 0.5}
-      - {x: -0.17999999, y: 0.5}
-      - {x: -0.26999998, y: 0.45999998}
-      - {x: -0.45999998, y: 0.26999998}
-      - {x: -0.5, y: 0.17}
-      - {x: -0.5, y: -0.17}
-      - {x: -0.45, y: -0.31}
-      - {x: -0.29999998, y: -0.44}
-      - {x: -0.16, y: -0.5}
-      - {x: 0.14999999, y: -0.5}
-      - {x: 0.21, y: -0.48999998}
-      - {x: 0.29999998, y: -0.44}
-      - {x: 0.45999998, y: -0.26999998}
+    - - {x: 0.27024728, y: -0.035177022}
+      - {x: 0.13219869, y: 0.13703357}
+      - {x: -0.07896171, y: 0.14085658}
+      - {x: -0.26227093, y: -0.0030882966}
+      - {x: -0.26024714, y: -0.11848784}
+      - {x: -0.059087254, y: -0.14498174}
+      - {x: 0.18422218, y: -0.13233228}
+      - {x: 0.25990123, y: -0.1194236}
 --- !u!114 &2511623399929637336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,5 +128,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ab3e946dacd5d84193e908bee020cdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ressources: {fileID: 7792556911996216588, guid: 9ac8c37242b1328438d7d0aafe37ff33,
-    type: 3}

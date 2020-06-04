@@ -17,6 +17,7 @@ public class EnnemiSquelette : EnnemiParent
 
     void Start()
     {
+        base.fleePoint = this.transform.position;
         base.damageText = GameManager.Instance.HealthChangeText;
         base.damageTextTime = GameManager.Instance.GetAnimationTimes(damageText.GetComponentInChildren<Animator>(), "Health change");
         hp = ennemiValues.squeletteHp;//*Nmanches/valeur
@@ -24,6 +25,15 @@ public class EnnemiSquelette : EnnemiParent
         attack = ennemiValues.squeletteAtk;
         level = ennemiValues.level;
         dropXP = ennemiValues.dropXP;
+        if (GameManager.Instance.DayCount > this.level)
+        {
+            base.LevelUp();
+            ennemiValues.level = this.level;
+            ennemiValues.squeletteHp = this.hp;
+            ennemiValues.squeletteSpd = this.speed;
+            ennemiValues.squeletteAtk = this.attack;
+            ennemiValues.dropXP = this.dropXP;
+        }
         rigid2d = this.GetComponent<Rigidbody2D>();
         hitbox = this.GetComponent<PolygonCollider2D>();
         invincibleTime = ennemiValues.invincibleTime;
@@ -33,7 +43,8 @@ public class EnnemiSquelette : EnnemiParent
 
     void Update()
     {
-        
+        base.FleeAtDay();
+
         if (this.hp <= 0)
         {
             MortEnnemi();
@@ -42,17 +53,11 @@ public class EnnemiSquelette : EnnemiParent
         {
             InvincibleClipping();
         }
-        if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Day)
-        {
-            dayFlag = false;
-        }
-        else if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Night && !dayFlag)
-        {
-            LevelUp();
-            dayFlag = true;
-        }
 
-        Attack();
+        if (!flee)
+        {
+            Attack();
+        }
     }
 
     void FixedUpdate()
@@ -62,7 +67,10 @@ public class EnnemiSquelette : EnnemiParent
            || (GameManager.Instance.PlayerPosition.y < (this.transform.position.y + 2f)) && (GameManager.Instance.PlayerPosition.x < (this.transform.position.x + 2f)) && (GameManager.Instance.PlayerPosition.x > (this.transform.position.x - 2f))
            || (GameManager.Instance.PlayerPosition.y > (this.transform.position.y - 2f)) && (GameManager.Instance.PlayerPosition.x < (this.transform.position.x + 2f)) && (GameManager.Instance.PlayerPosition.x > (this.transform.position.x - 2f)))
         {
-            
+            if (flee)
+            {
+                Movement();
+            }
         }
         else
         {
