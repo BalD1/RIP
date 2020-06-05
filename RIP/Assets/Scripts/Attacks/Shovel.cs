@@ -36,6 +36,8 @@ public class Shovel : MonoBehaviour
             Rigidbody2D ennemieBody = collision.GetComponent<Rigidbody2D>();
             if (ennemieBody != null)
             {
+                knockbackDirection = ennemieBody.transform.position - GameManager.Instance.transform.position;
+                knockbackDirection = -knockbackDirection.normalized;
                 ennemieBody.isKinematic = false;
                 ennemieBody.AddForce(knockbackDirection * knockbackStrenght, ForceMode2D.Impulse);
                 StartCoroutine(KnockBack(knockbackDuration, ennemieBody));

@@ -48,7 +48,6 @@ public class EnnemiParent : MonoBehaviour
         if (preparingAttack == false)
         {
             rigid2d.position = Vector2.MoveTowards(rigid2d.position, targetDirection, speed * Time.deltaTime);
-            this.rigid2d.MovePosition(rigid2d.position);
         }
         if (flee && this.transform.position == fleePoint)
         {
