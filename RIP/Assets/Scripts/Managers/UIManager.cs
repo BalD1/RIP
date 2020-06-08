@@ -411,6 +411,7 @@ public class UIManager : MonoBehaviour
     {
         this.HUD.SetActive(false);
         this.gameOverScreen.SetActive(true);
+        GameManager.Instance.GameOverScreenIsShowing = true;
         Time.timeScale = 0;
     }
 

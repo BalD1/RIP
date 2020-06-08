@@ -17,8 +17,8 @@ public class ButtonsScript : MonoBehaviour
             case "Volume":
 
                 break;
-            case "Main Menu":
-
+            case "MainMenu":
+                SceneManager.LoadScene("MainMenu");
                 break;
         }
     }
@@ -30,7 +30,7 @@ public class ButtonsScript : MonoBehaviour
             case "Restart":
 
                 break;
-            case "Main Menu":
+            case "MainMenu":
 
                 break;
         }

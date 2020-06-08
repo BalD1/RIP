@@ -53,6 +53,11 @@ public class DayNightCycle : MonoBehaviour
             else if (Day == true)
             {
                 GameManager.Instance.SetGameTime(GameManager.GameTime.Night);
+
+                GameManager.PlayerStats playerStats = GameManager.Instance.currentStats;
+                playerStats.nightsCount++;
+                GameManager.Instance.currentStats = playerStats;
+
                 dayNightTimer = 0;
                 Day = false;
 

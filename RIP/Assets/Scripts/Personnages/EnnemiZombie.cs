@@ -69,6 +69,9 @@ public class EnnemiZombie : EnnemiParent
         //animator.SetBool(Mort, true);
         AudioManager.Instance.Play("DeathZombie");
         GameManager.Instance.ExperienceToPlayer = dropXP;
+        GameManager.PlayerStats playerStats = GameManager.Instance.currentStats;
+        playerStats.kills++;
+        GameManager.Instance.currentStats = playerStats;
         Destroy(this.gameObject);
     }
 

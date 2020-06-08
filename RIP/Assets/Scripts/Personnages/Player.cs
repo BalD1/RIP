@@ -588,6 +588,10 @@ public class Player : MonoBehaviour
         }
         UIManager.Instance.ChangeLevelDisplay();
         UIManager.Instance.DisplayFeedbackText("level up");
+
+        GameManager.PlayerStats playerStats = GameManager.Instance.currentStats;
+        playerStats.playerlevel = playerValues.level;
+        GameManager.Instance.currentStats = playerStats;
     }
 
     // ------------------------ Values update --------------------------

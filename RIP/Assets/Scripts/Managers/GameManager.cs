@@ -135,6 +135,19 @@ public class GameManager : MonoBehaviour
 
     public int GainedFireballDamages { get; set; }
 
+    public struct PlayerStats
+    {
+        public int kills;
+        public int buildingsCount;
+        public int questsCount;
+        public int nightsCount;
+        public int playerlevel;
+        public int score;
+        public int bestScore;
+    }
+
+    public PlayerStats currentStats { get; set; }
+
     // ------------------  Ennemi Interactions ---------------
 
     public void DamageEnnemi(int damagesEnnemi)
@@ -193,6 +206,8 @@ public class GameManager : MonoBehaviour
             return healthChangeText;
         }
     }
+
+    public bool GameOverScreenIsShowing { get; set; }
 
     //-------------- Quit Game ------------
 

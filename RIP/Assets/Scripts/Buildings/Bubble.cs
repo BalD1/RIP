@@ -96,6 +96,11 @@ public class Bubble : MonoBehaviour
             if (this.name == "DestoyButton")
             {
                 Destroy(UIManager.Instance.SendActiveBuilding());
+
+                GameManager.PlayerStats playerStats = GameManager.Instance.currentStats;
+                playerStats.buildingsCount--;
+                GameManager.Instance.currentStats = playerStats;
+
                 UIManager.Instance.GetDestroyBubbleState(false);
                 UIManager.Instance.GetActiveBuilding(null);
                 if (UIManager.Instance.WasHUDHidden)

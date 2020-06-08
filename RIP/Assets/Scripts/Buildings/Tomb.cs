@@ -75,6 +75,10 @@ public class Tomb : MonoBehaviour
             paidBones = boneCost;
             paidSlime = slimeCost;
             paidEctoplasm = ectoplasmCost;
+
+            GameManager.PlayerStats playerStats = GameManager.Instance.currentStats;
+            playerStats.buildingsCount++;
+            GameManager.Instance.currentStats = playerStats;
         }
     }
 

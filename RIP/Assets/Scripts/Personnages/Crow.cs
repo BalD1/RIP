@@ -265,6 +265,9 @@ public class Crow : MonoBehaviour
         playerInteractedOnThis = false;
         animator.SetBool("HaveAQuest", false);
         questCanBeCompleted = false;
+        GameManager.PlayerStats playerStats = GameManager.Instance.currentStats;
+        playerStats.questsCount++;
+        GameManager.Instance.currentStats = playerStats;
     }
 
     private void RewardPlayer()
