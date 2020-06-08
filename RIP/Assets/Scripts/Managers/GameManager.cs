@@ -45,9 +45,12 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        this.currentTime = GameTime.Day;
-        DayCount = 1;
-        ennemiValues.InitializeStats();
+        if (SceneManager.GetActiveScene().name != "MainMenu")
+        {
+            this.currentTime = GameTime.Day;
+            DayCount = 1;
+            ennemiValues.InitializeStats();
+        }
     }
 
     // -------------------  GameState & GameTime ----------------

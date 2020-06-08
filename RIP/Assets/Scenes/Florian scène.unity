@@ -4633,6 +4633,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2129126158}
     m_Modifications:
+    - target: {fileID: 176701091, guid: eddc5dc4f5814c643a361bc26adc7fc6, type: 3}
+      propertyPath: knockbackDuration
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 489572200, guid: eddc5dc4f5814c643a361bc26adc7fc6, type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 393015

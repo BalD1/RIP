@@ -35,4 +35,17 @@ public class ButtonsScript : MonoBehaviour
                 break;
         }
     }
+
+    public void MainMenuScreenOnClickEvent(string button)
+    {
+        switch (button)
+        {
+            case "Start the game":
+                SceneManager.LoadScene("MainScene");
+                break;
+            case "Quit the game":
+                GameManager.Instance.QuitGame();
+                break;
+        }
+    }
 }
