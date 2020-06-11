@@ -21,6 +21,7 @@ public class FireBall : MonoBehaviour
 
     private float playerLookAngle;
 
+    private bool dSound = true;
     private void Awake()
     {
         AudioManager.Instance.Play("CreatingFire");
@@ -55,14 +56,16 @@ public class FireBall : MonoBehaviour
         thisBody.velocity = Vector2.zero;
         thisBody.isKinematic = true;
         animator.SetTrigger("Explosion");
-        AudioManager.Instance.Play("FireImpact");
         StartCoroutine(WaitForAnimationEnd());
-
     }
 
     IEnumerator WaitForAnimationEnd()
     {
-
+        if(dSound)
+        {
+            AudioManager.Instance.Play("FireImpact");
+            dSound = false;
+        }
         yield return new WaitForSeconds(explosionTime);
         Destroy(this.gameObject);
     }
