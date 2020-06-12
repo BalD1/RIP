@@ -197,9 +197,11 @@ public class Crow : MonoBehaviour
             this.dialogueBox.gameObject.SetActive(false);
             dayFlag = true;
             this.animator.SetBool("QuestAvailable", false);
+            this.animator.SetBool("HaveAQuest", false);
         }
         else
         {
+            animator.SetBool("HaveAQuest", displayQuestNeeds);
             animator.SetBool("QuestAvailable", haveAQuest);
         }
 

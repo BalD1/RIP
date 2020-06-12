@@ -13,6 +13,7 @@ public class ButtonsScript : MonoBehaviour
         {
             case "Continue":
                 GameManager.Instance.SetGameState(GameManager.GameState.InGame);
+                Time.timeScale = 1;
                 break;
             case "Volume":
 
@@ -46,9 +47,24 @@ public class ButtonsScript : MonoBehaviour
         {
             case "Start the game":
                 SceneManager.LoadScene("MainScene");
+                Time.timeScale = 1;
                 break;
             case "Quit the game":
                 GameManager.Instance.QuitGame();
+                break;
+        }
+    }
+
+    public void TimeSpeed(string button)
+    {
+        switch (button)
+        {
+            case "NormalTime":
+                Time.timeScale = 1;
+                break;
+
+            case "FastTime":
+                Time.timeScale = 4;
                 break;
         }
     }

@@ -12,6 +12,7 @@ public class EnnemiZombie : EnnemiParent
 
     private float dashAttackTimer = 0;
 
+
     void Start()
     {
         base.fleePoint = this.transform.position;
@@ -22,13 +23,13 @@ public class EnnemiZombie : EnnemiParent
         attack = ennemiValues.zombieAtk;
         level = ennemiValues.level;
         dropXP = ennemiValues.dropXP;
-        if (GameManager.Instance.DayCount > this.level)
+        if (GameManager.Instance.NightCount > this.level)
         {
             base.LevelUp();
             ennemiValues.level = this.level;
-            ennemiValues.zombieHp = this.hp;
-            ennemiValues.zombieSpd = this.speed;
-            ennemiValues.zombieAtk = this.attack;
+            ennemiValues.fantômeHp = this.hp;
+            ennemiValues.fantômeSpd = this.speed;
+            ennemiValues.fantômeAtk = this.attack;
             ennemiValues.dropXP = this.dropXP;
         }
         rigid2d = this.GetComponent<Rigidbody2D>();
@@ -41,6 +42,7 @@ public class EnnemiZombie : EnnemiParent
 
     void Update()
     {
+        Debug.Log(this.name + " : " + this.level);
         base.FleeAtDay();
 
         if (this.hp <= 0)
@@ -74,7 +76,7 @@ public class EnnemiZombie : EnnemiParent
         GameManager.Instance.currentStats = playerStats;
         Destroy(this.gameObject);
     }
-
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Player player = collision.gameObject.GetComponent<Player>();
@@ -92,6 +94,19 @@ public class EnnemiZombie : EnnemiParent
             if (!invincible && GameManager.Instance.SendDamagesEnnemi() > 0)
             {
                 Damages();
+            }
+        }
+
+        Tomb tomb = collision.gameObject.GetComponent<Tomb>();
+        if (tomb != null && spawnFlag == false)
+        {
+            spawnFlag = true;
+            if (tomb.GetBuildingLevel() > 1)
+            {
+                for (int i = 1; i < tomb.GetBuildingLevel(); i++)
+                {
+                    base.LevelUp();
+                }
             }
         }
     }

@@ -52,7 +52,7 @@ public class HoldersGroup : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (UIManager.Instance.CanUnlock)
+        if (UIManager.Instance.CanUnlock && GameManager.Instance.SendGameTime() == GameManager.GameTime.Day)
         {
             playerValues.fleshCount -= this.fleshCost;
             playerValues.bonesCount -= this.boneCost;

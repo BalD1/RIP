@@ -72,9 +72,11 @@ public class FireBall : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-            Debug.Log(this.gameObject.name + " touche " + collision + " et lui inflige " + damages);
+        if (collision.tag == "Ennemie")
+        {
             GameManager.Instance.DamageEnnemi(damages);
             DestroyThis();
+        }
         
     }
 }

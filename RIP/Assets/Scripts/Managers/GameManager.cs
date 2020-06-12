@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
         if (SceneManager.GetActiveScene().name != "MainMenu")
         {
             this.currentTime = GameTime.Day;
-            DayCount = 1;
+            NightCount = 0;
             ennemiValues.InitializeStats();
         }
     }
@@ -88,14 +88,19 @@ public class GameManager : MonoBehaviour
         return this.currentTime;
     }
 
-    public int DayCount { get; set; }
+    public int NightCount { get; set; }
 
     public void SetGameTime(GameTime gameTime)
     {
+        Time.timeScale = 1;
         this.currentTime = gameTime;
-        if (gameTime == GameTime.Day)
+        if (gameTime == GameTime.Night)
         {
-            DayCount++;
+            NightCount++;
+
+            PlayerStats playerStats = currentStats;
+            playerStats.nightsCount++;
+            currentStats = playerStats;
         }
     }
 

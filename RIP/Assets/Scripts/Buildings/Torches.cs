@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class Torches : MonoBehaviour
 {
+    [SerializeField] private GameObject lightPoint;
+
     private bool isLighted;
     private bool isUsed;
 
     private void Update()
     {
+        lightPoint.SetActive(isLighted);
+
         if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Day)
         {
             this.isLighted = false;
@@ -22,17 +26,14 @@ public class Torches : MonoBehaviour
 
     public bool IsLighted()
     {
-        return isLighted;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Player player = collision.GetComponent<Player>();
-        if (player != null && this.isLighted)
+        if (this.isLighted && GameManager.Instance.SendGameTime() == GameManager.GameTime.Night)
         {
             this.isLighted = false;
             this.isUsed = true;
+            return true;
         }
+        return isLighted;
     }
+    
 
 }

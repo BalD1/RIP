@@ -26,6 +26,7 @@ public class EnnemiParent : MonoBehaviour
     protected bool invincible;
     protected bool dayFlag;
     protected bool flee;
+    protected bool spawnFlag = false;
 
     protected SpriteRenderer spriteRenderer;
 

@@ -2038,7 +2038,7 @@ MonoBehaviour:
   moveDelayTime: 1
   killsMultiplier: 30
   buildingsMultiplier: 23
-  questsMultiplier: 18
+  questsMultiplier: 50
   nightsMultiplier: 20
   levelMultiplier: 20
   scoreTransform: {fileID: 5825309111994960547}

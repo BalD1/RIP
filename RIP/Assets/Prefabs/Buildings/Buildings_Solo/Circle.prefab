@@ -55,6 +55,7 @@ MonoBehaviour:
   boneCost: 0
   slimeCost: 1
   ectoplasmCost: 0
+  flowersMaxLife: 3
 --- !u!58 &6052528832425939960
 CircleCollider2D:
   m_ObjectHideFlags: 0

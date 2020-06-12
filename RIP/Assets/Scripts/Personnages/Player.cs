@@ -471,6 +471,7 @@ public class Player : MonoBehaviour
         {
             healFlag = true;
             playerValues.HpValue = playerValues.maxHP;
+            
         }
         else if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Night)
         {
@@ -498,31 +499,34 @@ public class Player : MonoBehaviour
 
     private void Attacks()
     {
-        if (shovelAttackTimer == 0 && playerState != PlayerState.ShovelAttacking)
+        if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Night)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse1))
+            if (shovelAttackTimer == 0 && playerState != PlayerState.ShovelAttacking)
             {
-                this.playerState = PlayerState.ShovelAttacking;
-                playerAnimator.SetBool("ShovelAttacking", true);
-                shovelAttackTimer = shovelAttackTime;
+                if (Input.GetKeyDown(KeyCode.Mouse1))
+                {
+                    this.playerState = PlayerState.ShovelAttacking;
+                    playerAnimator.SetBool("ShovelAttacking", true);
+                    shovelAttackTimer = shovelAttackTime;
+                }
             }
-        }
-        if (canLaunchFireBall)
-        {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (canLaunchFireBall)
             {
-                playerAnimator.SetBool("FireballAttacking", true);
-                Invoke("LaunchFireBall", fireballAttackAnimationTime / 2);
-                fireballAttackAnimationTimer = fireballAttackAnimationTime;
-                canLaunchFireBall = false;
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    playerAnimator.SetBool("FireballAttacking", true);
+                    Invoke("LaunchFireBall", fireballAttackAnimationTime / 2);
+                    fireballAttackAnimationTimer = fireballAttackAnimationTime;
+                    canLaunchFireBall = false;
+                }
             }
-        }
-        shovelAttackTimer = Mathf.Clamp(shovelAttackTimer - Time.deltaTime, 0, shovelAttackTime);
-        if (shovelAttackTimer == 0 && this.playerState == PlayerState.ShovelAttacking)
-        {
-            this.playerState = PlayerState.Idle;
-            playerAnimator.SetBool("Idle", true);
-            playerAnimator.SetBool("ShovelAttacking", false);
+            shovelAttackTimer = Mathf.Clamp(shovelAttackTimer - Time.deltaTime, 0, shovelAttackTime);
+            if (shovelAttackTimer == 0 && this.playerState == PlayerState.ShovelAttacking)
+            {
+                this.playerState = PlayerState.Idle;
+                playerAnimator.SetBool("Idle", true);
+                playerAnimator.SetBool("ShovelAttacking", false);
+            }
         }
     }
 
@@ -639,9 +643,12 @@ public class Player : MonoBehaviour
         Torches torch = collision.GetComponent<Torches>();
         if (torch != null)
         {
-            if(torch.IsLighted())
+            if (!canLaunchFireBall)
             {
-                this.canLaunchFireBall = true;
+                if (torch.IsLighted())
+                {
+                    fireBallCooldown = 0;
+                }
             }
         }
     }

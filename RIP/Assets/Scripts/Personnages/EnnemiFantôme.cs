@@ -22,7 +22,7 @@ public class EnnemiFantôme : EnnemiParent
         attack = ennemiValues.fantômeAtk;
         level = ennemiValues.level;
         dropXP = ennemiValues.dropXP;
-        if (GameManager.Instance.DayCount > this.level)
+        if (GameManager.Instance.NightCount > this.level)
         {
             base.LevelUp();
             ennemiValues.level = this.level;
@@ -119,6 +119,19 @@ public class EnnemiFantôme : EnnemiParent
             if (!invincible && GameManager.Instance.SendDamagesEnnemi() > 0)
             {
                 Damages();
+            }
+        }
+
+        Tomb tomb = collision.gameObject.GetComponent<Tomb>();
+        if (tomb != null && spawnFlag == false)
+        {
+            spawnFlag = true;
+            if (tomb.GetBuildingLevel() > 1)
+            {
+                for (int i = 1; i < tomb.GetBuildingLevel(); i++)
+                {
+                    base.LevelUp();
+                }
             }
         }
     }
