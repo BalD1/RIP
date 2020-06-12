@@ -66,6 +66,7 @@ public class Crow : MonoBehaviour
     void Update()
     {
         GameManager.Instance.CrowPositition = this.transform.position;
+        Debug.Log(this.transform.position);
         GameManager.Instance.CrowHaveAQuest = haveAQuest;
 
         DisplayCrowBubbleConditions();

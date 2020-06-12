@@ -253,12 +253,12 @@ public class Player : MonoBehaviour
 
     private void MoveCrowDisplayPointPosition()
     {
-        Vector2 crowPosition = GameManager.Instance.CrowPositition - this.transform.position;
+        Vector3 crowPosition = GameManager.Instance.CrowPositition - this.transform.position;
         float crowAngle = Mathf.Atan2(crowPosition.y, crowPosition.x) * Mathf.Rad2Deg;
 
         crowDisplayPoint.transform.eulerAngles = new Vector3(0f, 0f, crowAngle);
         crowDisplayPoint.transform.position = this.transform.position - (Vector3.ClampMagnitude(this.transform.position, 2.5f));
-        crowHead.transform.position = (this.transform.position - (Vector3.ClampMagnitude(this.transform.position, 2)));
+        crowHead.transform.position = this.transform.position - (Vector3.ClampMagnitude(this.transform.position, 2));
     }
 
     // ----------------------- Code tests -------------------
@@ -268,7 +268,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.A))
         {
-            UIManager.Instance.DisplayFeedbackText("Bite");
+            playerValues.HpValue = 0;
         }
         if (Input.GetKeyDown(KeyCode.H))
         {

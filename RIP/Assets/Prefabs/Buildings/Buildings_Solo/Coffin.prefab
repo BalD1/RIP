@@ -101,7 +101,7 @@ MonoBehaviour:
   Ennemy: {fileID: 1203229927889475110, guid: 83a4c87e4e08eb041b96b71751cf6385, type: 3}
   neededHolders: 2
   playerValues: {fileID: 11400000, guid: 2dad5574c26cf63469c42283a26e33a3, type: 2}
-  fleshCost: 2
+  fleshCost: 1
   boneCost: 0
   slimeCost: 0
   ectoplasmCost: 0

@@ -51,9 +51,9 @@ MonoBehaviour:
   Ennemy: {fileID: 784387721799480173, guid: 585bc2f085df9ad40a4d2e54ab958950, type: 3}
   neededHolders: 4
   playerValues: {fileID: 11400000, guid: 2dad5574c26cf63469c42283a26e33a3, type: 2}
-  fleshCost: 1
+  fleshCost: 0
   boneCost: 0
-  slimeCost: 3
+  slimeCost: 1
   ectoplasmCost: 0
 --- !u!58 &6052528832425939960
 CircleCollider2D:

@@ -433,7 +433,8 @@ MonoBehaviour:
     name: Crow
     sentences:
     - Croa ! Hey, you ! My name is Crow, and i'm a crow. I've been sent by Satan
-      to give you your instructions. Your goal will be to *inserer goal ici* .
+      to give you your instructions. Your goal will be to kil as many heresies as
+      possible.
     - 'You can build by clicking on the dirty squares around here. It will cost you
       some ressources, and each build will contain their own creature. '
     - By upgrading a build, it's creature will become stronger, but more rewarding.

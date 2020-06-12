@@ -19,6 +19,7 @@ public class ButtonsScript : MonoBehaviour
                 break;
             case "MainMenu":
                 SceneManager.LoadScene("MainMenu");
+                Time.timeScale = 1;
                 break;
         }
     }
@@ -28,10 +29,13 @@ public class ButtonsScript : MonoBehaviour
         switch (button)
         {
             case "Restart":
-
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                GameManager.Instance.SetGameState(GameManager.GameState.InGame);
+                Time.timeScale = 1;
                 break;
             case "MainMenu":
-
+                SceneManager.LoadScene("MainMenu");
+                Time.timeScale = 1;
                 break;
         }
     }
