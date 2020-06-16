@@ -100,7 +100,8 @@ public class EnnemiSlime : EnnemiParent
         //animator.SetBool(Mort, true);
         AudioManager.Instance.Play("DeathSlime");
         GameManager.PlayerStats playerStats = GameManager.Instance.currentStats;
-        playerStats.kills++;
+        playerStats.totalKills++;
+        playerStats.slimeKills++;
         GameManager.Instance.currentStats = playerStats;
         Destroy(this.gameObject);
     }
