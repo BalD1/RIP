@@ -77,6 +77,10 @@ public class FireBall : MonoBehaviour
             GameManager.Instance.DamageEnnemi(damages);
             DestroyThis();
         }
+        if (collision.tag == "barriers")
+        {
+            DestroyThis();
+        }
         
     }
 }

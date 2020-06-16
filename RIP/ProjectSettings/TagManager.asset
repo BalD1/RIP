@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Item
   - Ennemie
+  - barriers
   layers:
   - Default
   - TransparentFX
