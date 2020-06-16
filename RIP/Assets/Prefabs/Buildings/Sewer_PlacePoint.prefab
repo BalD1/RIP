@@ -98,6 +98,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5975505050547644123, guid: bc4552308ad99ba42b34965d64cf0bf4,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 5975505050547644125, guid: bc4552308ad99ba42b34965d64cf0bf4,
         type: 3}
       propertyPath: Ennemy
