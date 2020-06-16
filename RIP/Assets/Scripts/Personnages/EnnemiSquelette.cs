@@ -86,7 +86,8 @@ public class EnnemiSquelette : EnnemiParent
         AudioManager.Instance.Play("DeathSkeleton");
         GameManager.Instance.ExperienceToPlayer = dropXP;
         GameManager.PlayerStats playerStats = GameManager.Instance.currentStats;
-        playerStats.kills++;
+        playerStats.totalKills++;
+        playerStats.skeletonKills++;
         GameManager.Instance.currentStats = playerStats;
         Destroy(this.gameObject);
     }

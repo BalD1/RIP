@@ -96,7 +96,8 @@ public class EnnemiFantôme : EnnemiParent
         GameManager.Instance.ExperienceToPlayer = dropXP;
 
         GameManager.PlayerStats playerStats = GameManager.Instance.currentStats;
-        playerStats.kills++;
+        playerStats.totalKills++;
+        playerStats.ghostsKills++;
         GameManager.Instance.currentStats = playerStats;
 
         Destroy(this.gameObject);

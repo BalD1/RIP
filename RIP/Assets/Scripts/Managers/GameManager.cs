@@ -144,7 +144,11 @@ public class GameManager : MonoBehaviour
 
     public struct PlayerStats
     {
-        public int kills;
+        public int zombieKills;
+        public int skeletonKills;
+        public int slimeKills;
+        public int ghostsKills;
+        public int totalKills;
         public int buildingsCount;
         public int questsCount;
         public int nightsCount;

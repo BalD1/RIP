@@ -2036,9 +2036,9 @@ MonoBehaviour:
   bestScore: {fileID: 4988326738077470994}
   baseSpeedCount: 1
   moveDelayTime: 1
-  killsMultiplier: 30
   buildingsMultiplier: 23
   questsMultiplier: 50
   nightsMultiplier: 20
   levelMultiplier: 20
+  totalKillsMultiplier: 18
   scoreTransform: {fileID: 5825309111994960547}

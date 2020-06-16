@@ -16,12 +16,13 @@ public class Scoreboard : MonoBehaviour
 
     [SerializeField] private float baseSpeedCount;
     [SerializeField] private float moveDelayTime;
-
-    [SerializeField] private int killsMultiplier;
+    
     [SerializeField] private int buildingsMultiplier;
     [SerializeField] private int questsMultiplier;
     [SerializeField] private int nightsMultiplier;
     [SerializeField] private int levelMultiplier;
+    [SerializeField] private int totalKillsMultiplier;
+    private int killsMultiplier;
     private int score;
     private int higherScore;
 
@@ -48,7 +49,8 @@ public class Scoreboard : MonoBehaviour
         if (GameManager.Instance.GameOverScreenIsShowing && !flag)
         {
             playerStats = GameManager.Instance.currentStats;
-            IncreaseCount(0, playerStats.kills, baseSpeedCount, killsCount, killsMultiplier);
+            KillsMultiplier();
+            IncreaseCount(0, playerStats.totalKills, baseSpeedCount, killsCount, killsMultiplier);
             IncreaseCount(0, playerStats.buildingsCount, baseSpeedCount, buildingsCount, buildingsMultiplier);
             IncreaseCount(0, playerStats.questsCount, baseSpeedCount, questsCount, questsMultiplier);
             IncreaseCount(0, playerStats.nightsCount, baseSpeedCount, nightsCount, nightsMultiplier);
@@ -68,6 +70,21 @@ public class Scoreboard : MonoBehaviour
         }
     }
 
+    private void KillsMultiplier()
+    {
+        List<int> kills = new List<int>();
+        kills.Add(playerStats.zombieKills);
+        kills.Add(playerStats.skeletonKills);
+        kills.Add(playerStats.slimeKills);
+        kills.Add(playerStats.ghostsKills);
+        foreach(int killCount in kills)
+        {
+            killsMultiplier += killCount * (int)((playerStats.totalKills / 1.99f) - killCount);
+        }
+
+        killsMultiplier = killsMultiplier / playerStats.totalKills * totalKillsMultiplier ;
+    }
+
     private void IncreaseCount(int index, int goToCount, float speedCount, Text textToIncrease, int multiplier)
     {
         textToIncrease.text = index.ToString();
@@ -82,6 +99,7 @@ public class Scoreboard : MonoBehaviour
             canGetScore = true;
             Text textToScore = Instantiate(textToIncrease, textToIncrease.transform);
             textToScore.text = (goToCount * multiplier).ToString();
+            Debug.Log(textToScore.text);
             textToScore.color = Color.red;
             textToScoreList.Add(textToScore);
         }
