@@ -98,7 +98,7 @@ public class Scoreboard : MonoBehaviour
         {
             canGetScore = true;
             Text textToScore = Instantiate(textToIncrease, textToIncrease.transform);
-            textToScore.text = (goToCount * multiplier).ToString();
+            textToScore.text = Mathf.Clamp((goToCount * multiplier), 0, Mathf.Infinity).ToString();
             Debug.Log(textToScore.text);
             textToScore.color = Color.red;
             textToScoreList.Add(textToScore);
