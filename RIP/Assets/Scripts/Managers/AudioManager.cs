@@ -10,6 +10,7 @@ public class AudioManager : MonoBehaviour
 
     private bool musicFlag = false;
 
+
     public string[] Sounds = new string[]
     {
         "DeathZombie",
@@ -49,10 +50,7 @@ public class AudioManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            PlayBGMusic();
-        }
+            PlayBGMusic();     
         if(!source.isPlaying)
         {
             musicFlag = false;
