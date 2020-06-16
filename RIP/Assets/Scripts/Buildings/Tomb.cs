@@ -170,6 +170,9 @@ public class Tomb : MonoBehaviour
                 }
                 this.ChangeSprite();
                 UIManager.Instance.CanUpgrade = false;
+                ParticleSystem particles = Instantiate(GameManager.Instance.SendBuildingsParticles(), this.transform);
+                particles.Play();
+
             }
         }
         if (UIManager.Instance.AddFlower && playerValues.flowerCount > 0 && this.flowerState != FlowerState.Flowered 

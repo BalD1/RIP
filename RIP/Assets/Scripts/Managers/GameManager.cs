@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private EnnemiValues ennemiValues;
 
+    [SerializeField] private ParticleSystem buildingsUpEffects;
+
     private GameState currentState;
     private GameTime currentTime;
 
@@ -185,6 +187,11 @@ public class GameManager : MonoBehaviour
     public Vector2 SendBubblesHolderPosition()
     {
         return bubblesHolderPosition;
+    }
+
+    public ParticleSystem SendBuildingsParticles()
+    {
+        return buildingsUpEffects;
     }
 
     // ------------------ Others -------------------------
