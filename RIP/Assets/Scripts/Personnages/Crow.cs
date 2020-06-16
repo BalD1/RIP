@@ -17,6 +17,7 @@ public class Crow : MonoBehaviour
     [SerializeField] private int questChances;
 
     [SerializeField] private GameObject point;
+    [SerializeField] private GameObject startRessources;
 
     private bool haveAQuest;
     private bool dayFlag;
@@ -39,6 +40,8 @@ public class Crow : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     private Color originalPointColor;
+
+    private GameObject ressources;
 
     void Start()
     {
@@ -123,6 +126,7 @@ public class Crow : MonoBehaviour
                 this.haveAQuest = false;
                 questCanBeCompleted = false;
                 Time.timeScale = 1;
+                ressources = Instantiate(startRessources, this.transform.position, Quaternion.identity);
             }
 
         }
