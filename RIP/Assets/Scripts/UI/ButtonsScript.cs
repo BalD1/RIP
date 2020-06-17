@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class ButtonsScript : MonoBehaviour
 {
+    public GameObject Controls;
 
     public void PauseScreenOnClickEvent(string button)
     {
@@ -45,6 +46,9 @@ public class ButtonsScript : MonoBehaviour
     {
         switch (button)
         {
+            case "Show Controls":
+                Controls.SetActive(true);
+                break;
             case "Start the game":
                 SceneManager.LoadScene("MainScene");
                 Time.timeScale = 1;
