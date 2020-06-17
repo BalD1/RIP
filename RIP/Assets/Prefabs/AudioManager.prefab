@@ -58,6 +58,8 @@ MonoBehaviour:
   - ShovelHit
   - Bone
   - Musique
+  - MusiqueMenu
+  - Points
   audioArray:
   - {fileID: 8300000, guid: 6cbd9429ca9c7a246abc7bbc7c0a060a, type: 3}
   - {fileID: 8300000, guid: b81ec01b4ba2fc347a8e87e6884ffd6b, type: 3}
@@ -71,6 +73,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9f185f7c33ddeb444aca4eb59febb5a4, type: 3}
   - {fileID: 8300000, guid: 1cb0d9ab7852b0f49b47d3b83868d8dd, type: 3}
   - {fileID: 8300000, guid: f1ddedc00e3bedd4e833e28904fe93aa, type: 3}
+  - {fileID: 8300000, guid: 0e04fb816925f5c46bbe0dfc4582afb7, type: 3}
+  - {fileID: 8300000, guid: fd33361a9d5228a4fb4dc03503de1f3c, type: 3}
 --- !u!82 &1921867862505350247
 AudioSource:
   m_ObjectHideFlags: 0

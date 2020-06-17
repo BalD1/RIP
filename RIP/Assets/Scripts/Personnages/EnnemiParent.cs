@@ -26,6 +26,7 @@ public class EnnemiParent : MonoBehaviour
     protected bool invincible;
     protected bool dayFlag;
     protected bool flee;
+    protected bool spawnFlag = false;
 
     protected SpriteRenderer spriteRenderer;
 
@@ -58,9 +59,9 @@ public class EnnemiParent : MonoBehaviour
     protected void LevelUp()
     {
         level++;
-        hp = (int)( ((hp / 2) + (level /2)) * 1.4 );
-        attack = (int)((attack + level) / 2.5);
-        dropXP = (int)(5 * (level - 1) + (dropXP / 1.3f));
+        hp = (int)( ((hp / 2) + (level /2)) * 1.69 );
+        attack = (int)((attack + level) / 2.1);
+        dropXP = (int)(5 * (level - 1) + (dropXP / 1.1f));
     }
 
     protected void Damages()

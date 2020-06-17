@@ -1,7 +1,12 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:RIP/Assets/Animations/Player/Death.meta
 guid: 4284e710a7440b74d8e6e3c451d15941
 folderAsset: yes
 DefaultImporter:
+=======
+guid: 4664a264f63ab0740acdb3f719c65f20
+PrefabImporter:
+>>>>>>> 37d8a7b0e3aca77c3ebf43028480bdc469a2bea2:RIP/Assets/Prefabs/Buildings up.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

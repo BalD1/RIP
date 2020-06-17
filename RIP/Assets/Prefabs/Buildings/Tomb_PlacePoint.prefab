@@ -38,11 +38,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9004446395176240800}
     m_Modifications:
+    - target: {fileID: 1383045437919941594, guid: abc4114e5d809c348a012088034d5c49,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.55374324
+      objectReference: {fileID: 0}
+    - target: {fileID: 1383045437919941594, guid: abc4114e5d809c348a012088034d5c49,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.55374324
+      objectReference: {fileID: 0}
     - target: {fileID: 5363801566424308048, guid: abc4114e5d809c348a012088034d5c49,
         type: 3}
       propertyPath: m_Name
       value: Tomb
       objectReference: {fileID: 0}
+    - target: {fileID: 5363801566424308050, guid: abc4114e5d809c348a012088034d5c49,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 5363801566424308051, guid: abc4114e5d809c348a012088034d5c49,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -51,7 +66,7 @@ PrefabInstance:
     - target: {fileID: 5363801566424308051, guid: abc4114e5d809c348a012088034d5c49,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1
+      value: 0.314
       objectReference: {fileID: 0}
     - target: {fileID: 5363801566424308051, guid: abc4114e5d809c348a012088034d5c49,
         type: 3}

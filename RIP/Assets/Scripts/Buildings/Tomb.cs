@@ -15,6 +15,9 @@ public class Tomb : MonoBehaviour
     [SerializeField] private int boneCost;
     [SerializeField] private int slimeCost;
     [SerializeField] private int ectoplasmCost;
+    [SerializeField] private int flowersMaxLife;
+
+    private int flowersLife;
 
     private int fleshUpgradeCost;
     private int boneUpgradeCost;
@@ -38,6 +41,7 @@ public class Tomb : MonoBehaviour
     private bool isSelected;
     private bool isMaxLevel;
     private bool isFlowered;
+    private bool dayFlag;
 
     private enum FlowerState
     {
@@ -119,6 +123,25 @@ public class Tomb : MonoBehaviour
                 UIManager.Instance.HUDAnimatorBool = false;
             }
         }
+
+        if (this.flowerState == FlowerState.Flowered)
+        {
+            if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Day && dayFlag == false)
+            {
+                dayFlag = true;
+                flowersLife--;
+
+                if (flowersLife == 0)
+                {
+                    this.flowerState = FlowerState.Fanned;
+                }
+            }
+        }
+
+        if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Night)
+        {
+            dayFlag = false;
+        }
     }
 
     private void Upgrade()
@@ -147,6 +170,9 @@ public class Tomb : MonoBehaviour
                 }
                 this.ChangeSprite();
                 UIManager.Instance.CanUpgrade = false;
+                ParticleSystem particles = Instantiate(GameManager.Instance.SendBuildingsParticles(), this.transform);
+                particles.Play();
+
             }
         }
         if (UIManager.Instance.AddFlower && playerValues.flowerCount > 0 && this.flowerState != FlowerState.Flowered 
@@ -156,6 +182,7 @@ public class Tomb : MonoBehaviour
             this.ChangeSprite();
             isFlowered = true;
             playerValues.flowerCount--;
+            flowersLife = flowersMaxLife;
             UIManager.Instance.AddFlower = false;
         }
         if (UIManager.Instance.SendDestroyBubbleState() && UIManager.Instance.SendActiveBuilding() == this.gameObject)
@@ -256,6 +283,30 @@ public class Tomb : MonoBehaviour
                     Invoke("OnMouseDown", 0f);
                 }
             }
+        }
+    }
+
+    public int GetBuildingLevel()
+    {
+        if (this.flowerState == FlowerState.Flowered)
+        {
+            return 1;
+        }
+        else
+        {
+            return buildingLevel;
+        }
+    }
+
+    public bool IsFlowered()
+    {
+        if (this.flowerState == FlowerState.Flowered)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 

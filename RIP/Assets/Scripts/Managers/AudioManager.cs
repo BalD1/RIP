@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.Audio;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class AudioManager : MonoBehaviour
     private AudioSource source;
 
     private bool musicFlag = false;
+
 
     public string[] Sounds = new string[]
     {
@@ -23,7 +25,9 @@ public class AudioManager : MonoBehaviour
         "Destroying",
         "ShovelHit",
         "Bone",
-        "Musique"
+        "Musique",
+        "MusiqueMenu",
+        "Points",
     };
 
     [SerializeField]
@@ -49,10 +53,7 @@ public class AudioManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            PlayBGMusic();
-        }
+            PlayBGMusic();     
         if(!source.isPlaying)
         {
             musicFlag = false;
@@ -75,7 +76,14 @@ public class AudioManager : MonoBehaviour
         if(musicFlag == false)
         {
             musicFlag = true;
-            source.PlayOneShot(audioArray[11]);
+            if (SceneManager.GetActiveScene().name == "MainScene")
+            {
+                source.PlayOneShot(audioArray[11]);
+            }
+            else
+            {
+                source.PlayOneShot(audioArray[12]);
+            }
         }
 
     }

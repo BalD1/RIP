@@ -17,6 +17,7 @@ public class Crow : MonoBehaviour
     [SerializeField] private int questChances;
 
     [SerializeField] private GameObject point;
+    [SerializeField] private GameObject startRessources;
 
     private bool haveAQuest;
     private bool dayFlag;
@@ -39,6 +40,8 @@ public class Crow : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     private Color originalPointColor;
+
+    private GameObject ressources;
 
     void Start()
     {
@@ -66,6 +69,7 @@ public class Crow : MonoBehaviour
     void Update()
     {
         GameManager.Instance.CrowPositition = this.transform.position;
+        Debug.Log(this.transform.position);
         GameManager.Instance.CrowHaveAQuest = haveAQuest;
 
         DisplayCrowBubbleConditions();
@@ -122,6 +126,7 @@ public class Crow : MonoBehaviour
                 this.haveAQuest = false;
                 questCanBeCompleted = false;
                 Time.timeScale = 1;
+                ressources = Instantiate(startRessources, this.transform.position, Quaternion.identity);
             }
 
         }
@@ -196,9 +201,11 @@ public class Crow : MonoBehaviour
             this.dialogueBox.gameObject.SetActive(false);
             dayFlag = true;
             this.animator.SetBool("QuestAvailable", false);
+            this.animator.SetBool("HaveAQuest", false);
         }
         else
         {
+            animator.SetBool("HaveAQuest", displayQuestNeeds);
             animator.SetBool("QuestAvailable", haveAQuest);
         }
 

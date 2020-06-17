@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 2781778497493507964}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.131, y: -2.1869, z: 1}
-  m_LocalScale: {x: 0.5580754, y: 0.34396115, z: 0.33214}
+  m_LocalScale: {x: 0.5580754, y: 0.6713477, z: 0.33214}
   m_Children:
   - {fileID: 5249104498260505925}
   m_Father: {fileID: 0}
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d7679886fd6afe1419aa7dcc874aef3f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6d243659d7d21b142b6dd02d4ad563a3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,10 +101,11 @@ MonoBehaviour:
   Ennemy: {fileID: 1203229927889475110, guid: 83a4c87e4e08eb041b96b71751cf6385, type: 3}
   neededHolders: 2
   playerValues: {fileID: 11400000, guid: 2dad5574c26cf63469c42283a26e33a3, type: 2}
-  fleshCost: 2
+  fleshCost: 1
   boneCost: 0
   slimeCost: 0
   ectoplasmCost: 0
+  flowersMaxLife: 3
 --- !u!50 &2024701414
 Rigidbody2D:
   serializedVersion: 4
@@ -139,18 +140,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.015181541, y: 0.0066863894}
+  m_Offset: {x: 0.028409481, y: -0.29349273}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.07, y: 3.41}
+    oldSize: {x: 4.22, y: 1.81}
     newSize: {x: 19.55, y: 24.003836}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.6955223, y: 2.4838414}
+  m_Size: {x: 3.8698874, y: 0.99713576}
   m_EdgeRadius: 0
 --- !u!95 &-3117050491648169743
 Animator:

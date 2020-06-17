@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private EnnemiValues ennemiValues;
 
+    [SerializeField] private ParticleSystem buildingsUpEffects;
+
     private GameState currentState;
     private GameTime currentTime;
 
@@ -48,7 +50,7 @@ public class GameManager : MonoBehaviour
         if (SceneManager.GetActiveScene().name != "MainMenu")
         {
             this.currentTime = GameTime.Day;
-            DayCount = 1;
+            NightCount = 0;
             ennemiValues.InitializeStats();
         }
     }
@@ -88,14 +90,19 @@ public class GameManager : MonoBehaviour
         return this.currentTime;
     }
 
-    public int DayCount { get; set; }
+    public int NightCount { get; set; }
 
     public void SetGameTime(GameTime gameTime)
     {
+        Time.timeScale = 1;
         this.currentTime = gameTime;
-        if (gameTime == GameTime.Day)
+        if (gameTime == GameTime.Night)
         {
-            DayCount++;
+            NightCount++;
+
+            PlayerStats playerStats = currentStats;
+            playerStats.nightsCount++;
+            currentStats = playerStats;
         }
     }
 
@@ -137,7 +144,11 @@ public class GameManager : MonoBehaviour
 
     public struct PlayerStats
     {
-        public int kills;
+        public int zombieKills;
+        public int skeletonKills;
+        public int slimeKills;
+        public int ghostsKills;
+        public int totalKills;
         public int buildingsCount;
         public int questsCount;
         public int nightsCount;
@@ -180,6 +191,11 @@ public class GameManager : MonoBehaviour
     public Vector2 SendBubblesHolderPosition()
     {
         return bubblesHolderPosition;
+    }
+
+    public ParticleSystem SendBuildingsParticles()
+    {
+        return buildingsUpEffects;
     }
 
     // ------------------ Others -------------------------

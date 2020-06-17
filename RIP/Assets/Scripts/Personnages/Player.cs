@@ -153,11 +153,14 @@ public class Player : MonoBehaviour
 
         if (playerState != PlayerState.Dead)
         {
-            if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Night)
+            if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Day)
             {
-                this.Attacks();
+                if (!GameManager.Instance.MouseIsOverSomething)
+                {
+                    this.Attacks();
+                }
             }
-            else if (!GameManager.Instance.MouseIsOverSomething)
+            else
             {
                 this.Attacks();
             }
@@ -253,12 +256,12 @@ public class Player : MonoBehaviour
 
     private void MoveCrowDisplayPointPosition()
     {
-        Vector2 crowPosition = GameManager.Instance.CrowPositition - this.transform.position;
+        Vector3 crowPosition = GameManager.Instance.CrowPositition - this.transform.position;
         float crowAngle = Mathf.Atan2(crowPosition.y, crowPosition.x) * Mathf.Rad2Deg;
 
         crowDisplayPoint.transform.eulerAngles = new Vector3(0f, 0f, crowAngle);
         crowDisplayPoint.transform.position = this.transform.position - (Vector3.ClampMagnitude(this.transform.position, 2.5f));
-        crowHead.transform.position = (this.transform.position - (Vector3.ClampMagnitude(this.transform.position, 2)));
+        crowHead.transform.position = this.transform.position - (Vector3.ClampMagnitude(this.transform.position, 2));
     }
 
     // ----------------------- Code tests -------------------
@@ -268,7 +271,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.A))
         {
-            UIManager.Instance.DisplayFeedbackText("Bite");
+            playerValues.HpValue = 0;
         }
         if (Input.GetKeyDown(KeyCode.H))
         {
@@ -471,6 +474,7 @@ public class Player : MonoBehaviour
         {
             healFlag = true;
             playerValues.HpValue = playerValues.maxHP;
+            
         }
         else if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Night)
         {
@@ -524,6 +528,7 @@ public class Player : MonoBehaviour
             playerAnimator.SetBool("Idle", true);
             playerAnimator.SetBool("ShovelAttacking", false);
         }
+
     }
 
     private void LaunchFireBall()
@@ -570,15 +575,14 @@ public class Player : MonoBehaviour
     {
         playerValues.level++;
         playerValues.xpNeeded = 25 * playerValues.level * (1 + playerValues.level);
-        playerValues.maxHP = Mathf.FloorToInt( (float) ( (playerValues.level - 1) + (playerValues.maxHP - (playerValues.maxHP * 0.9)) ) * 
-                                              (float) ( (playerValues.level - 1) - ((playerValues.level - 1) * 0.9) ) + playerValues.baseMaxHP );
+        playerValues.maxHP = Mathf.FloorToInt( playerValues.maxHP + (playerValues.level / 2) );
 
         int pastDamages = playerValues.shovelDamages;
-        playerValues.shovelDamages = Mathf.FloorToInt((playerValues.shovelDamages + (playerValues.level / 2.5f)) - (playerValues.level / playerValues.baseShovelDamages));
+        playerValues.shovelDamages = Mathf.RoundToInt((pastDamages + (playerValues.level / 2)) * 0.82f);
         GameManager.Instance.GainedShovelDamages = playerValues.shovelDamages - pastDamages;
 
         pastDamages = playerValues.fireBallDamages;
-        playerValues.fireBallDamages = Mathf.RoundToInt((playerValues.fireBallDamages + (playerValues.level / 2)) - (playerValues.level / 2.5f));
+        playerValues.fireBallDamages = Mathf.RoundToInt(pastDamages + (playerValues.level / 2) * 0.76f);
         GameManager.Instance.GainedFireballDamages = playerValues.fireBallDamages - pastDamages;
 
         playerValues.HpValue = playerValues.maxHP;
@@ -639,9 +643,12 @@ public class Player : MonoBehaviour
         Torches torch = collision.GetComponent<Torches>();
         if (torch != null)
         {
-            if(torch.IsLighted())
+            if (!canLaunchFireBall)
             {
-                this.canLaunchFireBall = true;
+                if (torch.IsLighted())
+                {
+                    fireBallCooldown = 0;
+                }
             }
         }
     }
