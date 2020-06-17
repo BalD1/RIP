@@ -42,7 +42,6 @@ public class EnnemiZombie : EnnemiParent
 
     void Update()
     {
-        Debug.Log(this.name + " : " + this.level);
         base.FleeAtDay();
 
         if (this.hp <= 0)

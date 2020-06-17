@@ -153,11 +153,14 @@ public class Player : MonoBehaviour
 
         if (playerState != PlayerState.Dead)
         {
-            if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Night)
+            if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Day)
             {
-                this.Attacks();
+                if (!GameManager.Instance.MouseIsOverSomething)
+                {
+                    this.Attacks();
+                }
             }
-            else if (!GameManager.Instance.MouseIsOverSomething)
+            else
             {
                 this.Attacks();
             }
@@ -499,35 +502,33 @@ public class Player : MonoBehaviour
 
     private void Attacks()
     {
-        if (GameManager.Instance.SendGameTime() == GameManager.GameTime.Night)
+        if (shovelAttackTimer == 0 && playerState != PlayerState.ShovelAttacking)
         {
-            if (shovelAttackTimer == 0 && playerState != PlayerState.ShovelAttacking)
+            if (Input.GetKeyDown(KeyCode.Mouse1))
             {
-                if (Input.GetKeyDown(KeyCode.Mouse1))
-                {
-                    this.playerState = PlayerState.ShovelAttacking;
-                    playerAnimator.SetBool("ShovelAttacking", true);
-                    shovelAttackTimer = shovelAttackTime;
-                }
-            }
-            if (canLaunchFireBall)
-            {
-                if (Input.GetKeyDown(KeyCode.Mouse0))
-                {
-                    playerAnimator.SetBool("FireballAttacking", true);
-                    Invoke("LaunchFireBall", fireballAttackAnimationTime / 2);
-                    fireballAttackAnimationTimer = fireballAttackAnimationTime;
-                    canLaunchFireBall = false;
-                }
-            }
-            shovelAttackTimer = Mathf.Clamp(shovelAttackTimer - Time.deltaTime, 0, shovelAttackTime);
-            if (shovelAttackTimer == 0 && this.playerState == PlayerState.ShovelAttacking)
-            {
-                this.playerState = PlayerState.Idle;
-                playerAnimator.SetBool("Idle", true);
-                playerAnimator.SetBool("ShovelAttacking", false);
+                this.playerState = PlayerState.ShovelAttacking;
+                playerAnimator.SetBool("ShovelAttacking", true);
+                shovelAttackTimer = shovelAttackTime;
             }
         }
+        if (canLaunchFireBall)
+        {
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                playerAnimator.SetBool("FireballAttacking", true);
+                Invoke("LaunchFireBall", fireballAttackAnimationTime / 2);
+                fireballAttackAnimationTimer = fireballAttackAnimationTime;
+                canLaunchFireBall = false;
+            }
+        }
+        shovelAttackTimer = Mathf.Clamp(shovelAttackTimer - Time.deltaTime, 0, shovelAttackTime);
+        if (shovelAttackTimer == 0 && this.playerState == PlayerState.ShovelAttacking)
+        {
+            this.playerState = PlayerState.Idle;
+            playerAnimator.SetBool("Idle", true);
+            playerAnimator.SetBool("ShovelAttacking", false);
+        }
+
     }
 
     private void LaunchFireBall()
@@ -574,15 +575,14 @@ public class Player : MonoBehaviour
     {
         playerValues.level++;
         playerValues.xpNeeded = 25 * playerValues.level * (1 + playerValues.level);
-        playerValues.maxHP = Mathf.FloorToInt( (float) ( (playerValues.level - 1) + (playerValues.maxHP - (playerValues.maxHP * 0.9)) ) * 
-                                              (float) ( (playerValues.level - 1) - ((playerValues.level - 1) * 0.9) ) + playerValues.baseMaxHP );
+        playerValues.maxHP = Mathf.FloorToInt( playerValues.maxHP + (playerValues.level / 2) );
 
         int pastDamages = playerValues.shovelDamages;
-        playerValues.shovelDamages = Mathf.FloorToInt((playerValues.shovelDamages + (playerValues.level / 2.5f)) - (playerValues.level / playerValues.baseShovelDamages));
+        playerValues.shovelDamages = Mathf.RoundToInt((pastDamages + (playerValues.level / 2)) * 0.82f);
         GameManager.Instance.GainedShovelDamages = playerValues.shovelDamages - pastDamages;
 
         pastDamages = playerValues.fireBallDamages;
-        playerValues.fireBallDamages = Mathf.RoundToInt((playerValues.fireBallDamages + (playerValues.level / 2)) - (playerValues.level / 2.5f));
+        playerValues.fireBallDamages = Mathf.RoundToInt(pastDamages + (playerValues.level / 2) * 0.76f);
         GameManager.Instance.GainedFireballDamages = playerValues.fireBallDamages - pastDamages;
 
         playerValues.HpValue = playerValues.maxHP;
