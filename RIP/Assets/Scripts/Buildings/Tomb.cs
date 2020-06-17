@@ -298,6 +298,18 @@ public class Tomb : MonoBehaviour
         }
     }
 
+    public bool IsFlowered()
+    {
+        if (this.flowerState == FlowerState.Flowered)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     private void OnMouseExit()
     {
         GameManager.Instance.MouseIsOverSomething = false;

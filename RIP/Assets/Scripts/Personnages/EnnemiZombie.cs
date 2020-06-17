@@ -108,6 +108,12 @@ public class EnnemiZombie : EnnemiParent
                     base.LevelUp();
                 }
             }
+            if (tomb.IsFlowered())
+            {
+                this.attack /= 2;
+                this.hp /= 2;
+                this.speed /= 1.5f;
+            }
         }
     }
 }
