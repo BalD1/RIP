@@ -30,8 +30,8 @@ MonoBehaviour:
   invincibleTime: 1
   baseFireballCooldown: 2.5
   fireBallCooldown: 2.5
-  baseShovelCooldown: 1
-  shovelCooldown: 1
+  baseShovelCooldown: 0.7
+  shovelCooldown: 0.7
   fleshCount: 0
   bonesCount: 0
   ectoplasmCount: 0

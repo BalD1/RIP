@@ -467,9 +467,11 @@ MonoBehaviour:
       possible.
     - 'You can build by clicking on the dirty squares around here. It will cost you
       some ressources, and each build will contain their own creature. '
-    - By upgrading a build, it's creature will become stronger, but more rewarding.
-      Every creature becomes stronger each night, too.
-    - Here, i'll give you some ressources. They'll let you build some basics tombs.
+    - You will be able to upgrade theses builds by clicking on them again. By upgrading
+      it, it's creature will become stronger, but more rewarding. Every creature
+    - 'becomes stronger each nights too. You also can add flowers, they''ll calm
+      the creature down for a little bit. '
+    - Here, i'll give you some ressources. it'll let you build some basics tombs.
       You'll gain more by killing the creatures.
     - So, what are you waiting for ? The night won't wait for you, go fulfill your
       duty ! Satan has faith in you, don't disappoint him, it would be a shame for
