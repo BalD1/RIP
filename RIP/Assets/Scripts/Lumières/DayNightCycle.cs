@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.LWRP;
 
+//--------------------Quentin Lejuez-------------------------//
+
 public class DayNightCycle : MonoBehaviour
 {
     private Light sunLight;

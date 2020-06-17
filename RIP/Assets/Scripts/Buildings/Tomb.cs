@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//----------------------------Quentin Lejuez--------------------------------//
+
 public class Tomb : MonoBehaviour
 {
     [SerializeField]
