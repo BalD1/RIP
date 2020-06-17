@@ -26,7 +26,8 @@ public class AudioManager : MonoBehaviour
         "ShovelHit",
         "Bone",
         "Musique",
-        "MusiqueMenu"
+        "MusiqueMenu",
+        "Points",
     };
 
     [SerializeField]

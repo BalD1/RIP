@@ -81,8 +81,14 @@ public class Scoreboard : MonoBehaviour
         {
             killsMultiplier += killCount * (int)((playerStats.totalKills / 1.99f) - killCount);
         }
-
-        killsMultiplier = killsMultiplier / playerStats.totalKills * totalKillsMultiplier ;
+        if (playerStats.totalKills == 0)
+        {
+            killsMultiplier = 0;
+        }
+        else
+        {
+            killsMultiplier = killsMultiplier / playerStats.totalKills * totalKillsMultiplier;
+        }
     }
 
     private void IncreaseCount(int index, int goToCount, float speedCount, Text textToIncrease, int multiplier)
@@ -137,6 +143,7 @@ public class Scoreboard : MonoBehaviour
                 text.rectTransform.position.y < scoreTransform.position.y * 1.1)
             {
                 CalculateScore(int.Parse(text.text), text);
+                AudioManager.Instance.Play("Points");
                 return;
             }
         }
