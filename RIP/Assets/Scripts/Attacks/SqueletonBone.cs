@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SqueletonBone : MonoBehaviour
+public class SqueletonBone : MonoBehaviour //QuentinLamy
 {
     private float timer;
     void Start()

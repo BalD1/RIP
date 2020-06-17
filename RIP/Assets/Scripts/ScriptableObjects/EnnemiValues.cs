@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "EnnemiValues", menuName = "ValuesHolderEnnemi")]
-public class EnnemiValues : ScriptableObject
+public class EnnemiValues : ScriptableObject//QuentinLamy
 {
     public int baseZombieHp;
     public float baseZombieSpd;

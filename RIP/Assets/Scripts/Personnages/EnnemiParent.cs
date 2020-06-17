@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class EnnemiParent : MonoBehaviour
+public class EnnemiParent : MonoBehaviour//QuentinLamy
 {
     protected Animator animator;
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Horloge : MonoBehaviour
+public class Horloge : MonoBehaviour//QuentinLamy
 {
     Transform transform;
 

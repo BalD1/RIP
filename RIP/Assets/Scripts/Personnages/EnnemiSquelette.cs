@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnnemiSquelette : EnnemiParent
+public class EnnemiSquelette : EnnemiParent//QuentinLamy
 {
     [SerializeField]
     private EnnemiValues ennemiValues;

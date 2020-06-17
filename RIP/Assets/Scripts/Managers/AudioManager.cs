@@ -4,7 +4,7 @@ using UnityEngine.Audio;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : MonoBehaviour //QuentinLamy
 {
     [SerializeField]
     private AudioSource source;

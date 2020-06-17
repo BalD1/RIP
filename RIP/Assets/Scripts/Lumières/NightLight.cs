@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NightLight : MonoBehaviour
 {
-    private Light nightLight;
+    private Light nightLight; //QuentinLamy
 
     void Start()
     {
