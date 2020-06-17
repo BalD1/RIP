@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireBall : MonoBehaviour
+public class FireBall : MonoBehaviour               // Florian
 {
     [SerializeField] private PlayerValues playerValues;
     [SerializeField] private float maxDistance;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Torches : MonoBehaviour
+public class Torches : MonoBehaviour                // Florian
 {
     [SerializeField] private GameObject lightPoint;
 

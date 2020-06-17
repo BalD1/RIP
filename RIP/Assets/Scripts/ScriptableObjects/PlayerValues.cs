@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PlayerValues", menuName = "ValuesHolder")]
-public class PlayerValues : ScriptableObject
+public class PlayerValues : ScriptableObject                    // Florian
 {
     // Levels
 

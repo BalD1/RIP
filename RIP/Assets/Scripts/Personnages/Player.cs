@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour             // Florian
 {
     [SerializeField]
     private PlayerValues playerValues;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Flowers : MonoBehaviour
+public class Flowers : MonoBehaviour                // Florian
 {
     [SerializeField] private List<Sprite> flowerSprites;
 

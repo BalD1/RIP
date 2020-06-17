@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shovel : MonoBehaviour
+public class Shovel : MonoBehaviour                 // Florian
 {
     [SerializeField]
     private PlayerValues playerValues;

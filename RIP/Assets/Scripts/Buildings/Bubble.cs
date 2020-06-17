@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Bubble : MonoBehaviour
+public class Bubble : MonoBehaviour                 // Florian
 {
 
     [SerializeField] GameObject building;

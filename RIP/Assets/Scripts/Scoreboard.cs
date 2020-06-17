@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Scoreboard : MonoBehaviour
+public class Scoreboard : MonoBehaviour                 // Florian
 {
     [SerializeField] private Text killsCount;
     [SerializeField] private Text buildingsCount;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HoldersGroup : MonoBehaviour
+public class HoldersGroup : MonoBehaviour               // Florian
 {
 
     [SerializeField] private bool isLocked;
