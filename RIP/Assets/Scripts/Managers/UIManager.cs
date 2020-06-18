@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 
-public class UIManager : MonoBehaviour
+public class UIManager : MonoBehaviour // Léo
 {
     [SerializeField] private PlayerValues playerValues;
     [SerializeField] private Text fleshDisplay;
